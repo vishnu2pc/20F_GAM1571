@@ -4,7 +4,8 @@
 namespace fw {
 
 class MyGLContext;
-
+class GameCore;
+	
 class FWCore
 {
 protected:
@@ -39,7 +40,7 @@ public:
     virtual ~FWCore();
 
     bool Init(int width, int height);
-    int Run();
+    int Run(GameCore* pGame);
     void Shutdown();
 
     void SetWindowSize(int width, int height);

@@ -7,7 +7,7 @@
 // It should not be included by any files inside the framework project.
 
 #include "FrameworkPCH.h"
-
+#include "GameCore.h"
 #include "FWCore.h"
 
 #endif //__Framework_H__

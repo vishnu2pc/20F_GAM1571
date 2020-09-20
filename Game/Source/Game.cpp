@@ -2,6 +2,8 @@
 
 #include "Game.h"
 
+#include <iostream>
+
 Game::Game()
 {
     
@@ -14,7 +16,8 @@ Game::~Game()
 
 void Game::Init()
 {
-    m_Humanoid = new fw::GameObject();
+    
+    m_GameObjects.push_back(fw::GameObject());
 	
 }
 
@@ -28,6 +31,10 @@ void Game::Draw()
     glClear( GL_COLOR_BUFFER_BIT );
 
     glPointSize( 10 );
-    m_Humanoid->Draw();
+	
+    for (auto it = m_GameObjects.begin(); it < m_GameObjects.end(); ++it)
+    {
+        it->Draw();
+    }
     
 }

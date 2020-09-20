@@ -11,5 +11,5 @@ public:
     virtual void Draw() override;
 
 protected:
-    fw::GameObject* m_Humanoid = nullptr;
+    std::vector<fw::GameObject> m_GameObjects;
 };

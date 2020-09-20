@@ -5,7 +5,7 @@ namespace fw {
 
 class MyGLContext;
 class GameCore;
-	
+
 class FWCore
 {
 protected:

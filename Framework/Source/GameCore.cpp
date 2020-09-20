@@ -1,10 +1,11 @@
-#include "GameCore.h"
 #include "FrameworkPCH.h"
 
-namespace  fw
-{
-	GameCore::~GameCore()
-	{
-	}
+#include "GameCore.h"
 
+namespace fw {
+
+GameCore::~GameCore()
+{
 }
+
+} // namespace fw

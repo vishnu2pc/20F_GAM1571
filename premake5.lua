@@ -1,23 +1,26 @@
 workspace "Game"
-	configurations { "Debug","Release"}
-	platforms	{"x64"}
-	location	"build"
+	configurations	{ "Debug", "Release" }
+	platforms		{ "x64" }
+	location		"build"
 	characterset	"MBCS"
-	startproject	"Game"	
-	
+	startproject	"Game"
+
 project "Game"
 	kind		"WindowedApp"
 	location	"build/Game"
+	debugdir	"Game"
 
 	files {
 		"Game/Source/**.cpp",
 		"Game/Source/**.h",
+		"Game/Data/**.vert",
+		"Game/Data/**.frag",
 		"premake5.lua",
 		".gitignore",
 		"GenerateProjectFiles.bat",
 	}
 
-	includedirs{
+	includedirs {
 		"Framework/Source",
 		"Game/Source",
 	}
@@ -27,20 +30,15 @@ project "Game"
 		"opengl32",
 	}
 
-
 project "Framework"
 	kind		"StaticLib"
 	location	"build/Framework"
 
-	files{
+	files {
 		"Framework/Source/**.cpp",
 		"Framework/Source/**.h",
 	}
 
-
-	includedirs{
+	includedirs {
 		"Framework/Source",
-		
 	}
-
-	

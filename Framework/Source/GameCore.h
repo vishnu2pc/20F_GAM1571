@@ -1,16 +1,14 @@
 #pragma once
 
-namespace fw
+namespace fw {
+
+class GameCore
 {
+public:
+    virtual ~GameCore();
 
-	class GameCore
-	{
-	public:
-		virtual ~GameCore();
+    virtual void Update() = 0;
+    virtual void Draw() = 0;
+};
 
-		virtual void Update() = 0;
-		virtual void Draw() = 0;
-
-	};
-}
-
+} // namespace fw

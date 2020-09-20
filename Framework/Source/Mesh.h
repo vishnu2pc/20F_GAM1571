@@ -1,5 +1,5 @@
 #pragma once
-#include "Framework.h"
+#include "Utility/ShaderProgram.h"
 
 namespace fw {
 

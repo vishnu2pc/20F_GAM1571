@@ -4,7 +4,7 @@
 namespace fw {
 	class ShaderProgram;
 
-	class Mesh
+    class Mesh
 {
 public:
     Mesh(float attribs[],int NumVertices, int PrimitiveType);

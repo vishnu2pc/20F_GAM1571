@@ -1,10 +1,11 @@
 #include "FrameworkPCH.h"
 
 #include "Mesh.h"
+#include <Utility\ShaderProgram.h>
 
 namespace fw {
 
-Mesh::Mesh(float attribs[], int NumVertices, int PrimitiveType, ShaderProgram* pShader)
+Mesh::Mesh(float attribs[], int NumVertices, int PrimitiveType)
 {
     // Generate a buffer for our vertex attributes.
     glGenBuffers( 1, &m_VBO ); // m_VBO is a GLuint.
@@ -17,7 +18,7 @@ Mesh::Mesh(float attribs[], int NumVertices, int PrimitiveType, ShaderProgram* p
   
     m_NumVertices = NumVertices;
     m_PrimitiveType = PrimitiveType;
-    m_pShader = pShader;
+    
 
     // Copy our attribute data into the VBO.
     int numAttributeComponents = m_NumVertices*2; // x & y for each vertex.
@@ -28,9 +29,9 @@ Mesh::~Mesh()
 {
 }
 
-void Mesh::Draw()
+void Mesh::Draw(ShaderProgram* pShader)
 {
-    glUseProgram(m_pShader->GetProgram());
+    glUseProgram(pShader->GetProgram());
 	// Set this VBO to be the currently active one.
     glBindBuffer( GL_ARRAY_BUFFER, m_VBO );
 

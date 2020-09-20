@@ -17,7 +17,7 @@ void Game::Init()
     m_pShader_Blue = new fw::ShaderProgram( "Data/Basic.vert", "Data/Basic.frag" );
     m_pShader_DarkBlue = new fw::ShaderProgram("Data/Basic.vert", "Data/DarkBlue.frag");
 
-    m_pMesh = new fw::Mesh(attribs,4, GL_TRIANGLES, m_pShader_DarkBlue);
+    m_pMesh = new fw::Mesh(attribs, 4, GL_TRIANGLES);
 	
 }
 
@@ -32,5 +32,5 @@ void Game::Draw()
 
     glPointSize( 10 );
    
-    m_pMesh->Draw();
+    m_pMesh->Draw(m_pShader_Blue);
 }

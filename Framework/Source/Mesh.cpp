@@ -12,8 +12,6 @@ Mesh::Mesh(float attribs[], int NumVertices, int PrimitiveType)
 
     // Set this VBO to be the currently active one.
     glBindBuffer( GL_ARRAY_BUFFER, m_VBO );
-
-    // Define our triangle as 3 positions.
     
   
     m_NumVertices = NumVertices;

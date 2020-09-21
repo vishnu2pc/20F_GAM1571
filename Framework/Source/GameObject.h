@@ -12,6 +12,8 @@ public:
 	void Update();
 	void Draw();
 private:
+    int GAMEOBJECT_TYPE = 0;
+		
     fw::ShaderProgram* m_pShader_Blue = nullptr;
     fw::ShaderProgram* m_pShader_DarkBlue = nullptr;
     fw::ShaderProgram* m_pShader_Skin = nullptr;
@@ -23,7 +25,13 @@ private:
     fw::Mesh* m_pMeshSkin = nullptr;
     fw::Mesh* m_pMeshFace = nullptr;
 
-    float VERTEX_DARK_BLUE[108] =
+    fw::Mesh* m_pMeshDogFrontLegsRight = nullptr;
+    fw::Mesh* m_pMeshDogFrontLegsLeft = nullptr;
+
+    fw::Mesh* m_pMeshDogBackLegsRight = nullptr;
+    fw::Mesh* m_pMeshDogBackLegsLeft = nullptr;
+
+    float VERTEX_MM_DARK_BLUE[108] =
     {
         //Body Vertices
 
@@ -103,7 +111,7 @@ private:
     	
     };
 
-    float VERTEX_BLUE[84] =
+    float VERTEX_MM_BLUE[84] =
     {
         -0.8f, -0.4f,
     	-0.7f, -0.3f,
@@ -164,7 +172,7 @@ private:
     	-0.55f, 0.5f
     };
 		
-    float VERTEX_SKIN[36]
+    float VERTEX_MM_SKIN[36] =
     {
         -0.5f, -0.1f,
         -0.7f, 0.1f,
@@ -191,7 +199,7 @@ private:
         -0.5f, -0.1f,
     };
 
-    float VERTEX_FACE[72]
+    float VERTEX_MM_FACE[72] =
     {
         -0.6f, 0.2f,
         -0.6f, 0.15f,
@@ -225,7 +233,70 @@ private:
         -0.45f, 0.05f,
         -0.5f, 0.05f
     };
-   
-	
+
+    float VERTEX_DOG_FRONT_LEGS_RIGHT[22] =
+    {
+        //Right Leg
+    	
+    	0.34f, -0.6f,
+        0.3f, -0.6f,
+        0.32f, -0.58f,
+        0.32f, -0.52f,
+        0.27f, -0.48f,
+        0.27f, -0.4f,
+        0.3f, -0.35f,
+        0.3f, -0.4f,
+        0.3f, -0.47f,
+        0.36f, -0.5f,
+        0.35f, -0.58f
+
+    };
+
+    float VERTEX_DOG_FRONT_LEGS_LEFT[22] =
+    {
+		0.42f, -0.6f,
+    	0.38f, -0.6f,
+    	0.4f, -0.58f,
+    	0.4f, -0.52f,
+    	0.34f, -0.47f,
+    	0.34f, -0.42f,
+    	0.35f, -0.4f,
+    	0.4f, -0.41f,
+    	0.42f, -0.47f,
+    	0.44f, -0.49f,
+    	0.44f, -0.52f
+
+    };
+
+    float VERTEX_DOG_BACK_LEGS_RIGHT[22] =
+    {
+        0.5f, -0.6f,
+    	0.46f, -0.6f,
+    	0.46f, -0.58f,
+    	0.48f, -0.56f,
+    	0.48f, -0.54f,
+    	0.44f, -0.52f,
+    	0.44f, -0.5f,
+    	0.5f, -0.5f,
+    	0.5f, -0.515,
+    	0.52f, -0.53,
+    	0.52f, -0.57f
+
+    };
+
+    float VERTEX_DOG_BACK_LEGS_LEFT[18] =
+    {
+		0.69f, -0.6f,
+		0.65f, -0.6f,
+    	0.6f, -0.54f,
+    	0.53f, -0.5f,
+    	0.5f, -0.47f,
+    	0.5f, -0.42f,
+    	0.55f, -0.4f,
+    	0.6f, -0.45f,
+    	0.63f, -0.5f,
+    	
+
+    };
 };
 }

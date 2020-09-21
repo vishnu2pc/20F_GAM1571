@@ -16,10 +16,8 @@ Game::~Game()
 
 void Game::Init()
 {
-    
     m_GameObjects.push_back(fw::GameObject(HUMANOID));
-   
-	
+    m_GameObjects.push_back(fw::GameObject(ANIMAL));
 	
 }
 

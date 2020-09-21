@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 #include "Game.h"
-
+#include "Constants.h"
 #include <iostream>
 
 Game::Game()
@@ -17,17 +17,20 @@ Game::~Game()
 void Game::Init()
 {
     
-    m_GameObjects.push_back(fw::GameObject());
+    m_GameObjects.push_back(fw::GameObject(HUMANOID));
+   
+	
 	
 }
 
 void Game::Update()
 {
+	
 }
 
 void Game::Draw()
 {
-    glClearColor( 0, 1, 0, 0 );
+    glClearColor( 0, 0, 0, 0 );
     glClear( GL_COLOR_BUFFER_BIT );
 
     glPointSize( 10 );

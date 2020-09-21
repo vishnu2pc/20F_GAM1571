@@ -14,5 +14,6 @@
 #include "Utility/Helpers.h"
 #include "Mesh.h"
 #include "GameObject.h"
+#include "Constants.h"
 
 #endif //__Framework_H__

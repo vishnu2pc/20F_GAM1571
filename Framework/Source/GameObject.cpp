@@ -26,6 +26,8 @@ fw::GameObject::GameObject(int GameObjectType)
 		m_pMeshDogFrontLegsLeft = new fw::Mesh(VERTEX_DOG_FRONT_LEGS_LEFT, 11, GL_LINE_LOOP);
 		m_pMeshDogBackLegsRight = new fw::Mesh(VERTEX_DOG_BACK_LEGS_RIGHT, 11, GL_LINE_LOOP);
 		m_pMeshDogBackLegsLeft = new fw::Mesh(VERTEX_DOG_BACK_LEGS_LEFT, 9, GL_LINE_LOOP);
+		m_pMeshDogTail = new fw::Mesh(VERTEX_DOG_TAIL, 5, GL_LINE_LOOP);
+		m_pMeshDogBody = new fw::Mesh(VERTEX_DOG_BODY, 15, GL_LINE_STRIP);
 
 	}
 	
@@ -56,6 +58,7 @@ void fw::GameObject::Draw()
 		m_pMeshDogFrontLegsLeft->Draw(m_pShader_Skin);
 		m_pMeshDogBackLegsRight->Draw(m_pShader_Skin);
 		m_pMeshDogBackLegsLeft->Draw(m_pShader_Skin);
-		
+		m_pMeshDogTail->Draw(m_pShader_Skin);
+		m_pMeshDogBody->Draw(m_pShader_Skin);
 	}
 }

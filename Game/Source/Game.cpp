@@ -1,7 +1,5 @@
 #include "Framework.h"
-
 #include "Game.h"
-#include "Constants.h"
 #include <iostream>
 
 Game::Game()

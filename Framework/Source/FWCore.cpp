@@ -14,6 +14,7 @@
 #include "GL/WGLExtensions.h"
 #include "GL/MyGLContext.h"
 #include "GameCore.h"
+#include "Utility/Helpers.h"
 
 namespace fw {
 
@@ -82,6 +83,7 @@ int FWCore::Run(GameCore* pGame)
     // Main loop.
     MSG message;
     bool done = false;
+    double previousTime = GetSystemTimeSinceGameStart();
 
     while( !done )
     {
@@ -99,7 +101,11 @@ int FWCore::Run(GameCore* pGame)
         }
         else
         {
-            pGame->Update();
+            double currentTime = GetSystemTimeSinceGameStart();
+            double deltaTime = currentTime - previousTime;
+            previousTime = currentTime;
+        	
+            pGame->Update((float)deltaTime);
             pGame->Draw();
 
             SwapBuffers();

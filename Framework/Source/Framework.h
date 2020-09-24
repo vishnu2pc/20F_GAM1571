@@ -8,6 +8,9 @@
 
 #include "FrameworkPCH.h"
 
+#include "../Libraries/imgui/imgui.h"
+
+
 #include "FWCore.h"
 #include "GameCore.h"
 #include "Utility/ShaderProgram.h"
@@ -15,5 +18,8 @@
 #include "Mesh.h"
 #include "GameObject.h"
 #include "Constants.h"
+#include "UI/ImGuiManager.h"
+
+
 
 #endif //__Framework_H__

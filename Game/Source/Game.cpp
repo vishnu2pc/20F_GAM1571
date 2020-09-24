@@ -2,26 +2,36 @@
 #include "Game.h"
 #include <iostream>
 
-Game::Game()
+Game::Game(fw::FWCore* pFramework)  :fw::GameCore(pFramework)
 {
-    
     
 }
 
 Game::~Game()
 {
+    for (int i = 0; i < m_GameObjects.size(); i++)
+    {
+       delete m_GameObjects[i];
+    }
+	
+    delete m_pImGuiManager;
 }
 
 void Game::Init()
 {
-    m_GameObjects.push_back(fw::GameObject(HUMANOID));
-    m_GameObjects.push_back(fw::GameObject(ANIMAL));
+    m_pImGuiManager = new fw::ImGuiManager(m_pFramework);
+    m_pImGuiManager->Init();
+	
+    m_GameObjects.push_back(new fw::GameObject(HUMANOID));
+    m_GameObjects.push_back(new fw::GameObject(ANIMAL));
 	
 }
 
-void Game::Update()
+void Game::Update(float deltaTime)
 {
-	
+    m_pImGuiManager->StartFrame(deltaTime);
+    ImGui::ShowDemoWindow();
+    
 }
 
 void Game::Draw()
@@ -31,9 +41,11 @@ void Game::Draw()
 
     glPointSize( 10 );
 	
-    for (auto it = m_GameObjects.begin(); it < m_GameObjects.end(); ++it)
+   
+    for(int i=0; i<m_GameObjects.size();i++)
     {
-        it->Draw();
+        m_GameObjects[i]->Draw();
     }
-    
+
+    m_pImGuiManager->EndFrame();
 }

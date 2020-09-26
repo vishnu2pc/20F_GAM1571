@@ -7,16 +7,19 @@ namespace fw {
     class Mesh
 {
 public:
-    Mesh(float attribs[],int NumVertices, int PrimitiveType);
+    Mesh();
+    Mesh(float attribs[],int NumVertices, int PrimitiveType, ShaderProgram* pShader);
     virtual ~Mesh();
 
-    void Draw(ShaderProgram* m_pShader);
+    void CreateShape(float attribs[], int NumVertices, int PrimitiveType, ShaderProgram* pShader);
+    void Draw(float x, float y);
 
 protected:
     GLuint m_VBO = 0;
 
     int m_NumVertices = 0;
     int m_PrimitiveType = GL_POINTS;
+    ShaderProgram* m_pShader;
     
 };
 

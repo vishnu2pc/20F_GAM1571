@@ -19,11 +19,31 @@ Game::~Game()
 
 void Game::Init()
 {
-    m_pImGuiManager = new fw::ImGuiManager(m_pFramework);
+    m_pShader_DarkBlue = new fw::ShaderProgram("Data/Basic.vert", "Data/DarkBlue.frag");
+    m_pShader_Blue = new fw::ShaderProgram("Data/Basic.vert", "Data/Blue.frag");
+    m_pShader_Skin = new fw::ShaderProgram("Data/Basic.vert", "Data/Skin.frag");
+    m_pShader_Face = new fw::ShaderProgram("Data/Basic.vert", "Data/Black.frag");
+
+	m_MegaManMesh.push_back(new fw::Mesh(VERTEX_MM_DARK_BLUE, 54, GL_TRIANGLES, m_pShader_DarkBlue));
+    m_MegaManMesh.push_back(new fw::Mesh(VERTEX_MM_BLUE, 42, GL_TRIANGLES, m_pShader_Blue));
+    m_MegaManMesh.push_back(new fw::Mesh(VERTEX_MM_SKIN, 18, GL_TRIANGLES, m_pShader_Skin));
+    m_MegaManMesh.push_back(new fw::Mesh(VERTEX_MM_FACE, 24, GL_TRIANGLES, m_pShader_Face));
+
+    m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_FRONT_LEGS_RIGHT, 11, GL_LINE_LOOP, m_pShader_Skin));
+    m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_FRONT_LEGS_LEFT, 11, GL_LINE_LOOP, m_pShader_Skin));
+    m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_BACK_LEGS_RIGHT, 11, GL_LINE_LOOP, m_pShader_Skin));
+    m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_BACK_LEGS_LEFT, 9, GL_LINE_LOOP, m_pShader_Skin));
+    m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_TAIL, 5, GL_LINE_LOOP, m_pShader_Skin));
+    m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_BODY, 15, GL_LINE_STRIP, m_pShader_Skin));
+
+    m_GameObjects.push_back(new fw::GameObject(0.0f, 0.0f, HUMANOID, m_MegaManMesh));
+    m_GameObjects.push_back(new fw::GameObject(0.0f, 0.0f, ANIMAL, m_DiamondDogMesh));
+	
+	m_pImGuiManager = new fw::ImGuiManager(m_pFramework);
     m_pImGuiManager->Init();
 	
-    m_GameObjects.push_back(new fw::GameObject(HUMANOID));
-    m_GameObjects.push_back(new fw::GameObject(ANIMAL));
+    
+   
 	
 }
 
@@ -46,6 +66,8 @@ void Game::Draw()
     {
         m_GameObjects[i]->Draw();
     }
+
+	
 
     m_pImGuiManager->EndFrame();
 }

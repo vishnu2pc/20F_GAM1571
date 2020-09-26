@@ -10,7 +10,7 @@
 #include "FrameworkPCH.h"
 #include "UI/ImGuiManager.h"
 #include "../../Libraries/imgui/imgui.h"
-#include "FWCore.h"
+#include "Core/FWCore.h"
 
 namespace fw {
 

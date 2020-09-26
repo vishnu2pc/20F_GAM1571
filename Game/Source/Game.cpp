@@ -13,8 +13,23 @@ Game::~Game()
     {
        delete m_GameObjects[i];
     }
+
+    for (int i = 0; i < m_MegaManMesh.size(); i++)
+    {
+        delete m_MegaManMesh[i];
+    }
+
+    for (int i = 0; i < m_DiamondDogMesh.size(); i++)
+    {
+        delete m_DiamondDogMesh[i];
+    }
 	
     delete m_pImGuiManager;
+	
+    delete m_pShader_DarkBlue;
+    delete m_pShader_Blue;
+    delete m_pShader_Face;
+    delete m_pShader_Skin;
 }
 
 void Game::Init()

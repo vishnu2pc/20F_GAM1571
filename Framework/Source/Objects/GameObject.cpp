@@ -5,11 +5,14 @@
 #include "Math/Vector.h"
 
 
-fw::GameObject::GameObject(vec2 position, int GameObjectType, std::vector<Mesh*> pGameObjectMesh)
+fw::GameObject::GameObject(vec2 position, int GameObjectType, std::vector<Mesh*> pGameObjectMesh, GameCore* pGameCore):
+
+m_GameCore(pGameCore),
+m_position(position),
+GAMEOBJECT_TYPE(GameObjectType),
+m_Mesh(pGameObjectMesh)
+
 {
-	m_position = position;
-	GAMEOBJECT_TYPE = GameObjectType;
-	m_Mesh = pGameObjectMesh;
 }
 
 fw::GameObject::~GameObject()

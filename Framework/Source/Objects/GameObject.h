@@ -21,7 +21,7 @@ namespace fw{
 		int GAMEOBJECT_TYPE = 0;
 		std::vector<Mesh*> m_Mesh;
 
-		GameCore* m_GameCore;
+		GameCore* m_pGameCore;
 		vec2 m_position;
 	
 		

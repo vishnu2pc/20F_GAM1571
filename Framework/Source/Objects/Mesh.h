@@ -13,6 +13,7 @@ public:
 
     void CreateShape(float attribs[], int NumVertices, int PrimitiveType, ShaderProgram* pShader);
     void Draw(float x, float y);
+    void SetUniform1f(ShaderProgram* pShader, char* name, float value);
 
 protected:
     GLuint m_VBO = 0;

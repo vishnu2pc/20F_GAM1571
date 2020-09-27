@@ -7,7 +7,7 @@
 
 fw::GameObject::GameObject(vec2 position, int GameObjectType, std::vector<Mesh*> pGameObjectMesh, GameCore* pGameCore):
 
-m_GameCore(pGameCore),
+m_pGameCore(pGameCore),
 m_position(position),
 GAMEOBJECT_TYPE(GameObjectType),
 m_Mesh(pGameObjectMesh)

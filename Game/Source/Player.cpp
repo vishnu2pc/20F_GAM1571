@@ -12,4 +12,24 @@ Player::~Player()
 
 void Player::Update(float deltaTime)
 {
+	if (m_pGameCore->GetFramework()->IsKeyDown('W') == true)
+	{
+		m_position.x += 0.5f;
+	}
+
+	if (m_pGameCore->GetFramework()->IsKeyDown('A') == true)
+	{
+
+	}
+
+	if (m_pGameCore->GetFramework()->IsKeyDown('S') == true)
+	{
+
+	}
+
+	if (m_pGameCore->GetFramework()->IsKeyDown('D') == true)
+	{
+
+	}
+	
 }

@@ -11,7 +11,7 @@ public:
 
     virtual void Update(float deltaTime) = 0; 
     virtual void Draw() = 0;
-    FWCore* GetFramework();
+    fw::FWCore* GetFramework();
 protected:
     FWCore* m_pFramework = nullptr;
 };

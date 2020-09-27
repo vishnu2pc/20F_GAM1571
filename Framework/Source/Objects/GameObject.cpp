@@ -2,14 +2,12 @@
 #include "Constants.h"
 #include "FrameworkPCH.h"
 #include "Mesh.h"
+#include "Math/Vector.h"
 
 
-
-fw::GameObject::GameObject(float x, float y, int GameObjectType, std::vector<Mesh*> pGameObjectMesh)
+fw::GameObject::GameObject(vec2 position, int GameObjectType, std::vector<Mesh*> pGameObjectMesh)
 {
-	m_PosX = x;
-	m_PosY = y;
-
+	m_position = position;
 	GAMEOBJECT_TYPE = GameObjectType;
 	m_Mesh = pGameObjectMesh;
 }
@@ -29,7 +27,7 @@ void fw::GameObject::Draw()
 	{
 		for (int i = 0; i < m_Mesh.size(); i++)
 		{
-			m_Mesh[i]->Draw(m_PosX, m_PosY);
+			m_Mesh[i]->Draw(m_position.x, m_position.y);
 		}
 
 	}
@@ -37,7 +35,7 @@ void fw::GameObject::Draw()
 	{
 		for(int i = 0; i < m_Mesh.size(); i++)
 		{
-			m_Mesh[i]->Draw(m_PosX, m_PosY);
+			m_Mesh[i]->Draw(m_position.x, m_position.y);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "Math/Vector.h"
 
 namespace fw{
 	class ShaderProgram;
@@ -8,7 +9,7 @@ namespace fw{
 	class GameObject
 	{
 	public:
-		GameObject(float x, float y, int GameObjectType, std::vector<Mesh*> pGameObjectMesh);
+		GameObject(vec2 position, int GameObjectType, std::vector<Mesh*> pGameObjectMesh);
 		~GameObject();
 
 		void Update();
@@ -18,8 +19,7 @@ namespace fw{
 		int GAMEOBJECT_TYPE = 0;
 		std::vector<Mesh*> m_Mesh;
 	
-		float m_PosX = 0;
-		float m_PosY = 0;
+		vec2 m_position;
 	
 		
 };

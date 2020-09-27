@@ -18,11 +18,7 @@ namespace fw{
 		virtual void Draw();
 		
 	protected:
-		
-
 		GameCore* m_pGameCore;
-		vec2 m_position;
-	
-		
+		vec2 m_position;	
 };
 }

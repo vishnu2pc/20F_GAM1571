@@ -11,6 +11,7 @@ m_pGameCore(pGameCore),
 m_position(position)
 
 {
+	
 }
 
 fw::GameObject::~GameObject()

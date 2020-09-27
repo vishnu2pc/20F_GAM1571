@@ -7,5 +7,5 @@ void main()
 {
     vec2 pos = a_Position + vec2(u_PosX, u_PosY);
 
-    gl_Position = vec4( pos, 0, 10 );
+    gl_Position = vec4( pos, 0, 1 );
 }

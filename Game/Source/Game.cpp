@@ -58,13 +58,13 @@ void Game::Init()
 	m_pImGuiManager = new fw::ImGuiManager(m_pFramework);
     m_pImGuiManager->Init();
 	
-
 }
 
 void Game::Update(float deltaTime)
 {
     m_pImGuiManager->StartFrame(deltaTime);
     ImGui::ShowDemoWindow();
+	
     for (int i = 0; i < m_GameObjects.size(); i++)
     {
         m_GameObjects[i]->Update(deltaTime);

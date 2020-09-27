@@ -60,7 +60,8 @@ void Mesh::Draw(float x, float y)
 
     // Setup our uniforms.
     {
-        SetUniform1f(m_pShader, "u_Time", (float)GetSystemTimeSinceGameStart());
+        SetUniform1f(m_pShader, "u_PosX", x);
+        SetUniform1f(m_pShader, "u_PosY", y);
     }
 
     // Draw the primitive.

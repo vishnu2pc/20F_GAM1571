@@ -5,12 +5,10 @@
 #include "Math/Vector.h"
 
 
-fw::GameObject::GameObject(vec2 position, int GameObjectType, std::vector<Mesh*> pGameObjectMesh, GameCore* pGameCore):
+fw::GameObject::GameObject(vec2 position, GameCore* pGameCore):
 
 m_pGameCore(pGameCore),
-m_position(position),
-GAMEOBJECT_TYPE(GameObjectType),
-m_Mesh(pGameObjectMesh)
+m_position(position)
 
 {
 }
@@ -20,25 +18,11 @@ fw::GameObject::~GameObject()
 	
 }
 
-void fw::GameObject::Update()
+void fw::GameObject::Update(float deltaTime)
 {
 }
 
 void fw::GameObject::Draw()
 {
-	if (GAMEOBJECT_TYPE == HUMANOID)
-	{
-		for (int i = 0; i < m_Mesh.size(); i++)
-		{
-			m_Mesh[i]->Draw(m_position.x, m_position.y);
-		}
-
-	}
-	if (GAMEOBJECT_TYPE == ANIMAL)
-	{
-		for(int i = 0; i < m_Mesh.size(); i++)
-		{
-			m_Mesh[i]->Draw(m_position.x, m_position.y);
-		}
-	}
+	
 }

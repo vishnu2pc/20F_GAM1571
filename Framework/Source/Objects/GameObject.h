@@ -11,15 +11,14 @@ namespace fw{
 	class GameObject
 	{
 	public:
-		GameObject(vec2 position, int GameObjectType, std::vector<Mesh*> pGameObjectMesh, GameCore* pGameCore);
+		GameObject(vec2 position,GameCore* pGameCore);
 		~GameObject();
 
-		void Update();
-		void Draw();
+		virtual void Update(float deltaTime);
+		virtual void Draw();
 		
 	protected:
-		int GAMEOBJECT_TYPE = 0;
-		std::vector<Mesh*> m_Mesh;
+		
 
 		GameCore* m_pGameCore;
 		vec2 m_position;

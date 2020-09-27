@@ -3,6 +3,7 @@
 #include "Math/Vector.h"
 
 namespace fw{
+	
 	class GameCore;
 	class ShaderProgram;
 	class Mesh;

@@ -52,12 +52,13 @@ void Game::Init()
     m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_TAIL, 5, GL_LINE_LOOP, m_pShader_Skin));
     m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_BODY, 15, GL_LINE_STRIP, m_pShader_Skin));
 
-    m_GameObjects.push_back(new Player(vec2(0,0), HUMANOID, m_MegaManMesh, this));
-    m_GameObjects.push_back(new Player(vec2(0, 0), ANIMAL, m_DiamondDogMesh, this));
+    m_GameObjects.push_back(new Player(vec2(5,5), HUMANOID, m_MegaManMesh, this));
+    m_GameObjects.push_back(new Player(vec2(2, 2), ANIMAL, m_DiamondDogMesh, this));
 	
 	m_pImGuiManager = new fw::ImGuiManager(m_pFramework);
     m_pImGuiManager->Init();
-	
+
+  
 }
 
 void Game::Update(float deltaTime)
@@ -84,7 +85,7 @@ void Game::Draw()
         m_GameObjects[i]->Draw();
     }
 
-	
+    
 
     m_pImGuiManager->EndFrame();
 }

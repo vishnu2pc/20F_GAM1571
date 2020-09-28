@@ -11,16 +11,16 @@ Mesh::Mesh()
 		
 }
 
-Mesh::Mesh(float attribs[], int NumVertices, int PrimitiveType, ShaderProgram* pShader)
+Mesh::Mesh(float attribs[], int NumVertices, int PrimitiveType)
 {
-    CreateShape(attribs, NumVertices, PrimitiveType, pShader);
+    CreateShape(attribs, NumVertices, PrimitiveType);
 }
 
 Mesh::~Mesh()
 {
 }
 
-void Mesh::CreateShape(float attribs[], int NumVertices, int PrimitiveType, ShaderProgram* pShader)
+void Mesh::CreateShape(float attribs[], int NumVertices, int PrimitiveType)
 {
     // Generate a buffer for our vertex attributes.
     glGenBuffers(1, &m_VBO); // m_VBO is a GLuint.
@@ -31,7 +31,7 @@ void Mesh::CreateShape(float attribs[], int NumVertices, int PrimitiveType, Shad
 
     m_NumVertices = NumVertices;
     m_PrimitiveType = PrimitiveType;
-    m_pShader = pShader;
+    
 
     // Copy our attribute data into the VBO.
     int numAttributeComponents = m_NumVertices * 2; // x & y for each vertex.
@@ -44,9 +44,9 @@ void Mesh::SetUniform1f(ShaderProgram* pShader, char* name, float value)
     glUniform1f(loc, value);
 }
 	
-void Mesh::Draw(float x, float y)
+void Mesh::Draw(float x, float y, ShaderProgram* pShader)
 {
-    glUseProgram(m_pShader->GetProgram());
+    glUseProgram(pShader->GetProgram());
 
     // Set this VBO to be the currently active one.
     glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
@@ -60,8 +60,8 @@ void Mesh::Draw(float x, float y)
 
     // Setup our uniforms.
     {
-        SetUniform1f(m_pShader, "u_PosX", x);
-        SetUniform1f(m_pShader, "u_PosY", y);
+        SetUniform1f(pShader, "u_PosX", x);
+        SetUniform1f(pShader, "u_PosY", y);
     }
 
     // Draw the primitive.

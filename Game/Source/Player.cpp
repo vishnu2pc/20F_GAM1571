@@ -2,8 +2,16 @@
 #include "Framework.h"
 
 
-Player::Player(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pGameObjectMesh, fw::GameCore* pGameCore) : GameObject(position, pGameCore),
+Player::Player(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pGameObjectMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore) : GameObject(position, pGameCore),
 m_pMesh(pGameObjectMesh),
+m_pShaders(pShaders),
+GAMEOBJECT_TYPE(GameObjectType)
+{
+}
+
+Player::Player(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pGameObjectMesh, fw::ShaderProgram* pShader,fw::GameCore* pGameCore) : GameObject(position, pGameCore),
+m_pMesh(pGameObjectMesh),
+m_pShader(pShader),
 GAMEOBJECT_TYPE(GameObjectType)
 {
 }
@@ -16,22 +24,22 @@ void Player::Update(float deltaTime)
 {
 	if (m_pGameCore->GetFramework()->IsKeyDown('W') == true)
 	{
-		m_position.y += 0.02f;
+		m_position.y += 0.005f;
 	}
 
 	if (m_pGameCore->GetFramework()->IsKeyDown('A') == true)
 	{
-		m_position.x -= 0.02f;
+		m_position.x -= 0.005f;
 	}
 
 	if (m_pGameCore->GetFramework()->IsKeyDown('S') == true)
 	{
-		m_position.y -= 0.02f;
+		m_position.y -= 0.005f;
 	}
 
 	if (m_pGameCore->GetFramework()->IsKeyDown('D') == true)
 	{
-		m_position.x += 0.02f;
+		m_position.x += 0.005f;
 	}
 	
 }
@@ -42,7 +50,7 @@ void Player::Draw()
 	{
 		for (int i = 0; i < m_pMesh.size(); i++)
 		{
-			m_pMesh[i]->Draw(m_position.x, m_position.y);
+			m_pMesh[i]->Draw(m_position.x, m_position.y, m_pShaders[i]);
 		}
 
 	}
@@ -50,7 +58,7 @@ void Player::Draw()
 	{
 		for (int i = 0; i < m_pMesh.size(); i++)
 		{
-			m_pMesh[i]->Draw(m_position.x, m_position.y);
+			m_pMesh[i]->Draw(m_position.x, m_position.y, m_pShader);
 		}
 	}
 }

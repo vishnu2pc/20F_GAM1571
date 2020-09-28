@@ -5,8 +5,8 @@
 namespace fw{
 	
 	class GameCore;
-	class ShaderProgram;
 	class Mesh;
+	class ShaderProgram;
 
 	class GameObject
 	{

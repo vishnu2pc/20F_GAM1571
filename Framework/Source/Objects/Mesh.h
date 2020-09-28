@@ -8,11 +8,11 @@ namespace fw {
 {
 public:
     Mesh();
-    Mesh(float attribs[],int NumVertices, int PrimitiveType, ShaderProgram* pShader);
+    Mesh(float attribs[],int NumVertices, int PrimitiveType);
     virtual ~Mesh();
 
-    void CreateShape(float attribs[], int NumVertices, int PrimitiveType, ShaderProgram* pShader);
-    void Draw(float x, float y);
+    void CreateShape(float attribs[], int NumVertices, int PrimitiveType);
+    void Draw(float x, float y, ShaderProgram* pShader);
     void SetUniform1f(ShaderProgram* pShader, char* name, float value);
 
 protected:
@@ -20,7 +20,7 @@ protected:
 
     int m_NumVertices = 0;
     int m_PrimitiveType = GL_POINTS;
-    ShaderProgram* m_pShader;
+    
     
 };
 

@@ -1,6 +1,5 @@
-#include "Player.h"
 #include "Framework.h"
-
+#include "Player.h"
 
 Player::Player(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pGameObjectMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore) : GameObject(position, pGameCore),
 m_pMesh(pGameObjectMesh),

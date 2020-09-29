@@ -24,22 +24,22 @@ void Player::Update(float deltaTime)
 {
 	if (m_pGameCore->GetFramework()->IsKeyDown('W') == true)
 	{
-		m_position.y += 0.005f;
+		m_position.y += 10.0f* deltaTime;
 	}
 
 	if (m_pGameCore->GetFramework()->IsKeyDown('A') == true)
 	{
-		m_position.x -= 0.005f;
+		m_position.x -= 10.0f * deltaTime;
 	}
 
 	if (m_pGameCore->GetFramework()->IsKeyDown('S') == true)
 	{
-		m_position.y -= 0.005f;
+		m_position.y -= 10.0f * deltaTime;
 	}
 
 	if (m_pGameCore->GetFramework()->IsKeyDown('D') == true)
 	{
-		m_position.x += 0.005f;
+		m_position.x += 10.0f * deltaTime;
 	}
 	
 }

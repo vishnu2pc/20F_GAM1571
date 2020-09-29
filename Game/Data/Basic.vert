@@ -6,7 +6,6 @@ uniform float u_PosY;
 
 void main()
 {
-
     vec2 pos = a_Position + vec2(u_PosX, u_PosY);
     pos = pos/5 -1;
     

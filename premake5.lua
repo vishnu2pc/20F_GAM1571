@@ -21,7 +21,6 @@ project "Game"
 	}
 
 	includedirs {
-		"Framework/Source",
 		"Game/Source",
 	}
 

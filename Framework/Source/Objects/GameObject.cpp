@@ -1,6 +1,6 @@
 #include "FrameworkPCH.h"
 #include "GameObject.h"
-#include "Constants.h"
+#include "../../Game/Source/Constants.h"
 #include "Mesh.h"
 
 fw::GameObject::GameObject(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore)

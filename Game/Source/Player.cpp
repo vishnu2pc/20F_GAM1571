@@ -1,17 +1,17 @@
 #include "Framework.h"
 #include "Player.h"
 
-Player::Player(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pGameObjectMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore) : GameObject(position, pGameCore),
-m_pMesh(pGameObjectMesh),
-m_pShaders(pShaders),
-GAMEOBJECT_TYPE(GameObjectType)
+Player::Player(fw::vec2 position, int GameObjectType, std::vector<fw::Mesh*> pGameObjectMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore) : GameObject(position, pGameCore),
+                                                                                                                                                                   m_pMesh(pGameObjectMesh),
+                                                                                                                                                                   m_pShaders(pShaders),
+                                                                                                                                                                   GAMEOBJECT_TYPE(GameObjectType)
 {
 }
 
-Player::Player(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pGameObjectMesh, fw::ShaderProgram* pShader,fw::GameCore* pGameCore) : GameObject(position, pGameCore),
-m_pMesh(pGameObjectMesh),
-m_pShader(pShader),
-GAMEOBJECT_TYPE(GameObjectType)
+Player::Player(fw::vec2 position, int GameObjectType, std::vector<fw::Mesh*> pGameObjectMesh, fw::ShaderProgram* pShader,fw::GameCore* pGameCore) : GameObject(position, pGameCore),
+                                                                                                                                                    m_pMesh(pGameObjectMesh),
+                                                                                                                                                    m_pShader(pShader),
+                                                                                                                                                    GAMEOBJECT_TYPE(GameObjectType)
 {
 }
 

@@ -1,15 +1,16 @@
 #pragma once
+#pragma once
 
-namespace  fw
-{
+namespace fw {
 
 	class vec2
 	{
 	public:
-		vec2();
-		vec2(float a, float b);
-		~vec2();
-
+		vec2() { x = 0; y = 0; }
+		vec2(float nx, float ny) { x = nx; y = ny; }
+		
+	public:
+		
 		float x;
 		float y;
 	};

@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include "Math/Vector.h"
 
 namespace fw{
@@ -19,6 +18,6 @@ namespace fw{
 		
 	protected:
 		GameCore* m_pGameCore;
-		vec2 m_position;	
+		vec2 m_Position;	
 };
 }

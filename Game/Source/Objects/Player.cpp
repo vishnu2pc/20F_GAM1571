@@ -2,23 +2,12 @@
 
 #include "Objects/Player.h"
 
-Player::Player(fw::vec2 position, int GameObjectType, std::vector<fw::Mesh*> pGameObjectMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore)
-	: GameObject(position, pGameCore),
-
-		m_pMesh(pGameObjectMesh),
-		m_pShaders(pShaders),
-		GAMEOBJECT_TYPE(GameObjectType)
+Player::Player(fw::vec2 position, int GameObjectType, std::vector<fw::Mesh*> pMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore)
+	: fw::GameObject(position, GameObjectType, pMesh, pShaders, pGameCore)
 {
 }
 
-Player::Player(fw::vec2 position, int GameObjectType, std::vector<fw::Mesh*> pGameObjectMesh, fw::ShaderProgram* pShader,fw::GameCore* pGameCore)
-	: GameObject(position, pGameCore),
 
-		m_pMesh(pGameObjectMesh),
-		m_pShader(pShader),
-		GAMEOBJECT_TYPE(GameObjectType)
-{
-}
 
 Player::~Player()
 {
@@ -52,21 +41,3 @@ void Player::Update(float deltaTime)
 	
 }
 
-void Player::Draw()
-{
-	if (GAMEOBJECT_TYPE == HUMANOID)
-	{
-		for (int i = 0; i < m_pMesh.size(); i++)
-		{
-			m_pMesh[i]->Draw(m_Position, m_pShaders[i]);
-		}
-
-	}
-	if (GAMEOBJECT_TYPE == ANIMAL)
-	{
-		for (int i = 0; i < m_pMesh.size(); i++)
-		{
-			m_pMesh[i]->Draw(m_Position, m_pShader);
-		}
-	}
-}

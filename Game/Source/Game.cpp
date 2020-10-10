@@ -1,7 +1,6 @@
 #include "../../Framework/Source/Framework.h"
 #include "Game.h"
 #include "Objects/Player.h"
-#include <iostream>
 
 Game::Game(fw::FWCore* pFramework)  :fw::GameCore(pFramework)
 {
@@ -57,8 +56,8 @@ void Game::Init()
     m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_TAIL, 5, GL_LINE_LOOP));
     m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_BODY, 15, GL_LINE_STRIP));
 
-    m_GameObjects.push_back(new Player(fw::vec2(10,10), HUMANOID, m_MegaManMesh, m_pShaders, this));
-    m_GameObjects.push_back(new Player(fw::vec2(0, 0), ANIMAL, m_DiamondDogMesh,m_pShader_Skin, this));
+    m_GameObjects.push_back(new Player(fw::vec2(6,2), HUMANOID, m_MegaManMesh, m_pShaders, this));
+    m_GameObjects.push_back(new fw::GameObject(fw::vec2(0, 0), ANIMAL, m_DiamondDogMesh, m_pShader_Skin, this));
 	
 	m_pImGuiManager = new fw::ImGuiManager(m_pFramework);
     m_pImGuiManager->Init();

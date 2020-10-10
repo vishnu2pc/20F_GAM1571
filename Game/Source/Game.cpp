@@ -1,6 +1,6 @@
 #include "../../Framework/Source/Framework.h"
 #include "Game.h"
-#include "Player.h"
+#include "Objects/Player.h"
 #include <iostream>
 
 Game::Game(fw::FWCore* pFramework)  :fw::GameCore(pFramework)

@@ -1,6 +1,5 @@
+#include "GamePCH.h"
 #include "Constants.h"
-#include "../../Framework/Source/Framework.h"
-
  float VERTEX_MM_DARK_BLUE[108] =
 {
     //Body Vertices

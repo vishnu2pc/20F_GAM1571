@@ -29,6 +29,9 @@ project "Game"
 		"opengl32",
 	}
 
+	pchheader "GamePCH.h"
+	pchsource "Game/Source/WinMain.cpp"
+
 project "Framework"
 	kind		"StaticLib"
 	location	"build/Framework"

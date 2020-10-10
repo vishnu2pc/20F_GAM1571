@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Math/Vector.h"
 
 namespace fw {
 	class ShaderProgram;
@@ -12,8 +12,8 @@ public:
     virtual ~Mesh();
 
     void CreateShape(float attribs[], int NumVertices, int PrimitiveType);
-    void Draw(float x, float y, ShaderProgram* pShader);
-    void SetUniform1f(ShaderProgram* pShader, char* name, float value);
+    void Draw(vec2 pos, ShaderProgram* pShader);
+    void SetUniform2f(ShaderProgram* pShader, char* name, vec2 value);
 
 protected:
     GLuint m_VBO = 0;

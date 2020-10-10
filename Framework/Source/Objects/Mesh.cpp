@@ -1,7 +1,7 @@
 #include "FrameworkPCH.h"
 
 #include "Mesh.h"
-#include <Utility\ShaderProgram.h>
+#include "Utility\ShaderProgram.h"
 #include "Utility\Helpers.h"
 
 namespace fw {
@@ -38,13 +38,13 @@ void Mesh::CreateShape(float attribs[], int NumVertices, int PrimitiveType)
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * numAttributeComponents, attribs, GL_STATIC_DRAW);
 }
 
-void Mesh::SetUniform1f(ShaderProgram* pShader, char* name, float value)
+void Mesh::SetUniform2f(ShaderProgram* pShader, char* name, vec2 value)
 {
     int loc = glGetUniformLocation(pShader->GetProgram(), name);
-    glUniform1f(loc, value);
+    glUniform2f(loc, value.x, value.y);
 }
 	
-void Mesh::Draw(float x, float y, ShaderProgram* pShader)
+void Mesh::Draw(vec2 pos, ShaderProgram* pShader)
 {
     glUseProgram(pShader->GetProgram());
 
@@ -60,10 +60,8 @@ void Mesh::Draw(float x, float y, ShaderProgram* pShader)
 
     // Setup our uniforms.
     {
-        SetUniform1f(pShader, "u_PosX", x);
-        SetUniform1f(pShader, "u_PosY", y);
+        SetUniform2f(pShader, "u_ObjectPos", pos);
     }
-
     // Draw the primitive.
     glDrawArrays(m_PrimitiveType, 0, m_NumVertices);
 }

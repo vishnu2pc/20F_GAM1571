@@ -58,7 +58,7 @@ void Player::Draw()
 	{
 		for (int i = 0; i < m_pMesh.size(); i++)
 		{
-			m_pMesh[i]->Draw(m_Position.x, m_Position.y, m_pShaders[i]);
+			m_pMesh[i]->Draw(m_Position, m_pShaders[i]);
 		}
 
 	}
@@ -66,7 +66,7 @@ void Player::Draw()
 	{
 		for (int i = 0; i < m_pMesh.size(); i++)
 		{
-			m_pMesh[i]->Draw(m_Position.x, m_Position.y, m_pShader);
+			m_pMesh[i]->Draw(m_Position, m_pShader);
 		}
 	}
 }

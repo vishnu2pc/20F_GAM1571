@@ -11,16 +11,16 @@ Mesh::Mesh()
 		
 }
 
-Mesh::Mesh(float attribs[], int NumVertices, int PrimitiveType)
+Mesh::Mesh(const float attribs[], int NumVertices, int PrimitiveType)
 {
-    CreateShape(attribs, NumVertices, PrimitiveType);
+    CreateShape( attribs, NumVertices, PrimitiveType);
 }
 
 Mesh::~Mesh()
 {
 }
 
-void Mesh::CreateShape(float attribs[], int NumVertices, int PrimitiveType)
+void Mesh::CreateShape(const float attribs[], int NumVertices, int PrimitiveType)
 {
     // Generate a buffer for our vertex attributes.
     glGenBuffers(1, &m_VBO); // m_VBO is a GLuint.

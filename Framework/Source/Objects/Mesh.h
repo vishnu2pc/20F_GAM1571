@@ -8,10 +8,10 @@ namespace fw {
 {
 public:
     Mesh();
-    Mesh(float attribs[],int NumVertices, int PrimitiveType);
+    Mesh(const float attribs[],int NumVertices, int PrimitiveType);
     virtual ~Mesh();
 
-    void CreateShape(float attribs[], int NumVertices, int PrimitiveType);
+    void CreateShape(const float attribs[], int NumVertices, int PrimitiveType);
     void Draw(vec2 pos, ShaderProgram* pShader);
     void SetUniform2f(ShaderProgram* pShader, char* name, vec2 value);
 

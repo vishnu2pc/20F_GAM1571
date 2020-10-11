@@ -1,6 +1,6 @@
 #include "GamePCH.h"
 #include "Constants.h"
- float VERTEX_MM_DARK_BLUE[108] =
+ const float VERTEX_MM_DARK_BLUE[108] =
 {
     //Body Vertices
 
@@ -82,7 +82,7 @@
  const int VERTEX_MM_DARK_BLUE_MESH_TYPE = GL_TRIANGLES;
  const int VERTEX_MM_DARK_BLUE_NUM_VERTICES = sizeof(VERTEX_MM_DARK_BLUE) / (sizeof(float) * 2);
  
- float VERTEX_MM_BLUE[84] =
+ const float VERTEX_MM_BLUE[84] =
 {
     -0.3f, -0.3f,
     -0.2f, -0.2f,
@@ -147,7 +147,7 @@
  const int VERTEX_MM_BLUE_NUM_VERTICES = sizeof(VERTEX_MM_BLUE) / (sizeof(float) * 2);
 
 
- float VERTEX_MM_SKIN[36] =
+const float VERTEX_MM_SKIN[36] =
 {
      0.0f,  0.0f,
     -0.2f, 0.2f,
@@ -177,7 +177,7 @@
  const int VERTEX_MM_SKIN_MESH_TYPE = GL_TRIANGLES;
  const int VERTEX_MM_SKIN_NUM_VERTICES = sizeof(VERTEX_MM_SKIN) / (sizeof(float) * 2);
 
- float VERTEX_MM_FACE[72] =
+ const float VERTEX_MM_FACE[72] =
 {
     -0.1f, 0.3f,
     -0.1f, 0.25f,
@@ -216,7 +216,7 @@
  const int VERTEX_MM_FACE_NUM_VERTICES = sizeof(VERTEX_MM_FACE) / (sizeof(float) * 2);
 
 
- float VERTEX_DOG_FRONT_LEGS_RIGHT[22] =
+ const float VERTEX_DOG_FRONT_LEGS_RIGHT[22] =
 {
     //Right Leg
 
@@ -237,7 +237,7 @@
  const int VERTEX_DOG_FRONT_LEGS_RIGHT_MESH_TYPE = GL_LINE_LOOP;
  const int VERTEX_DOG_FRONT_LEGS_RIGHT_NUM_VERTICES = sizeof(VERTEX_DOG_FRONT_LEGS_RIGHT) / (sizeof(float) * 2);
 
- float VERTEX_DOG_FRONT_LEGS_LEFT[22] =
+ const float VERTEX_DOG_FRONT_LEGS_LEFT[22] =
 {
     0.04f, -0.4f,
    -0.04f, -0.4f,
@@ -256,7 +256,7 @@
  const int VERTEX_DOG_FRONT_LEGS_LEFT_MESH_TYPE = GL_LINE_LOOP;
  const int VERTEX_DOG_FRONT_LEGS_LEFT_NUM_VERTICES = sizeof(VERTEX_DOG_FRONT_LEGS_LEFT) / (sizeof(float) * 2);
 
- float VERTEX_DOG_BACK_LEGS_RIGHT[22] =
+ const float VERTEX_DOG_BACK_LEGS_RIGHT[22] =
 {
     0.2f, -0.4f,
     0.12f, -0.4f,
@@ -275,7 +275,7 @@
  const int VERTEX_DOG_BACK_LEGS_RIGHT_MESH_TYPE = GL_LINE_LOOP;
  const int VERTEX_DOG_BACK_LEGS_RIGHT_NUM_VERTICES = sizeof(VERTEX_DOG_BACK_LEGS_RIGHT) / (sizeof(float) * 2);
 
- float VERTEX_DOG_BACK_LEGS_LEFT[18] =
+ const float VERTEX_DOG_BACK_LEGS_LEFT[18] =
 {
     0.58f, -0.4f,
     0.5f, -0.4f,
@@ -291,7 +291,7 @@
  const int VERTEX_DOG_BACK_LEGS_LEFT_MESH_TYPE = GL_LINE_LOOP;
  const int VERTEX_DOG_BACK_LEGS_LEFT_NUM_VERTICES = sizeof(VERTEX_DOG_BACK_LEGS_LEFT) / (sizeof(float) * 2);
 
- float VERTEX_DOG_TAIL[10] =
+ const float VERTEX_DOG_TAIL[10] =
 {
     0.4f,  -0.1f,
     0.28f,  0.06f,
@@ -303,7 +303,7 @@
  const int VERTEX_DOG_TAIL_MESH_TYPE = GL_LINE_LOOP;
  const int VERTEX_DOG_TAIL_NUM_VERTICES = sizeof(VERTEX_DOG_TAIL) / (sizeof(float) * 2);
 
- float VERTEX_DOG_BODY[30] =
+ const float VERTEX_DOG_BODY[30] =
 {
     0.3f,  -0.0f,
     0.2f,   -0.0f,

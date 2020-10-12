@@ -4,7 +4,7 @@
 class Player : public fw::GameObject
 {
 public:
-	Player(fw::vec2 position, int GameObjectType, std::vector<fw::Mesh*> pMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore);
+	Player(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore);
 	~Player();
 
 	void Update(float deltaTime) override;

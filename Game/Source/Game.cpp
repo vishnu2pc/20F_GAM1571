@@ -56,8 +56,8 @@ void Game::Init()
     m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_TAIL, VERTEX_DOG_TAIL_NUM_VERTICES, VERTEX_DOG_TAIL_MESH_TYPE));
     m_DiamondDogMesh.push_back(new fw::Mesh(VERTEX_DOG_BODY, VERTEX_DOG_BODY_NUM_VERTICES, VERTEX_DOG_BODY_MESH_TYPE));
 
-    m_GameObjects.push_back(new Player(fw::vec2(6,2), HUMANOID, m_MegaManMesh, m_pShaders, this));
-    m_GameObjects.push_back(new fw::GameObject(fw::vec2(3, 2), ANIMAL, m_DiamondDogMesh, m_pShader_Skin, this));
+    m_GameObjects.push_back(new Player(vec2(6,2), HUMANOID, m_MegaManMesh, m_pShaders, this));
+    m_GameObjects.push_back(new fw::GameObject(vec2(3, 2), ANIMAL, m_DiamondDogMesh, m_pShader_Skin, this));
 	
 	m_pImGuiManager = new fw::ImGuiManager(m_pFramework);
     m_pImGuiManager->Init();

@@ -2,7 +2,7 @@
 
 #include "Objects/Player.h"
 
-Player::Player(fw::vec2 position, int GameObjectType, std::vector<fw::Mesh*> pMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore)
+Player::Player(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore)
 	: fw::GameObject(position, GameObjectType, pMesh, pShaders, pGameCore)
 {
 }
@@ -17,7 +17,7 @@ void Player::Update(float deltaTime)
 {
 	float speed = 2.0f;
 
-	fw::vec2 dir;
+	vec2 dir;
 
 	if (m_pGameCore->GetFramework()->IsKeyDown('A'))
 	{

@@ -37,12 +37,12 @@ void Game::Init()
     m_pShader_DarkBlue = new fw::ShaderProgram("Data/Basic.vert", "Data/DarkBlue.frag");
     m_pShader_Blue = new fw::ShaderProgram("Data/Basic.vert", "Data/Blue.frag");
     m_pShader_Skin = new fw::ShaderProgram("Data/Basic.vert", "Data/Skin.frag");
-    m_pShader_Face = new fw::ShaderProgram("Data/Basic.vert", "Data/Black.frag");
+    m_pShader_Black = new fw::ShaderProgram("Data/Basic.vert", "Data/Black.frag");
 	
 	m_pShaders.push_back(m_pShader_DarkBlue);
     m_pShaders.push_back(m_pShader_Blue);
     m_pShaders.push_back(m_pShader_Skin);
-    m_pShaders.push_back(m_pShader_Face);
+    m_pShaders.push_back(m_pShader_Black);
 
 	m_MegaManMesh.push_back(new fw::Mesh(VERTEX_MM_DARK_BLUE, VERTEX_MM_DARK_BLUE_NUM_VERTICES, VERTEX_MM_DARK_BLUE_MESH_TYPE));
     m_MegaManMesh.push_back(new fw::Mesh(VERTEX_MM_BLUE, VERTEX_MM_BLUE_NUM_VERTICES, VERTEX_MM_BLUE_MESH_TYPE));
@@ -58,11 +58,14 @@ void Game::Init()
 
     m_GameObjects.push_back(new Player(vec2(6,2), HUMANOID, m_MegaManMesh, m_pShaders, this));
     m_GameObjects.push_back(new fw::GameObject(vec2(3, 2), ANIMAL, m_DiamondDogMesh, m_pShader_Skin, this));
+
 	
 	m_pImGuiManager = new fw::ImGuiManager(m_pFramework);
     m_pImGuiManager->Init();
-
-  
+    m_GameArea_Outer = new fw::Mesh();
+    m_GameArea_Outer->CreateCircle(3, 32);
+    m_GameArea_Inner = new fw::Mesh();
+    m_GameArea_Inner->CreateCircle(2.9, 32);
 }
 
 void Game::Update(float deltaTime)
@@ -83,11 +86,15 @@ void Game::Draw()
 
     glPointSize( 10 );
 	
-   
+    m_GameArea_Outer->Draw(vec2(5, 5), m_pShader_Blue);
+    m_GameArea_Inner->Draw(vec2(5, 5), m_pShader_Black);
+	
     for(int i=0; i<m_GameObjects.size();i++)
     {
         m_GameObjects[i]->Draw();
     }
 
     m_pImGuiManager->EndFrame();
+
+   
 }

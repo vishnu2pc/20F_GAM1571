@@ -16,6 +16,7 @@
 #include <malloc.h>
 #include <memory.h>
 #include <math.h>
+#include <corecrt_math_defines.h>
 
 #include <map>
 #include <vector>

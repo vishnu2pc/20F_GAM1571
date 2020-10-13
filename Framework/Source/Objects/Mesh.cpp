@@ -1,9 +1,8 @@
 #include "FrameworkPCH.h"
-
 #include "Mesh.h"
-#include "Utility\ShaderProgram.h"
-#include "Utility\Helpers.h"
 
+
+#include "Utility\ShaderProgram.h"
 namespace fw {
 	
 Mesh::Mesh()
@@ -19,6 +18,8 @@ Mesh::Mesh(const float attribs[], int NumVertices, int PrimitiveType)
 Mesh::~Mesh()
 {
     glDeleteBuffers(1, &m_VBO);
+	
+
 }
 
 void Mesh::CreateShape(const float attribs[], int NumVertices, int PrimitiveType)
@@ -40,6 +41,28 @@ void Mesh::CreateShape(const float attribs[], int NumVertices, int PrimitiveType
     // Copy our attribute data into the VBO.
     int numAttributeComponents = m_NumVertices * 2; // x & y for each vertex.
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * numAttributeComponents, attribs, GL_STATIC_DRAW);
+	
+}
+
+void Mesh::CreateShape(const vec2 attribs[], int NumVertices, int PrimitiveType)
+{
+    if (m_VBO == 0)
+    {
+        // Generate a buffer for our vertex attributes.
+        glGenBuffers(1, &m_VBO); // m_VBO is a GLuint.
+    }
+
+    // Set this VBO to be the currently active one.
+    glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+
+
+    m_NumVertices = NumVertices;
+    m_PrimitiveType = PrimitiveType;
+
+
+    // Copy our attribute data into the VBO.
+    int numAttributeComponents = m_NumVertices * 2; // x & y for each vertex.
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * numAttributeComponents, attribs, GL_STATIC_DRAW);
 }
 
 void Mesh::SetUniform2f(ShaderProgram* pShader, char* name, vec2 value)
@@ -47,7 +70,27 @@ void Mesh::SetUniform2f(ShaderProgram* pShader, char* name, vec2 value)
     int loc = glGetUniformLocation(pShader->GetProgram(), name);
     glUniform2f(loc, value.x, value.y);
 }
+
+void Mesh::CreateCircle(float radius, int num_points)
+{
 	
+    std::vector<vec2> m_Circle_Vertices;
+    int flag = 2;
+    for (int i = -num_points/2; i <= num_points/2; i++)
+    {
+    	if(flag % 2 ==0)
+        m_Circle_Vertices.push_back(vec2(0, 0));
+    	
+        const float angle = (2*M_PI / num_points) * i;
+        const vec2 Vertex = vec2(cosf(angle), sinf(angle)) * radius;
+
+        m_Circle_Vertices.push_back(Vertex);
+        flag++;
+    }
+	
+    CreateShape(&m_Circle_Vertices[0], m_Circle_Vertices.size(), GL_TRIANGLE_STRIP);
+}
+
 void Mesh::Draw(vec2 pos, ShaderProgram* pShader)
 {
     glUseProgram(pShader->GetProgram());

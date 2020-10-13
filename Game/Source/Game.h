@@ -16,6 +16,7 @@ protected:
     fw::ShaderProgram* m_pShader_DarkBlue = nullptr;
     fw::ShaderProgram* m_pShader_Skin = nullptr;
     fw::ShaderProgram* m_pShader_Black = nullptr;
+    fw::ShaderProgram* m_pShader_White = nullptr;
 
 	std::vector<fw::GameObject*> m_GameObjects;
     fw::ImGuiManager* m_pImGuiManager = nullptr;
@@ -26,4 +27,5 @@ protected:
     std::vector<fw::ShaderProgram*> m_pShaders;
     fw::Mesh* m_GameArea_Outer = nullptr;
     fw::Mesh* m_GameArea_Inner = nullptr;
+	
 };

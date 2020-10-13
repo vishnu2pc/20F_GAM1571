@@ -38,7 +38,8 @@ void Game::Init()
     m_pShader_Blue = new fw::ShaderProgram("Data/Basic.vert", "Data/Blue.frag");
     m_pShader_Skin = new fw::ShaderProgram("Data/Basic.vert", "Data/Skin.frag");
     m_pShader_Black = new fw::ShaderProgram("Data/Basic.vert", "Data/Black.frag");
-	
+    m_pShader_White = new fw::ShaderProgram("Data/Basic.vert", "Data/White.frag");
+
 	m_pShaders.push_back(m_pShader_DarkBlue);
     m_pShaders.push_back(m_pShader_Blue);
     m_pShaders.push_back(m_pShader_Skin);
@@ -81,13 +82,13 @@ void Game::Update(float deltaTime)
 
 void Game::Draw()
 {
-    glClearColor( 0, 0, 0, 0 );
+    glClearColor( 1, 10, 1, 1 );
     glClear( GL_COLOR_BUFFER_BIT );
 
     glPointSize( 10 );
 	
     m_GameArea_Outer->Draw(vec2(5, 5), m_pShader_Blue);
-    m_GameArea_Inner->Draw(vec2(5, 5), m_pShader_Black);
+    m_GameArea_Inner->Draw(vec2(5, 5), m_pShader_White);
 	
     for(int i=0; i<m_GameObjects.size();i++)
     {

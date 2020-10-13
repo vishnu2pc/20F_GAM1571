@@ -18,13 +18,17 @@ Mesh::Mesh(const float attribs[], int NumVertices, int PrimitiveType)
 
 Mesh::~Mesh()
 {
+    glDeleteBuffers(1, &m_VBO);
 }
 
 void Mesh::CreateShape(const float attribs[], int NumVertices, int PrimitiveType)
 {
-    // Generate a buffer for our vertex attributes.
-    glGenBuffers(1, &m_VBO); // m_VBO is a GLuint.
-
+    if (m_VBO == 0)
+    {
+        // Generate a buffer for our vertex attributes.
+        glGenBuffers(1, &m_VBO); // m_VBO is a GLuint.
+    }
+	
     // Set this VBO to be the currently active one.
     glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 

@@ -32,7 +32,7 @@ void fw::GameObject::Update(float deltaTime)
 
 void fw::GameObject::Draw()
 {
-	if (GAMEOBJECT_TYPE == HUMANOID)
+	if (GAMEOBJECT_TYPE == GAME_AREA)
 	{
 		for (int i = 0; i < m_pMesh.size(); i++)
 		{
@@ -40,11 +40,5 @@ void fw::GameObject::Draw()
 		}
 
 	}
-	if (GAMEOBJECT_TYPE == ANIMAL)
-	{
-		for (int i = 0; i < m_pMesh.size(); i++)
-		{
-			m_pMesh[i]->Draw(m_Position, m_pShader);
-		}
-	}
+
 }

@@ -17,15 +17,16 @@ protected:
     fw::ShaderProgram* m_pShader_Skin = nullptr;
     fw::ShaderProgram* m_pShader_Black = nullptr;
     fw::ShaderProgram* m_pShader_White = nullptr;
-
-	std::vector<fw::GameObject*> m_GameObjects;
-    fw::ImGuiManager* m_pImGuiManager = nullptr;
 	
-    std::vector<fw::Mesh*> m_MegaManMesh;
-    std::vector<fw::Mesh*> m_DiamondDogMesh;
+    std::vector<fw::ShaderProgram*> m_GameArea_Shaders;
 
-    std::vector<fw::ShaderProgram*> m_pShaders;
     fw::Mesh* m_GameArea_Outer = nullptr;
     fw::Mesh* m_GameArea_Inner = nullptr;
+
+	std::vector<fw::Mesh*> m_GameArea_Meshes;
+	
+	std::vector<fw::GameObject*> m_GameObjects;
+    fw::ImGuiManager* m_pImGuiManager = nullptr;
+    
 	
 };

@@ -1,8 +1,8 @@
 #pragma once
 
     enum GAME_OBJECTS {
-        HUMANOID,
-        ANIMAL
+        GAME_AREA,
+      
     };
 
 

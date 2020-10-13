@@ -75,17 +75,17 @@ void Mesh::CreateCircle(float radius, int num_points)
 {
 	
     std::vector<vec2> m_Circle_Vertices;
-    int flag = 2;
-    for (int i = -num_points/2; i <= num_points/2; i++)
+   
+    for (int i = 0; i <= num_points; i++)
     {
-    	if(flag % 2 ==0)
+    	
         m_Circle_Vertices.push_back(vec2(0, 0));
     	
         const float angle = (2*M_PI / num_points) * i;
         const vec2 Vertex = vec2(cosf(angle), sinf(angle)) * radius;
 
         m_Circle_Vertices.push_back(Vertex);
-        flag++;
+        
     }
 	
     CreateShape(&m_Circle_Vertices[0], m_Circle_Vertices.size(), GL_TRIANGLE_STRIP);

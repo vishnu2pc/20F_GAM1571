@@ -31,9 +31,9 @@ void Game::Init()
     m_GameArea_Shaders.push_back(m_pShader_White);
 	
     m_GameArea_Outer = new fw::Mesh();
-    m_GameArea_Outer->CreateCircle(3.0f, 32);
+    m_GameArea_Outer->CreateCircle(4.0f, 50);
     m_GameArea_Inner = new fw::Mesh();
-    m_GameArea_Inner->CreateCircle(2.9f, 32);
+    m_GameArea_Inner->CreateCircle(3.9f, 50);
 
     m_GameArea_Meshes.push_back(m_GameArea_Outer);
     m_GameArea_Meshes.push_back(m_GameArea_Inner);

@@ -25,5 +25,7 @@ namespace fw{
 		fw::ShaderProgram* m_pShader = nullptr;
 		std::vector<fw::ShaderProgram*> m_pShaders;
 		std::vector<fw::Mesh*> m_pMesh;
+
+		int m_num_points = 3;
 };
 }

@@ -56,6 +56,7 @@ void Game::Update(float deltaTime)
 {
     m_pImGuiManager->StartFrame(deltaTime);
     ImGui::ShowDemoWindow();
+
 	
     for (int i = 0; i < m_GameObjects.size(); i++)
     {

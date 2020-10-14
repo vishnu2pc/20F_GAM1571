@@ -2,6 +2,8 @@
 
     enum GAME_OBJECTS {
         GAME_AREA,
+    	PLAYER,
+    	ENEMY
       
     };
 

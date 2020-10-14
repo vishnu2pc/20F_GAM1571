@@ -11,8 +11,8 @@ namespace fw{
 	class GameObject
 	{
 	public:
-		GameObject(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pMesh, std::vector<fw::ShaderProgram*> pShaders, fw::GameCore* pGameCore);
-		GameObject(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pMesh,fw::ShaderProgram* pShader, fw::GameCore* pGameCore);
+		GameObject(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pMesh, std::vector<fw::ShaderProgram*> pShader, fw::GameCore* pGameCore);
+		GameObject(vec2 position, int GameObjectType, Mesh* pMesh, fw::ShaderProgram pShader, fw::GameCore* pGameCore);
 		~GameObject();
 
 		virtual void Update(float deltaTime);

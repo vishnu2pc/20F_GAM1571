@@ -22,6 +22,7 @@ Player::~Player()
 
 void Player::Update(float deltaTime)
 {
+    
     vec2 dir;
     if (!m_PlayerArenaCollision)
     {
@@ -43,7 +44,9 @@ void Player::Update(float deltaTime)
             dir.x = 1;
         }
 
-        m_pPhysicsController->GetPosition() += dir * (float)m_pPhysicsController->GetSpeed() * deltaTime;
+        vec2 NewPos = m_pPhysicsController->GetPosition();
+        NewPos += dir * (float)m_pPhysicsController->GetSpeed() * deltaTime;
+        m_pPhysicsController->SetPosition(NewPos);
     }
 
     else
@@ -102,7 +105,9 @@ void Player::Update(float deltaTime)
                 dir.x = 1;
         }
 
-        m_pPhysicsController->GetPosition() += dir * (float)m_pPhysicsController->GetSpeed() * deltaTime;
+        vec2 NewPos = m_pPhysicsController->GetPosition();
+        NewPos += dir * (float)m_pPhysicsController->GetSpeed() * deltaTime;
+        m_pPhysicsController->SetPosition(NewPos);
     }
     
 }

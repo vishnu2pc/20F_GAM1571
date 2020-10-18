@@ -39,13 +39,17 @@ void Game::Init()
     m_pOuterMesh = new fw::Mesh();
     m_pInnerMesh = new fw::Mesh();
 	
-  /*  m_pPlayerMaterial = new Materials(m_pOuterMesh,m_pInnerMesh,m_pShader);
+    m_pPlayerMaterial = new Materials(m_pOuterMesh,m_pInnerMesh,m_pShader);
     m_pPlayerController = new PlayerController();
     m_pPlayerPhysicsController = new PhysicsController();
 	
 	m_pPlayerMaterial->SetNumVertices(100);
-    m_pPlayerMaterial->SetColors(vec4::Black(), vec4::Red());*/
-    
+    m_pPlayerMaterial->SetColors(vec4::Black(), vec4::Red());
+
+    m_pPlayerPhysicsController->SetRadius(0.4f);
+    m_pPlayerPhysicsController->SetPosition(vec2(5.0f, 5.0f));
+    m_pPlayerPhysicsController->SetSpeed(2);
+	
     m_pPlayer = new Player(m_pPlayerMaterial, m_pPlayerPhysicsController, m_pPlayerController, this);
 
     m_pGameArenaMaterial = new Materials(m_pOuterMesh, m_pInnerMesh,m_pShader);
@@ -59,17 +63,14 @@ void Game::Init()
 
     m_pGameArena = new GameArena(m_pGameArenaMaterial, m_pGameArenaPhysicsController, this);
 
-
-    
-    m_pGameObjects.push_back(m_pGameArena);
-	
+ 
 }
 
 void Game::OnEvent(fw::Event* pEvent)
 {
-    m_pPlayerController->OnEvent(pEvent);
-
-    
+    if(pEvent->GetType()==EVENT_TYPE::INPUT_EVENT)
+	m_pPlayerController->OnEvent(pEvent);
+   
 }
 
 void Game::Update(float deltaTime)
@@ -79,11 +80,15 @@ void Game::Update(float deltaTime)
 	m_pImGuiManager->StartFrame(deltaTime);
     ImGui::ShowDemoWindow();
 
-	
     for (int i = 0; i < m_pGameObjects.size(); i++)
     {
         m_pGameObjects[i]->Update(deltaTime);
     }
+
+    m_pGameArena->Update(deltaTime);
+    m_pPlayer->Update(deltaTime);
+
+
 }
 
 void Game::Draw()
@@ -98,8 +103,7 @@ void Game::Draw()
     {
         m_pGameObjects[i]->Draw();
     }
-
+    m_pGameArena->Draw();
+    m_pPlayer->Draw();
     m_pImGuiManager->EndFrame();
-
-   
 }

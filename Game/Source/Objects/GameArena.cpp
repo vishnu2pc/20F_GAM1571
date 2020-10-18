@@ -24,6 +24,6 @@ void GameArena::Update(float deltaTime)
 
 void GameArena::Draw()
 {
-	m_pMaterials->Draw(m_pPhysicsController->GetPosition());
+	m_pMaterials->Draw(m_pPhysicsController->GetPosition(), m_pPhysicsController->GetRadius());
 }
 

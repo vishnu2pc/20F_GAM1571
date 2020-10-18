@@ -1,8 +1,14 @@
 #include "GamePCH.h"
 #include "Game.h"
 #include "Objects/Player.h"
+#include "Objects/GameArena.h"
 #include "Components/PlayerController.h"
 #include "Events/GameEvents.h"
+#include "Components/Materials.h"
+#include "Components/PhysicsController.h"
+
+
+
 
 Game::Game(fw::FWCore* pFramework)  :fw::GameCore(pFramework)
 {
@@ -11,9 +17,9 @@ Game::Game(fw::FWCore* pFramework)  :fw::GameCore(pFramework)
 
 Game::~Game()
 {
-    for (int i = 0; i < m_GameObjects.size(); i++)
+    for (int i = 0; i < m_pGameObjects.size(); i++)
     {
-       delete m_GameObjects[i];
+       delete m_pGameObjects[i];
     }
 
    
@@ -23,12 +29,39 @@ Game::~Game()
 
 void Game::Init()
 {
-  
+	
     m_pImGuiManager = new fw::ImGuiManager(m_pFramework);
     m_pImGuiManager->Init();
 	
     m_pEventManager = new fw::EventManager();
+	
+    m_pShader = new fw::ShaderProgram("Data/Basic.vert", "Data/Basic.frag");
+    m_pOuterMesh = new fw::Mesh();
+    m_pInnerMesh = new fw::Mesh();
+	
+  /*  m_pPlayerMaterial = new Materials(m_pOuterMesh,m_pInnerMesh,m_pShader);
     m_pPlayerController = new PlayerController();
+    m_pPlayerPhysicsController = new PhysicsController();
+	
+	m_pPlayerMaterial->SetNumVertices(100);
+    m_pPlayerMaterial->SetColors(vec4::Black(), vec4::Red());*/
+    
+    m_pPlayer = new Player(m_pPlayerMaterial, m_pPlayerPhysicsController, m_pPlayerController, this);
+
+    m_pGameArenaMaterial = new Materials(m_pOuterMesh, m_pInnerMesh,m_pShader);
+    m_pGameArenaPhysicsController = new PhysicsController();
+	
+    m_pGameArenaMaterial->SetNumVertices(100);
+    m_pGameArenaMaterial->SetColors(vec4::Blue(), vec4::White());
+
+    m_pGameArenaPhysicsController->SetRadius(4.0f);
+    m_pGameArenaPhysicsController->SetPosition(vec2(5.0f, 5.0f));
+
+    m_pGameArena = new GameArena(m_pGameArenaMaterial, m_pGameArenaPhysicsController, this);
+
+
+    
+    m_pGameObjects.push_back(m_pGameArena);
 	
 }
 
@@ -47,9 +80,9 @@ void Game::Update(float deltaTime)
     ImGui::ShowDemoWindow();
 
 	
-    for (int i = 0; i < m_GameObjects.size(); i++)
+    for (int i = 0; i < m_pGameObjects.size(); i++)
     {
-        m_GameObjects[i]->Update(deltaTime);
+        m_pGameObjects[i]->Update(deltaTime);
     }
 }
 
@@ -61,9 +94,9 @@ void Game::Draw()
     glPointSize( 10 );
 	
     
-    for(int i=0; i<m_GameObjects.size();i++)
+    for(int i=0; i<m_pGameObjects.size();i++)
     {
-        m_GameObjects[i]->Draw();
+        m_pGameObjects[i]->Draw();
     }
 
     m_pImGuiManager->EndFrame();

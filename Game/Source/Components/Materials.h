@@ -4,16 +4,12 @@ class Materials
 {
 	
 public:
-	Materials();
+	Materials(fw::Mesh* pOuterLayer, fw::Mesh* pInnerLayer, fw::ShaderProgram* pShader);
 	~Materials();
 
-	void AddMesh(fw::Mesh* OuterLayer, fw::Mesh* InnerLayer) { m_pOuterLayer_Mesh = OuterLayer; m_pInnerLayer_Mesh = InnerLayer; }
-	void AddShader(fw::ShaderProgram* pShader) { m_pShader = pShader; }
-	void SetColors(vec4 OuterLayer, vec4 InnerLayer) { m_InnerLayer_Color = InnerLayer; m_OuterLayer_Color = OuterLayer; }
-	void SetRadius(float radius) { m_radius = radius; }
+	void SetColors(vec4 OuterLayer, vec4 InnerLayer) { m_OuterLayer_Color = OuterLayer; m_InnerLayer_Color = InnerLayer; }
 	void SetNumVertices(int NumVertices) { m_numVertices = NumVertices; }
-	
-	void Draw(vec2 pos);
+	void Draw(vec2 pos, float radius);
 	
 private:
 	fw::Mesh* m_pOuterLayer_Mesh;
@@ -22,7 +18,7 @@ private:
 	fw::ShaderProgram* m_pShader;
 	
 
-	float m_radius;
+	
 	int m_numVertices;
 
 	vec4 m_InnerLayer_Color;

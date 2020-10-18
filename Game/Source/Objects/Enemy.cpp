@@ -24,6 +24,6 @@ void Enemy::Update(float deltaTime)
 
 void Enemy::Draw()
 {
-	m_pMaterials->Draw(m_pPhysicsController->GetPosition());
+	m_pMaterials->Draw(m_pPhysicsController->GetPosition(), m_pPhysicsController->GetRadius());
 }
 

@@ -58,6 +58,7 @@ namespace fw {
         static const vec4 Green() { return vec4(0.0f, 1.0f, 0.0f, 1.0f); }
         static const vec4 Blue() { return vec4(0.0f, 0.0f, 1.0f, 1.0f); }
         static const vec4 DarkBlue() { return vec4(0.0f, 0.0f, 0.3f, 1.0f); }
+        static const vec4 LightBlue() { return vec4(0.0f, 0.5f, 1.0f, 1.0f); }
         static const vec4 White() { return vec4(1.0f, 1.0f, 1.0f, 1.0f); }
         static const vec4 Black() { return vec4(0.0f, 0.0f, 0.0f, 1.0f); }
 

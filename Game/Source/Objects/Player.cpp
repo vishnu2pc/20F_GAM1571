@@ -104,7 +104,7 @@ void Player::Update(float deltaTime)
 
         m_pPhysicsController->GetPosition() += dir * (float)m_pPhysicsController->GetSpeed() * deltaTime;
     }
-    }
+    
 }
 
 void Player::CheckPlayerArenaCollision(float radius)
@@ -116,6 +116,6 @@ void Player::CheckPlayerArenaCollision(float radius)
 
 void Player::Draw()
 {
-	m_pMaterials->Draw(m_pPhysicsController->GetPosition());
+	m_pMaterials->Draw(m_pPhysicsController->GetPosition(), m_pPhysicsController->GetRadius());
 }
 

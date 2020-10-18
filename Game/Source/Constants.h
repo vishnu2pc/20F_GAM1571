@@ -1,10 +1,8 @@
 #pragma once
 
-    enum GAME_OBJECTS {
-        GAME_AREA,
-    	PLAYER,
-    	ENEMY
-      
+    enum class EVENT_TYPE {
+    	INPUT_EVENT
+       
     };
 
     extern const float radius[];

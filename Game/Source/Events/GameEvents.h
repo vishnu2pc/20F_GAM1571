@@ -1,19 +1,19 @@
 #pragma once
 
-class RemoveFromGameEvent : public fw::Event
+class SpawnPlayer : public fw::Event
 {
 public:
-    RemoveFromGameEvent(fw::GameObject* pObject)
+    SpawnPlayer(fw::Player* pPlayer)
     {
-        m_pObject = pObject;
+        m_pPlayer = pPlayer;
     }
-    virtual ~RemoveFromGameEvent() {}
+    virtual ~SpawnPlayer() {}
 
-    static const char* GetStaticEventType() { return "RemoveFromGameEvent"; }
-    virtual const char* GetType() override { return GetStaticEventType(); }
+    static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::SPAWN_PLAYER; }
+    virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
 
-    fw::GameObject* GetGameObject() { return m_pObject; }
+    fw::Player* GetPlayer() { return m_pPlayer; }
 
 protected:
-    fw::GameObject* m_pObject;
+    fw::Player* m_pPlayer;
 };

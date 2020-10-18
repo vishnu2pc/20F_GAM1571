@@ -1,4 +1,5 @@
 #pragma once
+#include "../../Game/Source/Constants.h"
 
 namespace fw {
 
@@ -8,7 +9,7 @@ namespace fw {
         Event();
         virtual ~Event();
 
-        virtual const char* GetType() = 0;
+        virtual EVENT_TYPE GetType() = 0;
 
     protected:
     };
@@ -35,8 +36,8 @@ namespace fw {
         }
         virtual ~InputEvent() {}
 
-        static const char* GetStaticEventType() { return "InputEvent"; }
-        virtual const char* GetType() override { return GetStaticEventType(); }
+        EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::INPUT_EVENT; }
+        virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
 
         DeviceType GetDeviceType() { return m_DeviceType; }
         DeviceState GetDeviceState() { return m_DeviceState; }

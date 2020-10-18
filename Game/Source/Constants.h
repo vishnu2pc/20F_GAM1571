@@ -1,8 +1,8 @@
 #pragma once
 
     enum class EVENT_TYPE {
-    	INPUT_EVENT
-       
+    	INPUT_EVENT,
+		SPAWN_PLAYER
     };
 
     extern const float radius[];

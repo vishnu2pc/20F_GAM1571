@@ -11,14 +11,17 @@ namespace fw{
 	class GameObject
 	{
 	public:
-		GameObject();
+		GameObject(PhysicsController* pPhysicsController, GameCore* pGameCore);
 		~GameObject();
 
 		virtual void Update(float deltaTime);
 		virtual void Draw();
+
+		PhysicsController* GetPhysicsController() { return m_pPhysicsController; }
+
 		
 	protected:
-		
-		
+		PhysicsController* m_pPhysicsController;
+		GameCore* m_pGameCore;
 };
 }

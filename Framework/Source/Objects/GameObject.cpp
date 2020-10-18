@@ -2,11 +2,10 @@
 #include "GameObject.h"
 
 
-
-
-fw::GameObject::GameObject()
+fw::GameObject::GameObject(PhysicsController* pPhysicsController, GameCore* pGameCore)
 {
-	
+	m_pPhysicsController = pPhysicsController;
+	m_pGameCore = pGameCore;
 }
 
 fw::GameObject::~GameObject()

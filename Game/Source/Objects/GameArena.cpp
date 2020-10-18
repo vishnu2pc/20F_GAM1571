@@ -1,14 +1,13 @@
 #include "GamePCH.h"
 
 #include "Objects/GameArena.h"
-#include "Components/Materials.h"
-#include "Components/PhysicsController.h"
 
-GameArena::GameArena(Materials* pMaterials, PhysicsController* pPhysicsController, fw::GameCore* pGameCore)
+
+GameArena::GameArena(fw::Materials* pMaterials, fw::PhysicsController* pPhysicsController, fw::GameCore* pGameCore) :
+	GameObject(pPhysicsController, pGameCore)
 {
-	m_pGameCore = pGameCore;
 	m_pMaterials = pMaterials;
-	m_pPhysicsController = pPhysicsController;
+
 }
 
 GameArena::~GameArena()

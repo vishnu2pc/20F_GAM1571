@@ -1,10 +1,8 @@
 #pragma once
-class PlayerController;
-class Materials;
-class PhysicsController;
-class Player;
-class Enemy;
+
+
 class GameArena;
+class Player;
 
 class Game : public fw::GameCore
 {
@@ -14,7 +12,6 @@ public:
     virtual ~Game();
 
     void Init();
-    void CheckCollision();
     virtual void OnEvent(fw::Event* pEvent) override;
     virtual void Update(float deltaTime) override;
     virtual void Draw() override;
@@ -33,13 +30,13 @@ protected:
     fw::Mesh* m_pOuterMesh = nullptr;
     fw::Mesh* m_pInnerMesh = nullptr;
 
-    PlayerController* m_pPlayerController = nullptr;
+    fw::PlayerController* m_pPlayerController = nullptr;
 	
-    Materials* m_pPlayerMaterial = nullptr;
-    Materials* m_pGameArenaMaterial = nullptr;
+    fw::Materials* m_pPlayerMaterial = nullptr;
+    fw::Materials* m_pGameArenaMaterial = nullptr;
 	
-    PhysicsController* m_pPlayerPhysicsController = nullptr;
-    PhysicsController* m_pGameArenaPhysicsController = nullptr;
+    fw::PhysicsController* m_pPlayerPhysicsController = nullptr;
+    fw::PhysicsController* m_pGameArenaPhysicsController = nullptr;
 
     
 };

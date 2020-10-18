@@ -2,10 +2,8 @@
 #include "Game.h"
 #include "Objects/Player.h"
 #include "Objects/GameArena.h"
-#include "Components/PlayerController.h"
 #include "Events/GameEvents.h"
-#include "Components/Materials.h"
-#include "Components/PhysicsController.h"
+
 
 
 
@@ -39,9 +37,9 @@ void Game::Init()
     m_pOuterMesh = new fw::Mesh();
     m_pInnerMesh = new fw::Mesh();
 	
-    m_pPlayerMaterial = new Materials(m_pOuterMesh,m_pInnerMesh,m_pShader);
-    m_pPlayerController = new PlayerController();
-    m_pPlayerPhysicsController = new PhysicsController();
+    m_pPlayerMaterial = new fw::Materials(m_pOuterMesh,m_pInnerMesh,m_pShader);
+    m_pPlayerController = new fw::PlayerController();
+    m_pPlayerPhysicsController = new fw::PhysicsController();
 	
 	m_pPlayerMaterial->SetNumVertices(100);
     m_pPlayerMaterial->SetColors(vec4::Black(), vec4::Red());
@@ -52,8 +50,8 @@ void Game::Init()
 	
     m_pPlayer = new Player(m_pPlayerMaterial, m_pPlayerPhysicsController, m_pPlayerController, this);
 
-    m_pGameArenaMaterial = new Materials(m_pOuterMesh, m_pInnerMesh,m_pShader);
-    m_pGameArenaPhysicsController = new PhysicsController();
+    m_pGameArenaMaterial = new fw::Materials(m_pOuterMesh, m_pInnerMesh,m_pShader);
+    m_pGameArenaPhysicsController = new fw::PhysicsController();
 	
     m_pGameArenaMaterial->SetNumVertices(100);
     m_pGameArenaMaterial->SetColors(vec4::Blue(), vec4::White());
@@ -63,7 +61,9 @@ void Game::Init()
 
     m_pGameArena = new GameArena(m_pGameArenaMaterial, m_pGameArenaPhysicsController, this);
 
- 
+    
+    m_pGameObjects.push_back(m_pGameArena);
+    m_pGameObjects.push_back(m_pPlayer);
 }
 
 void Game::OnEvent(fw::Event* pEvent)
@@ -85,10 +85,6 @@ void Game::Update(float deltaTime)
         m_pGameObjects[i]->Update(deltaTime);
     }
 
-    m_pGameArena->Update(deltaTime);
-    m_pPlayer->Update(deltaTime);
-
-
 }
 
 void Game::Draw()
@@ -103,7 +99,6 @@ void Game::Draw()
     {
         m_pGameObjects[i]->Draw();
     }
-    m_pGameArena->Draw();
-    m_pPlayer->Draw();
+   
     m_pImGuiManager->EndFrame();
 }

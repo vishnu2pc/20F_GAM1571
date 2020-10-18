@@ -1,15 +1,12 @@
 #include "GamePCH.h"
 
 #include "Objects/Player.h"
-#include "Components/Materials.h"
-#include "Components/PhysicsController.h"
-#include "Components/PlayerController.h"
 
-Player::Player(Materials* pMaterials, PhysicsController* pPhysicsController, PlayerController* pPlayerController, fw::GameCore* pGameCore)
+
+Player::Player(fw::Materials* pMaterials, fw::PhysicsController* pPhysicsController, fw::PlayerController* pPlayerController, fw::GameCore* pGameCore) :
+    GameObject(pPhysicsController, pGameCore)
 {
-	m_pGameCore = pGameCore;
 	m_pMaterials = pMaterials;
-	m_pPhysicsController = pPhysicsController;
 	m_pPlayerController = pPlayerController;
     m_PlayerArenaCollision = false;
 }

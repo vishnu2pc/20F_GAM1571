@@ -1,14 +1,13 @@
 #include "GamePCH.h"
 
 #include "Objects/Enemy.h"
-#include "Components/Materials.h"
-#include "Components/PhysicsController.h"
 
-Enemy::Enemy(Materials* pMaterials, PhysicsController* pPhysicsController, fw::GameCore* pGameCore)
+
+Enemy::Enemy(fw::Materials* pMaterials, fw::PhysicsController* pPhysicsController, fw::GameCore* pGameCore):
+	GameObject(pPhysicsController, pGameCore)
 {
-	m_pGameCore = pGameCore;
 	m_pMaterials = pMaterials;
-	m_pPhysicsController = pPhysicsController;
+	
 }
 
 Enemy::~Enemy()

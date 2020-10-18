@@ -6,16 +6,15 @@ class PhysicsController;
 class Enemy : public fw::GameObject
 {
 public:
-	Enemy(Materials* pMaterials, PhysicsController* pPhysicsController, fw::GameCore* pGameCore);
+	Enemy(fw::Materials* pMaterials, fw::PhysicsController* pPhysicsController, fw::GameCore* pGameCore);
 	~Enemy();
 
 	void Draw() override;
 	void Update(float deltaTime) override;
 	
 protected:
-	Materials* m_pMaterials;
-	PhysicsController* m_pPhysicsController;
-	fw::GameCore* m_pGameCore;
+	fw::Materials* m_pMaterials;
+	
 };
 
 

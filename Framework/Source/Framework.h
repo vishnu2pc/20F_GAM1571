@@ -21,7 +21,9 @@
 #include "Math/Vector.h"
 #include "EventSystem/Event.h"
 #include "EventSystem/EventManager.h"
-
+#include "Components/Materials.h"
+#include "Components/PhysicsController.h"
+#include "Components/PlayerController.h"
 
 
 #endif //__Framework_H__

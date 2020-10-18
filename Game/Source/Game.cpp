@@ -1,7 +1,7 @@
 #include "GamePCH.h"
 #include "Game.h"
 #include "Objects/Player.h"
-#include "Objects/PlayerController.h"
+#include "Components/PlayerController.h"
 #include "Events/GameEvents.h"
 
 Game::Game(fw::FWCore* pFramework)  :fw::GameCore(pFramework)

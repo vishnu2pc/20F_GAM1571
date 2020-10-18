@@ -1,28 +1,28 @@
 #include "GamePCH.h"
 
-#include "Objects/Enemy.h"
+#include "Objects/GameArena.h"
 #include "Components/Materials.h"
 #include "Components/PhysicsController.h"
 
-Enemy::Enemy(Materials* pMaterials, PhysicsController* pPhysicsController, fw::GameCore* pGameCore)
+GameArena::GameArena(Materials* pMaterials, PhysicsController* pPhysicsController, fw::GameCore* pGameCore)
 {
 	m_GameCore = pGameCore;
 	m_Materials = pMaterials;
 	m_PhysicsController = pPhysicsController;
 }
 
-Enemy::~Enemy()
+GameArena::~GameArena()
 {
 	
 }
 
 
-void Enemy::Update(float deltaTime)
+void GameArena::Update(float deltaTime)
 {
 	
 }
 
-void Enemy::Draw()
+void GameArena::Draw()
 {
 	m_Materials->Draw(m_PhysicsController->GetPosition());
 }

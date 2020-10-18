@@ -1,6 +1,6 @@
 #include "GamePCH.h"
 
-#include "Objects/Materials.h"
+#include "Components/Materials.h"
 
 
 Materials::Materials()

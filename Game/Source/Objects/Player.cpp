@@ -1,8 +1,8 @@
 #include "GamePCH.h"
 
 #include "Objects/Player.h"
-#include "Materials.h"
-#include "PhysicsController.h"
+#include "Components/Materials.h"
+#include "Components/PhysicsController.h"
 
 Player::Player(Materials* pMaterials, PhysicsController* pPhysicsController, fw::GameCore* pGameCore)
 {

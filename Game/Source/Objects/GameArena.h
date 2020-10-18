@@ -13,9 +13,9 @@ public:
 	void Update(float deltaTime) override;
 	
 protected:
-	Materials* m_Materials;
-	PhysicsController* m_PhysicsController;
-	fw::GameCore* m_GameCore;
+	Materials* m_pMaterials;
+	PhysicsController* m_pPhysicsController;
+	fw::GameCore* m_pGameCore;
 };
 
 

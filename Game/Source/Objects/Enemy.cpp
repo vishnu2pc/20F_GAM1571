@@ -6,9 +6,9 @@
 
 Enemy::Enemy(Materials* pMaterials, PhysicsController* pPhysicsController, fw::GameCore* pGameCore)
 {
-	m_GameCore = pGameCore;
-	m_Materials = pMaterials;
-	m_PhysicsController = pPhysicsController;
+	m_pGameCore = pGameCore;
+	m_pMaterials = pMaterials;
+	m_pPhysicsController = pPhysicsController;
 }
 
 Enemy::~Enemy()
@@ -24,6 +24,6 @@ void Enemy::Update(float deltaTime)
 
 void Enemy::Draw()
 {
-	m_Materials->Draw(m_PhysicsController->GetPosition());
+	m_pMaterials->Draw(m_pPhysicsController->GetPosition());
 }
 

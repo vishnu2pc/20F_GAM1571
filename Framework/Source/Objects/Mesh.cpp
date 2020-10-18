@@ -81,7 +81,7 @@ void Mesh::CreateCircle(float radius, int num_points)
     	
         m_Circle_Vertices.push_back(vec2(0, 0));
     	
-        const float angle = (2*M_PI / num_points) * i;
+        const float angle = (2*(float)M_PI / num_points) * i;
         const vec2 Vertex = vec2(cosf(angle), sinf(angle)) * radius;
 
         m_Circle_Vertices.push_back(Vertex);

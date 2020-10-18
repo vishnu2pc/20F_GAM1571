@@ -13,8 +13,5 @@ GameCore::~GameCore()
 {
 }
 
-FWCore* GameCore::GetFramework()
-{
-	return m_pFramework;
-}
+
 } // namespace fw

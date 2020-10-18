@@ -4,6 +4,7 @@
 #include "Mesh.h"
 #include "../../Libraries/imgui/imgui.h"
 #include "../../Game/Source/Constants.h"
+
 fw::GameObject::GameObject(vec2 position, int GameObjectType, std::vector<fw::Mesh*> pMesh, std::vector<fw::ShaderProgram*> pShader,
 	fw::GameCore* pGameCore)
 {
@@ -32,7 +33,9 @@ void fw::GameObject::Draw()
 	if (GAMEOBJECT_TYPE == GAME_AREA)
 	{
 		
-		ImGui::SliderInt("Vertices", &m_num_points, MIN_VERTICES, MAX_VERTICES);
+		
+		ImGui::VSliderInt("Vertices", ImVec2(20, 150), &m_num_points, 3, 100);
+
 		for (int i = 0; i < m_pMesh.size(); i++)
 		{
 			

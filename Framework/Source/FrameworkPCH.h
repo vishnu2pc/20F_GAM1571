@@ -21,6 +21,7 @@
 #include <map>
 #include <vector>
 #include <queue>
+#include <string>
 
 #include <GL/GL.h>
 #include "GL/glext.h"

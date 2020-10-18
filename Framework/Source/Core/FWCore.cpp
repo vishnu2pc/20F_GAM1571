@@ -15,6 +15,8 @@
 #include "GL/MyGLContext.h"
 #include "GameCore.h"
 #include "Utility/Helpers.h"
+#include "EventSystem/Event.h"
+#include "EventSystem/EventManager.h"
 
 namespace fw {
 
@@ -445,13 +447,27 @@ LRESULT CALLBACK FWCore::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
                     PostQuitMessage( 0 );
 
                 pFWCore->m_KeyStates[wParam] = true;
+
+            	//Send an input event to the event manager.
+                InputEvent* pEvent = new InputEvent(InputEvent::DeviceType::Keyboard,
+                    InputEvent::DeviceState::Pressed, (unsigned int)wParam);
+
+                pFWCore->m_pGame->GetEventManager()->AddEvent(pEvent);
             }
         }
         return 0;
 
     case WM_KEYUP:
         {
-            pFWCore->m_KeyStates[wParam] = false;
+        pFWCore->m_KeyStates[wParam] = false;
+
+        // Send a input event to the event manager.
+        InputEvent* pEvent = new InputEvent(
+            InputEvent::DeviceType::Keyboard,
+            InputEvent::DeviceState::Released,
+            (unsigned int)wParam);
+
+        pFWCore->m_pGame->GetEventManager()->AddEvent(pEvent);
         }
         return 0;
 

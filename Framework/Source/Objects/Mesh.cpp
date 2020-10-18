@@ -90,8 +90,14 @@ void Mesh::CreateCircle(float radius, int num_points)
 	
     CreateShape(&m_Circle_Vertices[0], m_Circle_Vertices.size(), GL_TRIANGLE_STRIP);
 }
-
-void Mesh::Draw(vec2 pos, ShaderProgram* pShader)
+	
+void Mesh::SetUniform4f(ShaderProgram* pShader, char* name, vec4 value)
+{
+    int loc = glGetUniformLocation(pShader->GetProgram(), name);
+    glUniform4f(loc, value.x, value.y, value.z, value.w);
+}
+	
+void Mesh::Draw(vec2 pos, ShaderProgram* pShader, vec4 color)
 {
     glUseProgram(pShader->GetProgram());
 
@@ -108,6 +114,7 @@ void Mesh::Draw(vec2 pos, ShaderProgram* pShader)
     // Setup our uniforms.
     {
         SetUniform2f(pShader, "u_ObjectPos", pos);
+        SetUniform4f(pShader, "u_Color", color);
     }
     // Draw the primitive.
     glDrawArrays(m_PrimitiveType, 0, m_NumVertices);

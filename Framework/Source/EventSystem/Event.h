@@ -36,7 +36,7 @@ namespace fw {
         }
         virtual ~InputEvent() {}
 
-        EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::INPUT_EVENT; }
+        static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::INPUT_EVENT; }
         virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
 
         DeviceType GetDeviceType() { return m_DeviceType; }

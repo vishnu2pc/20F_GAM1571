@@ -3,7 +3,7 @@
 class SpawnPlayer : public fw::Event
 {
 public:
-    SpawnPlayer(fw::Player* pPlayer)
+    SpawnPlayer(Player* pPlayer)
     {
         m_pPlayer = pPlayer;
     }
@@ -12,8 +12,8 @@ public:
     static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::SPAWN_PLAYER; }
     virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
 
-    fw::Player* GetPlayer() { return m_pPlayer; }
+    Player* GetPlayer() { return m_pPlayer; }
 
 protected:
-    fw::Player* m_pPlayer;
+    Player* m_pPlayer;
 };

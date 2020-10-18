@@ -5,7 +5,7 @@
 		SPAWN_PLAYER
     };
 
-    extern const float radius[];
+    extern const float Arena_radius;
 
     extern  int MIN_VERTICES;
     extern  int MAX_VERTICES;

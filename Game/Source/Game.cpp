@@ -1,5 +1,8 @@
 #include "GamePCH.h"
 #include "Game.h"
+
+
+
 #include "Objects/Player.h"
 #include "Objects/GameArena.h"
 #include "Events/GameEvents.h"
@@ -18,6 +21,7 @@ Game::~Game()
 
 void Game::Init()
 {
+    srand(time(0));
 	
     m_pImGuiManager = new fw::ImGuiManager(m_pFramework);
     m_pImGuiManager->Init();
@@ -52,12 +56,6 @@ void Game::Init()
 
     m_pGameArena = new GameArena(m_pGameArenaMaterial, m_pGameArenaPhysicsController, this);
 
-    m_Timer = 1;
-	
-}
-
-void Game::SpawnEnemy()
-{
     fw::Materials* m_pEnemyMaterial = new fw::Materials(m_pOuterMesh, m_pInnerMesh, m_pShader);
     fw::PhysicsController* m_pEnemyPhysicsController = new fw::PhysicsController();
 
@@ -66,11 +64,18 @@ void Game::SpawnEnemy()
 
     m_pEnemyPhysicsController->SetRadius(0.2f);
 
-    float RandAngle = (2 * (float)M_PI / 5) * (rand() % 10);
-    vec2 pos = vec2(cosf(RandAngle), sinf(RandAngle)) * m_ArenaRadius + vec2(5.0f,5.0f);
+    float RandAngle = rand() % 360;
+	vec2 pos = vec2(cosf(RandAngle * M_PI/180), sinf(RandAngle * M_PI / 180)) * 4.0f + vec2(5.0f, 5.0f);
     m_pEnemyPhysicsController->SetPosition(pos);
     m_pEnemyPhysicsController->SetMaxVelocity(rand() % 10);
-    m_pEnemies.push_back(new Enemy(m_pEnemyMaterial, m_pEnemyPhysicsController, this));
+    
+    m_pEnemy = new Enemy(m_pEnemyMaterial, m_pEnemyPhysicsController, this);
+	
+}
+
+void Game::SpawnEnemy()
+{
+    
 }
 
 void Game::HandleImGui(float deltaTime)
@@ -79,27 +84,31 @@ void Game::HandleImGui(float deltaTime)
     ImGui::ShowDemoWindow();
 
     ImGui::DragInt("Arena Vertices", &m_pGameArenaNumVertices, 1, 3, 100);
-    /*ImGui::DragInt("Player Speed", &m_pPlayerVelocity, 1, 3, 10);*/
+    ImGui::DragInt("Player Speed", &m_pPlayerVelocity, 1, 3, 10);
 }
 
 void Game::UpdateLevel()
 {
     m_pGameArenaMaterial->SetNumVertices(m_pGameArenaNumVertices);
-    /*m_pPlayerPhysicsController->SetMaxVelocity(m_pPlayerVelocity);*/
+    m_pPlayerPhysicsController->SetMaxVelocity(m_pPlayerVelocity);
 
     m_ArenaRadius = m_pGameArena->GetPhysicsController()->GetRadius();
     m_ArenaPosition = m_pGameArena->GetPhysicsController()->GetPosition();
+
+    m_PlayerPosition = m_pPlayer->GetPhysicsController()->GetPosition();
 }
 
 void Game::OnEvent(fw::Event* pEvent)
 {
-    if(pEvent->GetType()==EVENT_TYPE::INPUT_EVENT)
-	m_pPlayerController->OnEvent(pEvent);
 
-	if(pEvent->GetType()==EVENT_TYPE::SPAWN_ENEMY)
-	{
+    if (pEvent->GetType() == EVENT_TYPE::SPAWN_ENEMY)
+    {
         SpawnEnemy();
-	}
+    }
+
+	if(pEvent->GetType()==EVENT_TYPE::INPUT_EVENT)
+		m_pPlayerController->OnEvent(pEvent);
+
 }
 
 void Game::Update(float deltaTime)
@@ -109,7 +118,7 @@ void Game::Update(float deltaTime)
 
     m_pGameArena->Update(deltaTime);
     m_pPlayer->Update(deltaTime);
-    
+    m_pEnemy->Update(deltaTime);
 	
     for (int i = 0; i < m_pEnemies.size(); i++)
     {
@@ -131,10 +140,7 @@ void Game::Draw()
     m_pGameArena->Draw();
     m_pPlayer->Draw();
 	
-    for(int i=0; i<m_pEnemies.size();i++)
-    {
-        m_pEnemies[i]->Draw();
-    }
+    m_pEnemy->Draw();
     m_pImGuiManager->EndFrame();
 }
 

@@ -11,10 +11,12 @@ public:
 
 	void Draw() override;
 	void Update(float deltaTime) override;
-	
+
 protected:
 	fw::Materials* m_pMaterials;
-	
+	vec2 PlayerPosition;
+	vec2 DistanceFromPlayer;
+	vec2 DirectionToPlayer;
 };
 
 

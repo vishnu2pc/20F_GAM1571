@@ -17,6 +17,7 @@ namespace fw
 		};
 		
         PhysicsController();
+        PhysicsController(vec2 pos, float speed, float radius);
         virtual ~PhysicsController();
 
         void SetPosition(fw::vec2 position) { m_position = position; }
@@ -38,7 +39,8 @@ namespace fw
 		
 		
     private:
-        fw::vec2 m_position;
+    
+		fw::vec2 m_position;
         vec2 m_MaxVelocity;
         vec2 m_CurrentVelocity;
         vec2 m_MinVelocity;
@@ -46,5 +48,7 @@ namespace fw
 		
         float m_radius;
         PHYSICS_TYPE m_PhysicsType;
+
+
     };
 }

@@ -14,6 +14,8 @@ namespace fw
 		m_FinalVelocity = vec2(0, 0);
 		m_CurrentVelocity = vec2(0, 0);
 		m_radius = 5;
+
+		
 	}
 	
 	PhysicsController::~PhysicsController()
@@ -23,8 +25,11 @@ namespace fw
 
 	void PhysicsController::Update(PHYSICS_TYPE PhysicsType, PlayerController* pPlayerController, float deltaTime)
 	{
-		HandleKeyPress(PhysicsType, pPlayerController);
-		Interpolate(deltaTime * 10);
+		if (PhysicsType != PHYSICS_TYPE::ENEMY)
+		{
+			HandleKeyPress(PhysicsType, pPlayerController);
+			Interpolate(deltaTime * 25);
+		}
 	}
 
 	void PhysicsController::HandleKeyPress(PHYSICS_TYPE PhysicsType, PlayerController* pPlayerController)

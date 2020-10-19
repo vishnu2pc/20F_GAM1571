@@ -22,7 +22,7 @@
 #include <vector>
 #include <queue>
 #include <string>
-
+#include <time.h>
 #include <GL/GL.h>
 #include "GL/glext.h"
 #include "GL/wglext.h"

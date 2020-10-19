@@ -1,6 +1,7 @@
 #pragma once
 
 
+class Enemy;
 class GameArena;
 class Player;
 
@@ -29,6 +30,7 @@ protected:
 	
     Player* m_pPlayer = nullptr;
     GameArena* m_pGameArena = nullptr;
+    Enemy* m_pEnemy = nullptr;
 
     fw::ShaderProgram* m_pShader = nullptr;
     fw::Mesh* m_pOuterMesh = nullptr;
@@ -36,16 +38,17 @@ protected:
 	
     fw::Materials* m_pPlayerMaterial = nullptr;
     fw::Materials* m_pGameArenaMaterial = nullptr;
-    
+    fw::Materials* m_pEnemyMaterial = nullptr;
 	
     fw::PhysicsController* m_pPlayerPhysicsController = nullptr;
     fw::PhysicsController* m_pGameArenaPhysicsController = nullptr;
-    
+    fw::PhysicsController* m_pEnemyPhysicsController = nullptr;
 
     int m_pGameArenaNumVertices =100;
     int m_pPlayerVelocity = 5;
-    float m_Timer = 0;
+    float m_Timer = 1;
 
+ 
 };
 
 

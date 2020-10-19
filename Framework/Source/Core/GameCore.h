@@ -2,6 +2,7 @@
 #include "Math/Vector.h"
 
 namespace fw {
+	class PlayerController;
 	class FWCore;
     class Event;
     class EventManager;
@@ -20,12 +21,15 @@ public:
     EventManager* GetEventManager() { return m_pEventManager; }
     float GetArenaRadius() { return m_ArenaRadius; }
     vec2 GetArenaPosition() { return m_ArenaPosition; }
+    PlayerController* GetPlayerController() { return m_pPlayerController; }
 		
 protected:
     FWCore* m_pFramework = nullptr;
     EventManager* m_pEventManager = nullptr;
     float m_ArenaRadius = 0;
     vec2 m_ArenaPosition;
+    PlayerController* m_pPlayerController;
+    	
 };
 
 } // namespace fw

@@ -23,16 +23,17 @@ Player::~Player()
 void Player::Update(float deltaTime)
 {
     float ArenaRadius = static_cast<Game*>(m_pGameCore)->GetArenaRadius();
-    vec2 CurrentPos = m_pPhysicsController->GetPosition();  
+    vec2 OldPos = m_pPhysicsController->GetPosition();  
     vec2 ArenaPosition = static_cast<Game*>(m_pGameCore)->GetArenaPosition();
 	
-    if (CurrentPos.Distance(ArenaPosition) < ArenaRadius)
-    {
-        m_pPhysicsController->Update(m_pPlayerController, deltaTime);
-        vec2 CurrentVelocity = m_pPhysicsController->GetCurrentVelocity();
-        vec2 NewPos = CurrentPos + CurrentVelocity* deltaTime;
-        m_pPhysicsController->SetPosition(NewPos);
-    }
+    m_pPhysicsController->Update(m_pPlayerController, deltaTime);
+    vec2 CurrentVelocity = m_pPhysicsController->GetCurrentVelocity();
+    vec2 NewPos = OldPos + CurrentVelocity * deltaTime;
+   
+    if (NewPos.Distance(ArenaPosition) > ArenaRadius)
+        NewPos = OldPos;
+	
+    m_pPhysicsController->SetPosition(NewPos);
 }
 
 void Player::OnEvent(fw::Event* pEvent)

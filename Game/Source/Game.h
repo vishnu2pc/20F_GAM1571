@@ -30,8 +30,6 @@ protected:
     fw::ShaderProgram* m_pShader = nullptr;
     fw::Mesh* m_pOuterMesh = nullptr;
     fw::Mesh* m_pInnerMesh = nullptr;
-
-    fw::PlayerController* m_pPlayerController = nullptr;
 	
     fw::Materials* m_pPlayerMaterial = nullptr;
     fw::Materials* m_pGameArenaMaterial = nullptr;

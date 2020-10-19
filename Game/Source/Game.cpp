@@ -54,9 +54,7 @@ void Game::Init()
     m_pGameArenaPhysicsController->SetPosition(vec2(5.0f, 5.0f));
 
     m_pGameArena = new GameArena(m_pGameArenaMaterial, m_pGameArenaPhysicsController, this);
-
-  
-    
+	
 }
 
 void Game::CheckCollision()
@@ -77,6 +75,8 @@ void Game::Update(float deltaTime)
 {
     m_pEventManager->DispatchAllEvents(this);
     m_ArenaRadius = m_pGameArena->GetPhysicsController()->GetRadius();
+    m_ArenaPosition = m_pGameArena->GetPhysicsController()->GetPosition();
+	
     CheckCollision();
 	m_pImGuiManager->StartFrame(deltaTime);
     ImGui::ShowDemoWindow();

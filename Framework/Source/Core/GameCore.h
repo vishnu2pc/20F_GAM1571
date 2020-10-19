@@ -1,4 +1,5 @@
 #pragma once
+#include "Math/Vector.h"
 
 namespace fw {
 	class FWCore;
@@ -18,11 +19,13 @@ public:
     FWCore* GetFramework() { return m_pFramework; }
     EventManager* GetEventManager() { return m_pEventManager; }
     float GetArenaRadius() { return m_ArenaRadius; }
+    vec2 GetArenaPosition() { return m_ArenaPosition; }
 		
 protected:
     FWCore* m_pFramework = nullptr;
     EventManager* m_pEventManager = nullptr;
     float m_ArenaRadius = 0;
+    vec2 m_ArenaPosition;
 };
 
 } // namespace fw

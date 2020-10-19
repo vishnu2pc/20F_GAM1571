@@ -12,13 +12,13 @@ public:
 
 	void Draw() override;
 	void Update(float deltaTime) override;
-	void CheckPlayerArenaCollision(float radius);
+	void OnEvent(fw::Event* pEvent);
 
 	
 protected:
 	fw::Materials* m_pMaterials;
 	fw::PlayerController* m_pPlayerController;
-	bool m_PlayerArenaCollision;
+	bool m_PlayerArenaCollision = false;
 };
 
 

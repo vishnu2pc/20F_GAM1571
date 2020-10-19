@@ -5,9 +5,6 @@
 #include "Events/GameEvents.h"
 
 
-
-
-
 Game::Game(fw::FWCore* pFramework)  :fw::GameCore(pFramework)
 {
     
@@ -19,9 +16,6 @@ Game::~Game()
     {
        delete m_pGameObjects[i];
     }
-
-   
-
     delete m_pImGuiManager;
 }
 
@@ -61,29 +55,39 @@ void Game::Init()
 
     m_pGameArena = new GameArena(m_pGameArenaMaterial, m_pGameArenaPhysicsController, this);
 
+  
     
-    m_pGameObjects.push_back(m_pGameArena);
-    m_pGameObjects.push_back(m_pPlayer);
+}
+
+void Game::CheckCollision()
+{
+    
 }
 
 void Game::OnEvent(fw::Event* pEvent)
 {
     if(pEvent->GetType()==EVENT_TYPE::INPUT_EVENT)
 	m_pPlayerController->OnEvent(pEvent);
-   
+
+    if (pEvent->GetType() == EVENT_TYPE::COLLISION)
+        m_pPlayer->OnEvent(pEvent);
 }
 
 void Game::Update(float deltaTime)
 {
     m_pEventManager->DispatchAllEvents(this);
-	
+    m_ArenaRadius = m_pGameArena->GetPhysicsController()->GetRadius();
+    CheckCollision();
 	m_pImGuiManager->StartFrame(deltaTime);
     ImGui::ShowDemoWindow();
-
-    for (int i = 0; i < m_pGameObjects.size(); i++)
+	
+   /* for (int i = 0; i < m_pGameObjects.size(); i++)
     {
         m_pGameObjects[i]->Update(deltaTime);
-    }
+    }*/
+
+    m_pGameArena->Update(deltaTime);
+    m_pPlayer->Update(deltaTime);
 
 }
 
@@ -99,6 +103,9 @@ void Game::Draw()
     {
         m_pGameObjects[i]->Draw();
     }
-   
+
+    m_pGameArena->Draw();
+    m_pPlayer->Draw();
+
     m_pImGuiManager->EndFrame();
 }

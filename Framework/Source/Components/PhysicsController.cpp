@@ -10,6 +10,7 @@ namespace fw
 	{
 		m_position = fw::vec2(5, 5);
 		m_speed = 0;
+		m_radius = 5;
 	}
 	
 	PhysicsController::~PhysicsController()

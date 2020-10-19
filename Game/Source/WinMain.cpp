@@ -10,9 +10,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	Game* pGame = new Game(pFramework);
     pGame->Init();
 
+	
     pFramework->Run( pGame );
     pFramework->Shutdown();
 
+
+	
     delete pGame;
     delete pFramework;
 }

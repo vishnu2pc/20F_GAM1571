@@ -2,13 +2,16 @@
 
 #include "Objects/Player.h"
 
+#include "Game.h"
+#include "Events/GameEvents.h"
+
 
 Player::Player(fw::Materials* pMaterials, fw::PhysicsController* pPhysicsController, fw::PlayerController* pPlayerController, fw::GameCore* pGameCore) :
     GameObject(pPhysicsController, pGameCore)
 {
 	m_pMaterials = pMaterials;
 	m_pPlayerController = pPlayerController;
-    m_PlayerArenaCollision = false;
+    
 }
 
 Player::~Player()
@@ -26,93 +29,46 @@ void Player::Update(float deltaTime)
 
         if (m_pPlayerController->IsUpHeld())
         {
-            dir.y = 1;
+            dir.y = 3;
         }
         if (m_pPlayerController->IsDownHeld())
         {
-            dir.y = -1;
+            dir.y = -3;
         }
         if (m_pPlayerController->IsLeftHeld())
         {
-            dir.x = -1;
+            dir.x = -3;
         }
         if (m_pPlayerController->IsRightHeld())
         {
-            dir.x = 1;
-        }
-
-        vec2 NewPos = m_pPhysicsController->GetPosition();
-        NewPos += dir * (float)m_pPhysicsController->GetSpeed() * deltaTime;
-        m_pPhysicsController->SetPosition(NewPos);
-    }
-
-    else
-    {
-        if (m_pPlayerController->IsUpHeld())
-        {
-            if (m_pPhysicsController->GetPosition().y > 0.0f)
-            {
-                if (m_pPhysicsController->GetPosition().x < 0.0f)
-                    dir.x = 0.5f;
-                else if (m_pPhysicsController->GetPosition().x > 0.0f)
-                    dir.x = -0.5f;
-            }
-
-            else
-                dir.y = 1;
+            dir.x = 3;
         }
     	
-        if (m_pPlayerController->IsDownHeld())
-        {
-            if (m_pPhysicsController->GetPosition().y < 0.0f)
-            {
-                if (m_pPhysicsController->GetPosition().x < 0.0f)
-                    dir.x = 0.5f;
-                else if (m_pPhysicsController->GetPosition().x > 0.0f)
-                    dir.x = -0.5f;
-            }
-        	
-            else
-                dir.y = -1;
-        }
-        if (m_pPlayerController->IsLeftHeld())
-        {
-            if (m_pPhysicsController->GetPosition().x < 0.0f)
-            {
-                if (m_pPhysicsController->GetPosition().y < 0.0f)
-                    dir.y = 0.5f;
-                else if (m_pPhysicsController->GetPosition().y > 0.0f)
-                    dir.y = -0.5f;
-            }
+        vec2 OldPos = m_pPhysicsController->GetPosition();
+        vec2 NewPos = OldPos + dir * (float)m_pPhysicsController->GetSpeed() * deltaTime;
 
-            else
-                dir.x = -1;
-        }
-        if (m_pPlayerController->IsRightHeld())
-        {
-            if (m_pPhysicsController->GetPosition().x > 0.0f)
-            {
-                if (m_pPhysicsController->GetPosition().y < 0.0f)
-                    dir.y = 0.5f;
-                else if (m_pPhysicsController->GetPosition().y > 0.0f)
-                    dir.y = -0.5f;
-            }
+        float ArenaRadius = static_cast<Game*>(m_pGameCore)->GetArenaRadius();
+        if (NewPos.Distance(vec2(5.0f,5.0f)) > ArenaRadius)
+            NewPos = OldPos;
 
-            else
-                dir.x = 1;
-        }
-
-        vec2 NewPos = m_pPhysicsController->GetPosition();
-        NewPos += dir * (float)m_pPhysicsController->GetSpeed() * deltaTime;
         m_pPhysicsController->SetPosition(NewPos);
     }
     
 }
 
-void Player::CheckPlayerArenaCollision(float radius)
+void Player::OnEvent(fw::Event* pEvent)
 {
-    if (m_pPhysicsController->GetPosition().Magnitude() >= radius)
+	CollisionEvent* pCollisionEvent = static_cast<CollisionEvent*>(pEvent);
+
+	if(pCollisionEvent->GetCollisionType()==CollisionEvent::COLLISION_TYPE::ARENA)
+	{
         m_PlayerArenaCollision = true;
+	}
+
+	if(pCollisionEvent->GetCollisionType()==CollisionEvent::COLLISION_TYPE::NONE)
+	{
+        m_PlayerArenaCollision = false;
+	}
 }
 
 

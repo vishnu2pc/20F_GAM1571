@@ -12,6 +12,7 @@ public:
     virtual ~Game();
 
     void Init();
+    void CheckCollision();
     virtual void OnEvent(fw::Event* pEvent) override;
     virtual void Update(float deltaTime) override;
     virtual void Draw() override;
@@ -38,5 +39,6 @@ protected:
     fw::PhysicsController* m_pPlayerPhysicsController = nullptr;
     fw::PhysicsController* m_pGameArenaPhysicsController = nullptr;
 
-    
+    int m_numVertices = 3;
+
 };

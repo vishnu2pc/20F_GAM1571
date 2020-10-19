@@ -3,7 +3,8 @@
  enum class EVENT_TYPE {
     INPUT_EVENT,
     SPAWN_PLAYER,
-    SPAWN_ENEMY
+    SPAWN_ENEMY,
+    COLLISION
 };
     	
     

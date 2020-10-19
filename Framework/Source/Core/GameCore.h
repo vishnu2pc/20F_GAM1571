@@ -17,10 +17,12 @@ public:
 		
     FWCore* GetFramework() { return m_pFramework; }
     EventManager* GetEventManager() { return m_pEventManager; }
+    float GetArenaRadius() { return m_ArenaRadius; }
 		
 protected:
     FWCore* m_pFramework = nullptr;
     EventManager* m_pEventManager = nullptr;
+    float m_ArenaRadius = 0;
 };
 
 } // namespace fw

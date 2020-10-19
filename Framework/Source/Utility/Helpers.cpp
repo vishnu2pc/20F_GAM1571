@@ -36,7 +36,7 @@ double GetSystemTimeSinceGameStart()
 
     if( starttime == -1 )
         starttime = GetSystemTime();
-
+    double i =GetSystemTime() - starttime;
     return GetSystemTime() - starttime;
 }
 

@@ -12,15 +12,18 @@ public:
     virtual ~Game();
 
     void Init();
-    void CheckCollision();
     virtual void OnEvent(fw::Event* pEvent) override;
     virtual void Update(float deltaTime) override;
     virtual void Draw() override;
 
-
+    void Timer(float deltaTime);
+    void SpawnEnemy();
+    void HandleImGui(float deltaTime);
+    void UpdateLevel();
+		
 protected:
 
-    std::vector<fw::GameObject*> m_pGameObjects;
+    std::vector<fw::GameObject*> m_pEnemies;
     fw::ImGuiManager* m_pImGuiManager = nullptr;
 
 	
@@ -33,10 +36,16 @@ protected:
 	
     fw::Materials* m_pPlayerMaterial = nullptr;
     fw::Materials* m_pGameArenaMaterial = nullptr;
+    
 	
     fw::PhysicsController* m_pPlayerPhysicsController = nullptr;
     fw::PhysicsController* m_pGameArenaPhysicsController = nullptr;
+    
 
-    int m_numVertices = 3;
+    int m_pGameArenaNumVertices =100;
+    int m_pPlayerVelocity = 5;
+    float m_Timer = 0;
 
 };
+
+

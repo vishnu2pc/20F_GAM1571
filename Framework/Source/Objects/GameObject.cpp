@@ -10,6 +10,7 @@ fw::GameObject::GameObject(PhysicsController* pPhysicsController, GameCore* pGam
 
 fw::GameObject::~GameObject()
 {
+	
 }
 
 void fw::GameObject::Update(float deltaTime)

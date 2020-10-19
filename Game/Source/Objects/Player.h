@@ -13,6 +13,8 @@ public:
 	void Draw() override;
 	void Update(float deltaTime) override;
 	void OnEvent(fw::Event* pEvent);
+	void HandleKeyPress();
+	void HandleKeyRelease();
 
 	
 protected:

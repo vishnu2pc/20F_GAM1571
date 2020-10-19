@@ -40,7 +40,7 @@ void Game::Init()
 
     m_pPlayerPhysicsController->SetRadius(0.4f);
     m_pPlayerPhysicsController->SetPosition(vec2(5.0f, 5.0f));
-    m_pPlayerPhysicsController->SetSpeed(2);
+    m_pPlayerPhysicsController->SetMaxVelocity(5.0f);
 	
     m_pPlayer = new Player(m_pPlayerMaterial, m_pPlayerPhysicsController, m_pPlayerController, this);
 

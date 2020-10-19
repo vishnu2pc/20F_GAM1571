@@ -22,39 +22,17 @@ Player::~Player()
 
 void Player::Update(float deltaTime)
 {
-
-    vec2 dir;
-    if (!m_PlayerArenaCollision)
+    float ArenaRadius = static_cast<Game*>(m_pGameCore)->GetArenaRadius();
+    vec2 CurrentPos = m_pPhysicsController->GetPosition();  
+    vec2 ArenaPosition = static_cast<Game*>(m_pGameCore)->GetArenaPosition();
+	
+    if (CurrentPos.Distance(ArenaPosition) < ArenaRadius)
     {
-
-        if (m_pPlayerController->IsUpHeld())
-        {
-            dir.y = 3;
-        }
-        if (m_pPlayerController->IsDownHeld())
-        {
-            dir.y = -3;
-        }
-        if (m_pPlayerController->IsLeftHeld())
-        {
-            dir.x = -3;
-        }
-        if (m_pPlayerController->IsRightHeld())
-        {
-            dir.x = 3;
-        }
-
-        vec2 OldPos = m_pPhysicsController->GetPosition();
-        vec2 NewPos = OldPos + dir * (float)m_pPhysicsController->GetSpeed() * deltaTime;
-
-        float ArenaRadius = static_cast<Game*>(m_pGameCore)->GetArenaRadius();
-        vec2 ArenaPosition = static_cast<Game*>(m_pGameCore)->GetArenaPosition();
-        if (NewPos.Distance(ArenaPosition) > ArenaRadius)
-            NewPos = OldPos;
-
+        m_pPhysicsController->Update(m_pPlayerController, deltaTime);
+        vec2 CurrentVelocity = m_pPhysicsController->GetCurrentVelocity();
+        vec2 NewPos = CurrentPos + CurrentVelocity* deltaTime;
         m_pPhysicsController->SetPosition(NewPos);
     }
-
 }
 
 void Player::OnEvent(fw::Event* pEvent)

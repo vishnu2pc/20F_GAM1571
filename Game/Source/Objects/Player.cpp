@@ -26,7 +26,9 @@ void Player::Update(float deltaTime)
     vec2 OldPos = m_pPhysicsController->GetPosition();  
     vec2 ArenaPosition = static_cast<Game*>(m_pGameCore)->GetArenaPosition();
 	
-    m_pPhysicsController->Update(m_pPlayerController, deltaTime);
+    m_pPhysicsController->Update(fw::PhysicsController::PHYSICS_TYPE::PLAYER, 
+        m_pPlayerController, deltaTime);
+	
     vec2 CurrentVelocity = m_pPhysicsController->GetCurrentVelocity();
     vec2 NewPos = OldPos + CurrentVelocity * deltaTime;
    

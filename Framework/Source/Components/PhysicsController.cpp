@@ -21,40 +21,54 @@ namespace fw
 	}
 
 
-	void PhysicsController::Update(PlayerController* pPlayerController, float deltaTime)
+	void PhysicsController::Update(PHYSICS_TYPE PhysicsType, PlayerController* pPlayerController, float deltaTime)
 	{
-		HandleKeyPress(pPlayerController);
-		HandleKeyRelease(pPlayerController);
+		HandleKeyPress(PhysicsType, pPlayerController);
 		Interpolate(deltaTime * 10);
 	}
 
-	void PhysicsController::HandleKeyPress(PlayerController* pPlayerController)
+	void PhysicsController::HandleKeyPress(PHYSICS_TYPE PhysicsType, PlayerController* pPlayerController)
 	{
-		if (pPlayerController->IsDownHeld())
-			m_FinalVelocity.y = m_MaxVelocity.y * -1;
-		else if(!pPlayerController->IsDownHeld())
-			m_FinalVelocity.y = m_MinVelocity.y * 1;
-		
-		if (pPlayerController->IsUpHeld())
-			m_FinalVelocity.y = m_MaxVelocity.y * 1;
-		
-		
-		if (pPlayerController->IsLeftHeld())
-			m_FinalVelocity.x = m_MaxVelocity.x * -1;
-		else if (!pPlayerController->IsLeftHeld())
-			m_FinalVelocity.x = m_MinVelocity.x * 1;
-		
-		if (pPlayerController->IsRightHeld())
-			m_FinalVelocity.x = m_MaxVelocity.x * 1;
-		
+		if (PhysicsType == PHYSICS_TYPE::PLAYER)
+		{
+			if (pPlayerController->IsDownHeld())
+				m_FinalVelocity.y = m_MaxVelocity.y * -1;
+			else if (!pPlayerController->IsDownHeld())
+				m_FinalVelocity.y = m_MinVelocity.y * 1;
+
+			if (pPlayerController->IsUpHeld())
+				m_FinalVelocity.y = m_MaxVelocity.y * 1;
+
+			if (pPlayerController->IsLeftHeld())
+				m_FinalVelocity.x = m_MaxVelocity.x * -1;
+			else if (!pPlayerController->IsLeftHeld())
+				m_FinalVelocity.x = m_MinVelocity.x * 1;
+
+			if (pPlayerController->IsRightHeld())
+				m_FinalVelocity.x = m_MaxVelocity.x * 1;
+		}
+
+		if (PhysicsType == PHYSICS_TYPE::GAME_ARENA)
+		{
+			if (pPlayerController->IsDownHeld())
+				m_FinalVelocity.y = m_MaxVelocity.y * 1;
+			else if (!pPlayerController->IsDownHeld())
+				m_FinalVelocity.y = m_MinVelocity.y * -1;
+
+			if (pPlayerController->IsUpHeld())
+				m_FinalVelocity.y = m_MaxVelocity.y * -1;
+
+			if (pPlayerController->IsLeftHeld())
+				m_FinalVelocity.x = m_MaxVelocity.x * 1;
+			else if (!pPlayerController->IsLeftHeld())
+				m_FinalVelocity.x = m_MinVelocity.x * -1;
+
+			if (pPlayerController->IsRightHeld())
+				m_FinalVelocity.x = m_MaxVelocity.x * -1;
+		}
 		
 	}
 
-	void PhysicsController::HandleKeyRelease(PlayerController* pPlayerController)
-	{
-		
-		
-	}
 
 	void PhysicsController::Interpolate(float deltaTime)
 	{

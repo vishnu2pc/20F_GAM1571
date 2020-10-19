@@ -20,16 +20,18 @@ GameArena::~GameArena()
 
 void GameArena::Update(float deltaTime)
 {
-	/*vec2 CurrentPos = m_pPhysicsController->GetPosition();
-	vec2 CurrentVelocity = m_pPhysicsController->GetCurrentVelocity();
+    vec2 OldPos = m_pPhysicsController->GetPosition();
+	
+    m_pPhysicsController->Update(fw::PhysicsController::PHYSICS_TYPE::GAME_ARENA,
+        static_cast<Game*>(m_pGameCore)->GetPlayerController(), deltaTime/50);
+	
+    vec2 CurrentVelocity = m_pPhysicsController->GetCurrentVelocity();
+    vec2 NewPos = OldPos + CurrentVelocity * deltaTime;
 
-	if (CurrentPos.Distance(vec2(5.0f, 5.0f)) < 1.0f)
-	{
-		m_pPhysicsController->Update(static_cast<Game*>(m_pGameCore)->GetPlayerController(), deltaTime);
-		vec2 CurrentVelocity = m_pPhysicsController->GetCurrentVelocity();
-		vec2 NewPos = CurrentPos + CurrentVelocity * deltaTime;
-		m_pPhysicsController->SetPosition(NewPos);
-	}*/
+    if (NewPos.Distance(vec2(5.0f,5.0f)) > 0.2f)
+        NewPos = OldPos;
+
+    m_pPhysicsController->SetPosition(NewPos);
 }
 void GameArena::Draw()
 {

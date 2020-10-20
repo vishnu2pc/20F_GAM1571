@@ -4,7 +4,7 @@
     INPUT_EVENT,
     SPAWN_PLAYER,
     SPAWN_ENEMY,
-    COLLISION
+    DELETE_ENEMY
 };
     	
     

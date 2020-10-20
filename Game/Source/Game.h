@@ -19,6 +19,7 @@ public:
 
     void Timer(float deltaTime);
     void SpawnEnemy();
+    void DeleteEnemy();
     void HandleImGui(float deltaTime);
     void UpdateLevel();
 		
@@ -48,7 +49,7 @@ protected:
     int m_pPlayerVelocity = 5;
     float m_Timer = 1;
 
- 
+	
 };
 
 

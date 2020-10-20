@@ -56,6 +56,12 @@ void Game::Init()
 
     m_pGameArena = new GameArena(m_pGameArenaMaterial, m_pGameArenaPhysicsController, this);
 
+   
+    
+}
+
+void Game::SpawnEnemy()
+{
     fw::Materials* m_pEnemyMaterial = new fw::Materials(m_pOuterMesh, m_pInnerMesh, m_pShader);
     fw::PhysicsController* m_pEnemyPhysicsController = new fw::PhysicsController();
 
@@ -65,17 +71,16 @@ void Game::Init()
     m_pEnemyPhysicsController->SetRadius(0.2f);
 
     float RandAngle = rand() % 360;
-	vec2 pos = vec2(cosf(RandAngle * M_PI/180), sinf(RandAngle * M_PI / 180)) * 4.0f + vec2(5.0f, 5.0f);
+    vec2 pos = vec2(cosf(RandAngle * M_PI / 180), sinf(RandAngle * M_PI / 180)) * 4.0f + vec2(5.0f, 5.0f);
     m_pEnemyPhysicsController->SetPosition(pos);
-    m_pEnemyPhysicsController->SetMaxVelocity(rand() % 10);
-    
-    m_pEnemy = new Enemy(m_pEnemyMaterial, m_pEnemyPhysicsController, this);
-	
+    m_pEnemyPhysicsController->SetMaxVelocity(rand() % 10 + 3);
+
+    m_pEnemies.push_back(new Enemy(m_pEnemyMaterial, m_pEnemyPhysicsController, this));
 }
 
-void Game::SpawnEnemy()
+void Game::DeleteEnemy()
 {
-    
+	
 }
 
 void Game::HandleImGui(float deltaTime)
@@ -102,10 +107,11 @@ void Game::OnEvent(fw::Event* pEvent)
 {
 
     if (pEvent->GetType() == EVENT_TYPE::SPAWN_ENEMY)
-    {
         SpawnEnemy();
-    }
-
+    
+    if (pEvent->GetType() == EVENT_TYPE::SPAWN_ENEMY)
+        DeleteEnemy();
+    	
 	if(pEvent->GetType()==EVENT_TYPE::INPUT_EVENT)
 		m_pPlayerController->OnEvent(pEvent);
 
@@ -118,7 +124,6 @@ void Game::Update(float deltaTime)
 
     m_pGameArena->Update(deltaTime);
     m_pPlayer->Update(deltaTime);
-    m_pEnemy->Update(deltaTime);
 	
     for (int i = 0; i < m_pEnemies.size(); i++)
     {
@@ -139,8 +144,10 @@ void Game::Draw()
 	
     m_pGameArena->Draw();
     m_pPlayer->Draw();
-	
-    m_pEnemy->Draw();
+    for (int i = 0; i < m_pEnemies.size(); i++)
+    {
+        m_pEnemies[i]->Draw();
+    }
     m_pImGuiManager->EndFrame();
 }
 

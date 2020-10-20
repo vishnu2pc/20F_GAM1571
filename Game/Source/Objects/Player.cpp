@@ -22,9 +22,9 @@ Player::~Player()
 
 void Player::Update(float deltaTime)
 {
-    float ArenaRadius = static_cast<Game*>(m_pGameCore)->GetArenaRadius();
+    float ArenaRadius = m_pGameCore->GetArenaRadius();
     vec2 OldPos = m_pPhysicsController->GetPosition();  
-    vec2 ArenaPosition = static_cast<Game*>(m_pGameCore)->GetArenaPosition();
+    vec2 ArenaPosition = m_pGameCore->GetArenaPosition();
 	
     m_pPhysicsController->Update(fw::PhysicsController::PHYSICS_TYPE::PLAYER, 
         m_pPlayerController, deltaTime);
@@ -38,20 +38,6 @@ void Player::Update(float deltaTime)
     m_pPhysicsController->SetPosition(NewPos);
 }
 
-void Player::OnEvent(fw::Event* pEvent)
-{
-    CollisionEvent* pCollisionEvent = static_cast<CollisionEvent*>(pEvent);
-
-    if (pCollisionEvent->GetCollisionType() == CollisionEvent::COLLISION_TYPE::ARENA)
-    {
-        m_PlayerArenaCollision = true;
-    }
-
-    if (pCollisionEvent->GetCollisionType() == CollisionEvent::COLLISION_TYPE::NONE)
-    {
-        m_PlayerArenaCollision = false;
-    }
-}
 
 
 void Player::Draw()

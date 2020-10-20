@@ -41,14 +41,14 @@ void Game::Init()
 
     m_pPlayerPhysicsController->SetRadius(0.4f);
     m_pPlayerPhysicsController->SetPosition(vec2(5.0f, 5.0f));
-    m_pPlayerPhysicsController->SetMaxVelocity(m_pPlayerVelocity);
+    m_pPlayerPhysicsController->SetMaxVelocity(m_PlayerVelocity);
 	
     m_pPlayer = new Player(m_pPlayerMaterial, m_pPlayerPhysicsController, m_pPlayerController, this);
 
     m_pGameArenaMaterial = new fw::Materials(m_pOuterMesh, m_pInnerMesh,m_pShader);
     m_pGameArenaPhysicsController = new fw::PhysicsController();
 	
-    m_pGameArenaMaterial->SetNumVertices(m_pGameArenaNumVertices);
+    m_pGameArenaMaterial->SetNumVertices(m_GameArenaNumVertices);
     m_pGameArenaMaterial->SetColors(vec4::Blue(), vec4::White());
 
     m_pGameArenaPhysicsController->SetRadius(4.0f);
@@ -65,10 +65,10 @@ void Game::SpawnEnemy()
     fw::Materials* m_pEnemyMaterial = new fw::Materials(m_pOuterMesh, m_pInnerMesh, m_pShader);
     fw::PhysicsController* m_pEnemyPhysicsController = new fw::PhysicsController();
 
-    m_pEnemyMaterial->SetNumVertices(100);
-    m_pEnemyMaterial->SetColors(vec4::Green(), vec4::DarkBlue());
+    m_pEnemyMaterial->SetNumVertices(m_EnemyNumVertices);
+    m_pEnemyMaterial->SetColors(EnemyColor, EnemyColor);
 
-    m_pEnemyPhysicsController->SetRadius(0.2f);
+    m_pEnemyPhysicsController->SetRadius(m_EnemyRadiusControl);
 
     float RandAngle = rand() % 360;
     vec2 pos = vec2(cosf(RandAngle * M_PI / 180), sinf(RandAngle * M_PI / 180)) * 4.0f + vec2(5.0f, 5.0f);
@@ -94,22 +94,40 @@ void Game::HandleImGui(float deltaTime)
     m_pImGuiManager->StartFrame(deltaTime);
     ImGui::ShowDemoWindow();
 
-    ImGui::DragInt("Arena Vertices", &m_pGameArenaNumVertices, 1, 3, 100);
-    ImGui::DragInt("Player Speed", &m_pPlayerVelocity, 1, 3, 10);
-    ImGui::ColorPicker4("Player Base Color", &PlayerInnerColor.x, ImGuiColorEditFlags_NoPicker);
+    ImGui::DragInt("Arena Vertices", &m_GameArenaNumVertices, 1, 3, 100);
+    ImGui::DragInt("Enemy Vertices", &m_EnemyNumVertices, 1, 3, 100);
+    ImGui::DragInt("Player Vertices", &m_PlayerNumVertices, 1, 3, 100);
+    ImGui::DragInt("Player Speed", &m_PlayerVelocity, 1, 3, 10);
+    ImGui::DragFloat("Player Size", &m_PlayerRadiusControl, 0.005, 0.1, 1);
+    ImGui::DragFloat("Arena Size", &m_ArenaRadiusControl, 0.005, 2, 6);
+    ImGui::DragFloat("Enemy Size", &m_EnemyRadiusControl, 0.005, 0.1, 1);
+
+	ImGui::ColorEdit4("Player BaseColor", &PlayerInnerColor.x, ImGuiColorEditFlags_NoPicker);
+    ImGui::ColorEdit4("Player SecColor", &PlayerOuterColor.x, ImGuiColorEditFlags_NoPicker);
+    ImGui::ColorEdit4("Arena BaseColor", &ArenaInnerColor.x, ImGuiColorEditFlags_NoPicker);
+    ImGui::ColorEdit4("Arena SecColor", &ArenaOuterColor.x, ImGuiColorEditFlags_NoPicker);
+    ImGui::ColorEdit4("Enemy Color", &EnemyColor.x, ImGuiColorEditFlags_NoPicker);
+    ImGui::ColorEdit4("Game Color", &GameColor.x, ImGuiColorEditFlags_NoPicker);
 }
 
 void Game::UpdateLevel()
 {
-    m_pGameArenaMaterial->SetNumVertices(m_pGameArenaNumVertices);
-    m_pPlayerPhysicsController->SetMaxVelocity(m_pPlayerVelocity);
-
-    m_ArenaRadius = m_pGameArena->GetPhysicsController()->GetRadius();
-    m_ArenaPosition = m_pGameArena->GetPhysicsController()->GetPosition();
-
     m_PlayerRadius = m_pPlayer->GetPhysicsController()->GetRadius();
     m_PlayerPosition = m_pPlayer->GetPhysicsController()->GetPosition();
-    m_pPlayerMaterial->SetColors(vec4::Black(), PlayerInnerColor);
+    m_ArenaRadius = m_pGameArena->GetPhysicsController()->GetRadius();
+    m_ArenaPosition = m_pGameArena->GetPhysicsController()->GetPosition();
+	
+    m_pGameArenaMaterial->SetColors(ArenaOuterColor, ArenaInnerColor);
+    m_pGameArenaMaterial->SetNumVertices(m_GameArenaNumVertices);
+
+    m_pGameArenaPhysicsController->SetRadius(m_ArenaRadiusControl);
+	
+    m_pPlayerPhysicsController->SetMaxVelocity(m_PlayerVelocity);
+    m_pPlayerPhysicsController->SetRadius(m_PlayerRadiusControl);
+	
+    m_pPlayerMaterial->SetNumVertices(m_PlayerNumVertices);
+    m_pPlayerMaterial->SetColors(PlayerOuterColor, PlayerInnerColor);
+	
 }
 
 void Game::OnEvent(fw::Event* pEvent)
@@ -148,7 +166,7 @@ void Game::Update(float deltaTime)
 
 void Game::Draw()
 {
-    glClearColor( 0.9f, 0.9f, 0.9f, 1 );
+    glClearColor(GameColor.x, GameColor.y, GameColor.z, GameColor.w);
     glClear( GL_COLOR_BUFFER_BIT );
 
     glPointSize( 10 );

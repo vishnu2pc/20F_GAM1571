@@ -61,8 +61,9 @@ namespace fw {
         static const vec4 LightBlue() { return vec4(0.0f, 0.5f, 1.0f, 1.0f); }
         static const vec4 White() { return vec4(1.0f, 1.0f, 1.0f, 1.0f); }
         static const vec4 Black() { return vec4(0.0f, 0.0f, 0.0f, 1.0f); }
-        static const vec4 Grey() { return vec4(0.9f, 0.9f, 0.9f, 1.0f); }
-        
+        static const vec4 Grey() { return vec4(0.7f, 0.7f, 0.7f, 1.0f); }
+        static const vec4 Teal() { return vec4(0.8f, 1.0f, 1.0f, 1.0f); }
+    	
     public:
         union
         {

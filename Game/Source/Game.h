@@ -19,7 +19,7 @@ public:
 
     void Timer(float deltaTime);
     void SpawnEnemy();
-    void DeleteEnemy();
+    void DeleteEnemy(fw::Event* pEvent);
     void HandleImGui(float deltaTime);
     void UpdateLevel();
 		
@@ -48,6 +48,8 @@ protected:
     int m_pGameArenaNumVertices =100;
     int m_pPlayerVelocity = 5;
     float m_Timer = 1;
+
+    vec4 PlayerInnerColor;
 
 	
 };

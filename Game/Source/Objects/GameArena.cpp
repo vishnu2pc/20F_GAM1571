@@ -23,12 +23,12 @@ void GameArena::Update(float deltaTime)
     vec2 OldPos = m_pPhysicsController->GetPosition();
 	
     m_pPhysicsController->Update(fw::PhysicsController::PHYSICS_TYPE::GAME_ARENA,
-        static_cast<Game*>(m_pGameCore)->GetPlayerController(), deltaTime/100);
+        static_cast<Game*>(m_pGameCore)->GetPlayerController(), deltaTime/150);
 	
     vec2 CurrentVelocity = m_pPhysicsController->GetCurrentVelocity();
     vec2 NewPos = OldPos + CurrentVelocity * deltaTime ;
 
-    if (NewPos.Distance(vec2(5.0f,5.0f)) > 0.2f)
+    if (NewPos.Distance(vec2(5.0f,5.0f)) > 0.2f || NewPos.Distance(m_pGameCore->GetPlayerPosition()) > m_pPhysicsController->GetRadius() - m_pGameCore->GetPlayerRadius() )
         NewPos = OldPos;
 
     m_pPhysicsController->SetPosition(NewPos);

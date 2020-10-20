@@ -12,14 +12,20 @@ public:
 protected:
 	
 };
-class DeleteEnemyEvent: public fw::Event
+class DeleteEnemyEvent : public fw::Event
 {
 public:
-	DeleteEnemyEvent() {}
-	~DeleteEnemyEvent() {}
+    DeleteEnemyEvent(Enemy* pEnemy)
+    {
+        m_pEnemy = pEnemy;
+    }
+    virtual ~DeleteEnemyEvent() {}
 
-	static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::DELETE_ENEMY; }
-	virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
+    static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::DELETE_ENEMY; }
+    virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
+
+    Enemy* GetEnemy() { return m_pEnemy; }
 
 protected:
+    Enemy* m_pEnemy;
 };

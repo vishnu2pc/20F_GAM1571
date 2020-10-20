@@ -78,9 +78,15 @@ void Game::SpawnEnemy()
     m_pEnemies.push_back(new Enemy(m_pEnemyMaterial, m_pEnemyPhysicsController, this));
 }
 
-void Game::DeleteEnemy()
+void Game::DeleteEnemy(fw::Event* pEvent)
 {
-	
+    DeleteEnemyEvent* pDeleteEnemyEvent = static_cast<DeleteEnemyEvent*>(pEvent);
+    Enemy* pEnemy = pDeleteEnemyEvent->GetEnemy();
+
+    auto it = std::find(m_pEnemies.begin(), m_pEnemies.end(), pEnemy);
+    m_pEnemies.erase(it);
+
+    delete pEnemy;
 }
 
 void Game::HandleImGui(float deltaTime)
@@ -90,6 +96,7 @@ void Game::HandleImGui(float deltaTime)
 
     ImGui::DragInt("Arena Vertices", &m_pGameArenaNumVertices, 1, 3, 100);
     ImGui::DragInt("Player Speed", &m_pPlayerVelocity, 1, 3, 10);
+    ImGui::ColorPicker4("Player Base Color", &PlayerInnerColor.x, ImGuiColorEditFlags_NoPicker);
 }
 
 void Game::UpdateLevel()
@@ -100,7 +107,9 @@ void Game::UpdateLevel()
     m_ArenaRadius = m_pGameArena->GetPhysicsController()->GetRadius();
     m_ArenaPosition = m_pGameArena->GetPhysicsController()->GetPosition();
 
+    m_PlayerRadius = m_pPlayer->GetPhysicsController()->GetRadius();
     m_PlayerPosition = m_pPlayer->GetPhysicsController()->GetPosition();
+    m_pPlayerMaterial->SetColors(vec4::Black(), PlayerInnerColor);
 }
 
 void Game::OnEvent(fw::Event* pEvent)
@@ -109,9 +118,10 @@ void Game::OnEvent(fw::Event* pEvent)
     if (pEvent->GetType() == EVENT_TYPE::SPAWN_ENEMY)
         SpawnEnemy();
     
-    if (pEvent->GetType() == EVENT_TYPE::SPAWN_ENEMY)
-        DeleteEnemy();
-    	
+    if (pEvent->GetType() == EVENT_TYPE::DELETE_ENEMY)
+    {
+        DeleteEnemy(pEvent);
+    }
 	if(pEvent->GetType()==EVENT_TYPE::INPUT_EVENT)
 		m_pPlayerController->OnEvent(pEvent);
 
@@ -120,6 +130,7 @@ void Game::OnEvent(fw::Event* pEvent)
 void Game::Update(float deltaTime)
 {
     m_pEventManager->DispatchAllEvents(this);
+    HandleImGui(deltaTime);
     UpdateLevel();
 
     m_pGameArena->Update(deltaTime);
@@ -129,7 +140,7 @@ void Game::Update(float deltaTime)
     {
         m_pEnemies[i]->Update(deltaTime);
     }
-    HandleImGui(deltaTime);
+
     Timer(deltaTime);
 
     

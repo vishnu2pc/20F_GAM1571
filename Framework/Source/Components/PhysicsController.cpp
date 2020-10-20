@@ -74,6 +74,14 @@ namespace fw
 		
 	}
 
+	void PhysicsController::Reset()
+	{
+		m_MaxVelocity = vec2(0, 0);
+		m_MinVelocity = vec2(0, 0);
+		m_FinalVelocity = vec2(0, 0);
+		m_CurrentVelocity = vec2(0, 0);
+	}
+
 
 	void PhysicsController::Interpolate(float deltaTime)
 	{

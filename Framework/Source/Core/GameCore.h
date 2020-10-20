@@ -22,13 +22,15 @@ public:
     float GetArenaRadius() { return m_ArenaRadius; }
     vec2 GetArenaPosition() { return m_ArenaPosition; }
     vec2 GetPlayerPosition() { return m_PlayerPosition; }
+    float GetPlayerRadius() { return m_PlayerRadius; }
     PlayerController* GetPlayerController() { return m_pPlayerController; }
     
 		
 protected:
     FWCore* m_pFramework = nullptr;
     EventManager* m_pEventManager = nullptr;
-    float m_ArenaRadius = 0;
+    float m_ArenaRadius;
+    float m_PlayerRadius;
     vec2 m_ArenaPosition;
     vec2 m_PlayerPosition;
     PlayerController* m_pPlayerController;

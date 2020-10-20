@@ -32,7 +32,7 @@ void Enemy::Update(float deltaTime)
 
 	if (NewPos.Distance(ArenaPosition) > ArenaRadius )
 	{
-		DeleteEnemyEvent* pEvent = new DeleteEnemyEvent();
+		DeleteEnemyEvent* pEvent = new DeleteEnemyEvent(this);
 		m_pGameCore->GetEventManager()->AddEvent(pEvent);
 	}
 

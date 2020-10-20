@@ -32,8 +32,10 @@ void Player::Update(float deltaTime)
     vec2 CurrentVelocity = m_pPhysicsController->GetCurrentVelocity();
     vec2 NewPos = OldPos + CurrentVelocity * deltaTime;
    
-    if (NewPos.Distance(ArenaPosition) > ArenaRadius)
+    if (NewPos.Distance(ArenaPosition) > ArenaRadius - m_pPhysicsController->GetRadius())
+    {
         NewPos = OldPos;
+    }
 	
     m_pPhysicsController->SetPosition(NewPos);
 }

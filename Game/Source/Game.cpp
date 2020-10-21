@@ -71,7 +71,7 @@ void Game::SpawnEnemy()
     m_pEnemyPhysicsController->SetRadius(m_EnemyRadiusControl);
 
     float RandAngle = rand() % 360;
-    vec2 pos = vec2(cosf(RandAngle * M_PI / 180), sinf(RandAngle * M_PI / 180)) * 4.0f + vec2(5.0f, 5.0f);
+    vec2 pos = vec2(cosf(RandAngle * M_PI / 180), sinf(RandAngle * M_PI / 180)) * m_pGameArenaPhysicsController->GetRadius() + vec2(5.0f, 5.0f);
     m_pEnemyPhysicsController->SetPosition(pos);
     m_pEnemyPhysicsController->SetMaxVelocity(rand() % 10 + 3);
 

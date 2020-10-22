@@ -23,7 +23,7 @@ namespace fw
 	void Materials::Draw(fw::vec2 pos, float radius)
 	{
 		m_pOuterLayer_Mesh->CreateCircle(radius, m_numVertices);
-		m_pInnerLayer_Mesh->CreateCircle(radius - 0.1f, m_numVertices);
+		m_pInnerLayer_Mesh->CreateCircle(radius - 0.1, m_numVertices);
 
 		m_pOuterLayer_Mesh->Draw(pos, m_pShader, m_OuterLayer_Color);
 		m_pInnerLayer_Mesh->Draw(pos, m_pShader, m_InnerLayer_Color);

@@ -29,7 +29,7 @@ void GameArena::Update(float deltaTime)
 
 	vec2 NewPos = OldPos - ((PlayerPosition - ArenaPosition) / ArenaRadius) * 0.0003f;
 	vec2 distance = PlayerPosition - ArenaPosition;
-	if (distance.Magnitude() >= ArenaRadius - PlayerRadius)
+	if (distance.Magnitude() >= ArenaRadius - PlayerRadius || (NewPos - vec2(5.0f,5.0f)).Magnitude() > 0.1f)
 		NewPos = OldPos;
 	
 	m_pPhysicsController->SetPosition(NewPos);

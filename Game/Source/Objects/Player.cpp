@@ -34,7 +34,7 @@ void Player::Update(float deltaTime)
    
     if (NewPos.Distance(ArenaPosition) > ArenaRadius - m_pPhysicsController->GetRadius())
     {
-        NewPos = OldPos;
+        NewPos = OldPos - (OldPos-ArenaPosition).GetNormalizedVector()/100;
     }
 	
     m_pPhysicsController->SetPosition(NewPos);

@@ -7,20 +7,23 @@ namespace fw {
     class PlayerController
     {
     public:
-        PlayerController();
+        enum Button
+        {
+            Up = 1,
+			Down = 2,
+			Left = 4,
+			Right = 8
+        };
+    	
+    	PlayerController();
         virtual ~PlayerController();
 
         void OnEvent(fw::Event* pEvent);
 
-        bool IsUpHeld() { return m_Up; }
-        bool IsDownHeld() { return m_Down; }
-        bool IsLeftHeld() { return m_Left; }
-        bool IsRightHeld() { return m_Right; }
+        bool IsButtonHeld(Button button) { return (m_Flags & button) != 0; }
+		
 
     protected:
-        bool m_Up = false;
-        bool m_Down = false;
-        bool m_Left = false;
-        bool m_Right = false;
+        unsigned int m_Flags = 0;
     };
 }

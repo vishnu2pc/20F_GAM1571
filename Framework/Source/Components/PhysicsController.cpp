@@ -36,39 +36,39 @@ namespace fw
 	{
 		if (PhysicsType == PHYSICS_TYPE::PLAYER)
 		{
-			if (pPlayerController->IsDownHeld())
+			if (pPlayerController->IsButtonHeld(PlayerController::Down))
 				m_FinalVelocity.y = m_MaxVelocity.y * -1;
-			else if (!pPlayerController->IsDownHeld())
+			else if (!pPlayerController->IsButtonHeld(PlayerController::Down))
 				m_FinalVelocity.y = m_MinVelocity.y * 1;
 
-			if (pPlayerController->IsUpHeld())
+			if (pPlayerController->IsButtonHeld(PlayerController::Up))
 				m_FinalVelocity.y = m_MaxVelocity.y * 1;
 
-			if (pPlayerController->IsLeftHeld())
+			if (pPlayerController->IsButtonHeld(PlayerController::Left))
 				m_FinalVelocity.x = m_MaxVelocity.x * -1;
-			else if (!pPlayerController->IsLeftHeld())
+			else if (!pPlayerController->IsButtonHeld(PlayerController::Left))
 				m_FinalVelocity.x = m_MinVelocity.x * 1;
 
-			if (pPlayerController->IsRightHeld())
+			if (pPlayerController->IsButtonHeld(PlayerController::Right))
 				m_FinalVelocity.x = m_MaxVelocity.x * 1;
 		}
 
 		if (PhysicsType == PHYSICS_TYPE::GAME_ARENA)
 		{
-			if (pPlayerController->IsDownHeld())
+			if (pPlayerController->IsButtonHeld(PlayerController::Down))
 				m_FinalVelocity.y = m_MaxVelocity.y * 1;
-			else if (!pPlayerController->IsDownHeld())
+			else if (!pPlayerController->IsButtonHeld(PlayerController::Down))
 				m_FinalVelocity.y = m_MinVelocity.y * -1;
 
-			if (pPlayerController->IsUpHeld())
+			if (pPlayerController->IsButtonHeld(PlayerController::Up))
 				m_FinalVelocity.y = m_MaxVelocity.y * -1;
 
-			if (pPlayerController->IsLeftHeld())
+			if (pPlayerController->IsButtonHeld(PlayerController::Left))
 				m_FinalVelocity.x = m_MaxVelocity.x * 1;
-			else if (!pPlayerController->IsLeftHeld())
+			else if (!pPlayerController->IsButtonHeld(PlayerController::Left))
 				m_FinalVelocity.x = m_MinVelocity.x * -1;
 
-			if (pPlayerController->IsRightHeld())
+			if (pPlayerController->IsButtonHeld(PlayerController::Right))
 				m_FinalVelocity.x = m_MaxVelocity.x * -1;
 		}
 		

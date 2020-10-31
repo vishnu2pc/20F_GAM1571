@@ -91,7 +91,6 @@ void Game::DeleteEnemy(fw::Event* pEvent)
 
 void Game::HandleImGui(float deltaTime)
 {
-    m_pImGuiManager->StartFrame(deltaTime);
     ImGui::ShowDemoWindow();
 
     ImGui::DragInt("Arena Vertices", &m_GameArenaNumVertices, 1, 3, 100);
@@ -110,7 +109,15 @@ void Game::HandleImGui(float deltaTime)
     ImGui::ColorEdit4("Game Color", &GameColor.x, ImGuiColorEditFlags_NoPicker);
 }
 
-void Game::UpdateLevel()
+void Game::StartFrame(float deltaTime)
+{
+    m_pPlayerController->StartFrame();
+    m_pImGuiManager->StartFrame(deltaTime);
+
+    m_pEventManager->DispatchAllEvents(this);
+}
+
+void Game::UpdateLevel(float deltaTime)
 {
     m_PlayerRadius = m_pPlayer->GetPhysicsController()->GetRadius();
     m_PlayerPosition = m_pPlayer->GetPhysicsController()->GetPosition();
@@ -147,9 +154,9 @@ void Game::OnEvent(fw::Event* pEvent)
 
 void Game::Update(float deltaTime)
 {
-    m_pEventManager->DispatchAllEvents(this);
+   
     HandleImGui(deltaTime);
-    UpdateLevel();
+    UpdateLevel(deltaTime);
 
     m_pGameArena->Update(deltaTime);
     m_pPlayer->Update(deltaTime);

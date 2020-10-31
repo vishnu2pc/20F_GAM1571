@@ -13,5 +13,7 @@ GameCore::~GameCore()
 {
 }
 
-
+void GameCore::StartFrame(float deltaTime)
+{
+}
 } // namespace fw

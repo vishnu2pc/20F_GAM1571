@@ -16,13 +16,14 @@ public:
     virtual void OnEvent(fw::Event* pEvent) override;
     virtual void Update(float deltaTime) override;
     virtual void Draw() override;
-
+    virtual void StartFrame(float deltaTime) override;
+	
     void Timer(float deltaTime);
     void SpawnEnemy();
     void DeleteEnemy(fw::Event* pEvent);
     void HandleImGui(float deltaTime);
-    void UpdateLevel();
-		
+   
+    void UpdateLevel(float deltaTime);
 protected:
 
     std::vector<fw::GameObject*> m_pEnemies;

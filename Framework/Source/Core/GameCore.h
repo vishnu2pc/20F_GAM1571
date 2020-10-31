@@ -13,6 +13,7 @@ public:
     GameCore(FWCore* pFramework);
     virtual ~GameCore();
 
+    virtual void StartFrame(float deltaTime);
     virtual void OnEvent(Event* pEvent) = 0;
     virtual void Update(float deltaTime) = 0; 
     virtual void Draw() = 0;

@@ -2,8 +2,6 @@
 
 #include "Objects/Enemy.h"
 
-#include "Game.h"
-
 #include "Events/GameEvents.h"
 
 Enemy::Enemy(fw::Materials* pMaterials, fw::PhysicsController* pPhysicsController, fw::GameCore* pGameCore) :

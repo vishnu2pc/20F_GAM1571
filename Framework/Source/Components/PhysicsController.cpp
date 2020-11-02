@@ -14,8 +14,6 @@ namespace fw
 		m_FinalVelocity = vec2(0, 0);
 		m_CurrentVelocity = vec2(0, 0);
 		m_radius = 5;
-
-		
 	}
 	
 	PhysicsController::~PhysicsController()

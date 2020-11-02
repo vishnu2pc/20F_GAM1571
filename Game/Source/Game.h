@@ -1,6 +1,10 @@
 #pragma once
 
 
+namespace fw {
+	class LevelManager;
+}
+
 class Enemy;
 class GameArena;
 class Player;
@@ -22,13 +26,12 @@ public:
     void SpawnEnemy();
     void DeleteEnemy(fw::Event* pEvent);
     void HandleImGui(float deltaTime);
-   
     void UpdateLevel(float deltaTime);
 protected:
 
     std::vector<fw::GameObject*> m_pEnemies;
     fw::ImGuiManager* m_pImGuiManager = nullptr;
-
+    fw::LevelManager* m_pLevelManager = nullptr;
 	
     Player* m_pPlayer = nullptr;
     GameArena* m_pGameArena = nullptr;
@@ -49,20 +52,16 @@ protected:
     int m_GameArenaNumVertices =100;
     int m_EnemyNumVertices = 100;
     int m_PlayerNumVertices = 100;
-    int m_PlayerVelocity = 5;
+
     float m_PlayerRadiusControl = 0.4f;
     float m_ArenaRadiusControl = 4.0f;
-    float m_EnemyRadiusControl = 0.2f;
-	
-    float m_Timer = 1;
-
+    
     vec4 PlayerOuterColor = vec4::Black();
-    vec4 PlayerInnerColor = vec4::Red();
     vec4 ArenaOuterColor = vec4::Blue();
-    vec4 ArenaInnerColor = vec4::White();
-    vec4 EnemyColor = vec4::LightBlue();
+    
     vec4 GameColor = vec4::Grey();
-	
+
+    bool m_WinCondtion = false;
 };
 
 

@@ -16,3 +16,10 @@
 * Each level has a duration that the player needs to survive for
 * Collision with enemy respawns the player in a random area inside the circle and resets the level timer.
 * Beating the third level shows the Win screen and pressing 'R' restarts the game.
+
+
+#### Feature Roadmap/WIP
+
+* Player Boost
+* Bullet Time
+* Custom Shader Background

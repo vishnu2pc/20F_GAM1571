@@ -1,12 +1,13 @@
 #pragma once
 #include "Math/Vector.h"
 
+
+
 namespace fw {
 	class PlayerController;
 	class FWCore;
     class Event;
     class EventManager;
-
     class GameCore
 {    
 public:
@@ -21,11 +22,12 @@ public:
     FWCore* GetFramework() { return m_pFramework; }
     EventManager* GetEventManager() { return m_pEventManager; }
     PlayerController* GetPlayerController() { return m_pPlayerController; }
+    
     	
-    float GetArenaRadius() { return m_ArenaRadius; }
+    float GetArenaRadius() { return m_ArenaRadiusControl; }
     vec2 GetArenaPosition() { return m_ArenaPosition; }
     vec2 GetPlayerPosition() { return m_PlayerPosition; }
-    float GetPlayerRadius() { return m_PlayerRadius; }
+    float GetPlayerRadius() { return m_PlayerRadiusControl; }
     float GetPlayerSpeed() { return m_PlayerVelocity; }
     float GetEnemyRadius() { return m_EnemyRadiusControl; }
     float GetEnemySpeed() { return m_EnemySpeed; }
@@ -33,10 +35,10 @@ public:
     vec4 GetArenaColor() { return ArenaInnerColor; }
     vec4 GetEnemyColor() { return EnemyColor; }
 
-    void SetArenaRadius(float ArenaRadius) {  m_ArenaRadius = ArenaRadius; }
+    void SetArenaRadius(float ArenaRadius) { m_ArenaRadiusControl = ArenaRadius; }
     void SetArenaPosition(vec2 ArenaPosition) {  m_ArenaPosition = ArenaPosition; }
     void SetPlayerPosition(vec2 PlayerPosition) {  m_PlayerPosition = PlayerPosition; }
-    void SetPlayerRadius(float PlayerRadius) {  m_PlayerRadius = PlayerRadius; }
+    void SetPlayerRadius(float PlayerRadius) { m_PlayerRadiusControl = PlayerRadius; }
     void SetPlayerSpeed(float PlayerVelocity) {  m_PlayerVelocity = PlayerVelocity; }
     void SetEnemyRadius(float EnemyRadiusControl) {  m_EnemyRadiusControl = EnemyRadiusControl; }
     void SetEnemySpeed(float EnemySpeed) {  m_EnemySpeed = EnemySpeed; }
@@ -51,13 +53,16 @@ public:
 protected:
     FWCore* m_pFramework = nullptr;
     EventManager* m_pEventManager = nullptr;
-    float m_ArenaRadius;
-    float m_PlayerRadius;
+    
+    	
     vec2 m_ArenaPosition;
     vec2 m_PlayerPosition;
     float m_PlayerVelocity = 5;
     float m_EnemySpeed = 5.0f;
     float m_EnemyRadiusControl = 0.2f;
+    float m_ArenaRadiusControl = 4.0f;
+    float m_PlayerRadiusControl = 0.4f;
+
     PlayerController* m_pPlayerController;
 
     vec4 PlayerInnerColor = vec4::Red();

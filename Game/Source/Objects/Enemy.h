@@ -14,7 +14,7 @@ public:
 
 protected:
 	fw::Materials* m_pMaterials;
-	vec2 PlayerPosition;
+	vec2 InitialPlayerPosition;
 	vec2 DistanceFromPlayer;
 	vec2 DirectionToPlayer;
 };

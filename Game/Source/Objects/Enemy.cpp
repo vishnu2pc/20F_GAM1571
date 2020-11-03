@@ -9,8 +9,8 @@ Enemy::Enemy(fw::Materials* pMaterials, fw::PhysicsController* pPhysicsControlle
 {
 	m_pMaterials = pMaterials;
 	
-	PlayerPosition = m_pGameCore->GetPlayerPosition();
-	DistanceFromPlayer = m_pPhysicsController->GetPosition() - PlayerPosition ;
+	InitialPlayerPosition = m_pGameCore->GetPlayerPosition();
+	DistanceFromPlayer = m_pPhysicsController->GetPosition() - InitialPlayerPosition;
 	DirectionToPlayer = DistanceFromPlayer.GetNormalizedVector();
 }
 
@@ -34,6 +34,14 @@ void Enemy::Update(float deltaTime)
 		m_pGameCore->GetEventManager()->AddEvent(pEvent);
 	}
 
+	vec2 CurrentPlayerPosition = m_pGameCore->GetPlayerPosition();
+	float PlayerRadius = m_pGameCore->GetPlayerRadius();
+	
+	if (m_pPhysicsController->GetPosition().Distance(CurrentPlayerPosition) < PlayerRadius + m_pPhysicsController->GetRadius())
+	{
+		LoseEvent* pEvent2 = new LoseEvent();
+		m_pGameCore->GetEventManager()->AddEvent(pEvent2);
+	}
 }
 
 void Enemy::Draw()

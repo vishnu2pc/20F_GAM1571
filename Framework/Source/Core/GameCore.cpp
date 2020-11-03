@@ -11,6 +11,7 @@ GameCore::GameCore(FWCore* pFramework)
 
 GameCore::~GameCore()
 {
+	
 }
 
 void GameCore::StartFrame(float deltaTime)

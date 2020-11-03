@@ -27,6 +27,7 @@ public:
     void DeleteEnemy(fw::Event* pEvent);
     void HandleImGui(float deltaTime);
     void UpdateLevel(float deltaTime);
+	
 protected:
 
     std::vector<fw::GameObject*> m_pEnemies;
@@ -53,8 +54,6 @@ protected:
     int m_EnemyNumVertices = 100;
     int m_PlayerNumVertices = 100;
 
-    float m_PlayerRadiusControl = 0.4f;
-    float m_ArenaRadiusControl = 4.0f;
     
     vec4 PlayerOuterColor = vec4::Black();
     vec4 ArenaOuterColor = vec4::Blue();
@@ -62,6 +61,7 @@ protected:
     vec4 GameColor = vec4::Grey();
 
     bool m_WinCondtion = false;
+
 };
 
 

@@ -18,6 +18,7 @@ project "Game"
 		"premake5.lua",
 		".gitignore",
 		"GenerateProjectFiles.bat",
+		"Readme.md"
 	}
 
 	includedirs {

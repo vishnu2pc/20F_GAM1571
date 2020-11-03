@@ -34,15 +34,15 @@ void fw::Level::SetLevelParameters()
     m_EnemySpawnTimer = Spawn_Timer[(int)m_level_type];
     
     m_GameArenaSize = Arena_Radius[(int)m_level_type];
-    /*m_GameArenaColor = Arena_Color[(int)m_level_type];*/
+    m_GameArenaColor = Arena_Color[(int)m_level_type];
     
     m_EnemySize = Enemy_Size[(int)m_level_type];
     m_EnemySpeed = Enemy_Speed[(int)m_level_type];
-   /* m_EnemyColor = Enemy_Color[(int)m_level_type];*/
+    m_EnemyColor = Enemy_Color[(int)m_level_type];
     
     m_PlayerSize = Player_Radius[(int)m_level_type];
     m_PlayerSpeed = Player_Speed[(int)m_level_type];
-	/*m_PlayerColor = Player_Color[(int)m_level_type];*/
+	m_PlayerColor = Player_Color[(int)m_level_type];
 
 	
 }
@@ -53,13 +53,13 @@ void fw::Level::InitializeLevel(GameCore* pGameCore)
     pGameCore->SetEnemySpawnDuration(m_EnemySpawnTimer);
 	
     pGameCore->SetArenaRadius(m_GameArenaSize);
-    /*pGameCore->SetArenaColor(m_GameArenaColor);*/
+    pGameCore->SetArenaColor(m_GameArenaColor);
 	
     pGameCore->SetEnemyRadius(m_EnemySize);
     pGameCore->SetEnemySpeed(m_EnemySpeed);
-    /*pGameCore->SetEnemyColor(m_EnemyColor);*/
+    pGameCore->SetEnemyColor(m_EnemyColor);
 	
     pGameCore->SetPlayerSpeed(m_PlayerSpeed);
-    /*pGameCore->SetPlayerColor(m_PlayerColor);*/
+    pGameCore->SetPlayerColor(m_PlayerColor);
     pGameCore->SetPlayerRadius(m_PlayerSize);
 }

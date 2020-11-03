@@ -1,4 +1,5 @@
 #pragma once
+
 class Enemy;
 class SpawnEnemyEvent :public fw::Event
 {
@@ -50,6 +51,19 @@ public:
     ~WinEvent() {}
 
     static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::WIN; }
+    virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
+
+protected:
+};
+
+
+class LoseEvent : public fw::Event
+{
+public:
+    LoseEvent() {}
+    ~LoseEvent() {}
+
+    static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::LOSE; }
     virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
 
 protected:

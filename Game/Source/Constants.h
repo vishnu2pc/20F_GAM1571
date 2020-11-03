@@ -1,13 +1,13 @@
 #pragma once
-
-
+#include "GamePCH.h"
  enum class EVENT_TYPE {
     INPUT_EVENT,
     SPAWN_PLAYER,
     SPAWN_ENEMY,
     DELETE_ENEMY,
  	NEXT_LEVEL,
- 	WIN
+ 	WIN,
+ 	LOSE
 };
 
  enum class LEVEL_TYPE {
@@ -18,7 +18,10 @@
      
  };
 
-
+enum class STATE_TYPE
+{
+	GAME
+};
     
 
     extern const float Arena_radius;
@@ -36,6 +39,6 @@
     extern float Enemy_Speed[];
     
 
-    //extern fw::vec4 Player_Color[];
-    //extern fw::vec4 Enemy_Color[];
-    //extern fw::vec4 Arena_Color[];
+    extern fw::vec4 Player_Color[];
+    extern fw::vec4 Enemy_Color[];
+    extern fw::vec4 Arena_Color[];

@@ -41,7 +41,8 @@ void fw::LevelManager::NextLevel()
 void fw::LevelManager::ResetLevel()
 {
 	m_pLevel->SetLevelType(LEVEL_TYPE::FIRST);
-	
+	m_pLevel->SetLevelParameters();
+	InitializeLevel();
 }
 
 void fw::LevelManager::CheckLevelState()

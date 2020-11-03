@@ -25,6 +25,7 @@ void Game::Init()
 	
     m_pEventManager = new fw::EventManager();
     m_pLevelManager = new fw::LevelManager(this);
+    
 	
     m_pShader = new fw::ShaderProgram("Data/Basic.vert", "Data/Basic.frag");
     m_pOuterMesh = new fw::Mesh();
@@ -55,7 +56,7 @@ void Game::Init()
     m_pGameArena = new GameArena(m_pGameArenaMaterial, m_pGameArenaPhysicsController, this);
 
     m_pLevelManager->InitializeLevel();
-
+   
 }
 
 void Game::SpawnEnemy()
@@ -113,7 +114,7 @@ void Game::HandleImGui(float deltaTime)
         ImGui::Begin("Level UI");
         ImVec4 const TextColor = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
         ImGui::TextColored(TextColor, "Level %d",(int)m_pLevelManager->GetLevelType() + 1);
-        ImGui::TextColored(TextColor, "Time Left %d", (int)m_LevelTimer);
+        ImGui::TextColored(TextColor, "Time Left : %d", (int)m_LevelTimer);
         ImGui::End();
     }
 
@@ -121,7 +122,7 @@ void Game::HandleImGui(float deltaTime)
     {
         ImGui::Begin("Win!");
         ImVec4 const TextColor = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
-        ImGui::TextColored(TextColor,"Congratualions, you've won the game");
+        ImGui::TextColored(TextColor,"Congratualions, you've won the game\nPress R to restart");
         ImGui::End();
     }
 	
@@ -135,12 +136,6 @@ void Game::StartFrame(float deltaTime)
 
 void Game::UpdateLevel(float deltaTime)
 {
-
-	m_PlayerRadius = m_pPlayer->GetPhysicsController()->GetRadius();
-    m_PlayerPosition = m_pPlayer->GetPhysicsController()->GetPosition();
-    m_ArenaRadius = m_pGameArena->GetPhysicsController()->GetRadius();
-    m_ArenaPosition = m_pGameArena->GetPhysicsController()->GetPosition();
-	
     m_pGameArenaMaterial->SetColors(ArenaOuterColor, ArenaInnerColor);
     m_pGameArenaMaterial->SetNumVertices(m_GameArenaNumVertices);
 
@@ -151,11 +146,26 @@ void Game::UpdateLevel(float deltaTime)
 	
     m_pPlayerMaterial->SetNumVertices(m_PlayerNumVertices);
     m_pPlayerMaterial->SetColors(PlayerOuterColor, PlayerInnerColor);
-	
+
+    m_PlayerRadiusControl = m_pPlayer->GetPhysicsController()->GetRadius();
+    m_PlayerPosition = m_pPlayer->GetPhysicsController()->GetPosition();
+    m_ArenaRadiusControl = m_pGameArena->GetPhysicsController()->GetRadius();
+    m_ArenaPosition = m_pGameArena->GetPhysicsController()->GetPosition();
 }
 
 void Game::OnEvent(fw::Event* pEvent)
 {
+	if(pEvent->GetType()==EVENT_TYPE::LOSE)
+	{
+        int PlayerRadius = m_pGameArenaPhysicsController->GetRadius();
+        float RandAngle = rand() % 360;
+        vec2 pos = vec2(cosf(RandAngle * M_PI / 180), sinf(RandAngle * M_PI / 180)) * (rand() % PlayerRadius) + vec2(5.0f, 5.0f);
+        m_pPlayerPhysicsController->SetPosition(pos);
+
+        m_pLevelManager->InitializeLevel();
+        m_pPlayerController->OnEvent(pEvent);
+	}
+	
 	if(pEvent->GetType()==EVENT_TYPE::WIN)
 	{
         m_WinCondtion = true;
@@ -172,8 +182,17 @@ void Game::OnEvent(fw::Event* pEvent)
     {
         DeleteEnemy(pEvent);
     }
-	if(pEvent->GetType()==EVENT_TYPE::INPUT_EVENT)
-		m_pPlayerController->OnEvent(pEvent);
+	
+    if (pEvent->GetType() == EVENT_TYPE::INPUT_EVENT)
+    {
+        if (static_cast<fw::InputEvent*>(pEvent)->GetKeyCode() != 'R')
+            m_pPlayerController->OnEvent(pEvent);
+        else
+        {
+            m_pLevelManager->ResetLevel();
+            m_WinCondtion = false;
+        }
+    }
 
 }
 
@@ -219,7 +238,6 @@ void Game::Timer(float deltaTime)
         SpawnEnemyEvent* pEvent = new SpawnEnemyEvent();
         this->GetEventManager()->AddEvent(pEvent);
         m_EnemyTimer = m_pLevelManager->GetEnemySpawnDuration();
-
     }
 
     m_LevelTimer -= deltaTime;

@@ -23,11 +23,13 @@ namespace fw
 
 	void PhysicsController::Update(PHYSICS_TYPE PhysicsType, PlayerController* pPlayerController, float deltaTime)
 	{
-		if (PhysicsType != PHYSICS_TYPE::ENEMY)
+		if (PhysicsType == PHYSICS_TYPE::PLAYER)
 		{
 			HandleKeyPress(PhysicsType, pPlayerController);
 			Interpolate(deltaTime * 25);
 		}
+
+		
 	}
 
 	void PhysicsController::HandleKeyPress(PHYSICS_TYPE PhysicsType, PlayerController* pPlayerController)
@@ -50,10 +52,23 @@ namespace fw
 
 			if (pPlayerController->IsButtonHeld(PlayerController::Button::Right))
 				m_FinalVelocity.x = m_MaxVelocity.x * 1;
+
+			if (pPlayerController->IsButtonHeld(PlayerController::Button::SHIFT))
+				SlowDown();
+			if (pPlayerController->IsNewButtonRelease(PlayerController::Button::SHIFT))
+				SpeedUp();
 		}
 
-		
-		
+	}
+
+	void PhysicsController::SlowDown()
+	{
+		m_FinalVelocity /= 2;
+	}
+
+	void PhysicsController::SpeedUp()
+	{
+		m_FinalVelocity *= 2;
 	}
 
 	void PhysicsController::Reset()

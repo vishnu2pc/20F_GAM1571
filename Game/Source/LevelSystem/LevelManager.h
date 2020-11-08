@@ -25,7 +25,6 @@ namespace fw {
     protected:
         Level* m_pLevel = nullptr;
         GameCore* m_pGameCore;
-    	
     };
 
 } // namespace fw

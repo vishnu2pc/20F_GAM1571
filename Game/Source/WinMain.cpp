@@ -13,7 +13,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	
     pFramework->Run( pGame );
     pFramework->Shutdown();
-
+    
 
 	
     delete pGame;

@@ -28,6 +28,8 @@ namespace fw {
                     if (pInputEvent->GetKeyCode() == 'S') { m_Flags = m_Flags | (unsigned int)Button::Down; }
                     if (pInputEvent->GetKeyCode() == 'A') { m_Flags = m_Flags | (unsigned int)Button::Left; }
                     if (pInputEvent->GetKeyCode() == 'D') { m_Flags = m_Flags | (unsigned int)Button::Right; }
+                    if (pInputEvent->GetKeyCode() == 'R') { m_Flags = m_Flags | (unsigned int)Button::RESET; }
+                    if (pInputEvent->GetKeyCode() == VK_SHIFT) { m_Flags = m_Flags | (unsigned int)Button::SHIFT; }
                 }
 
                 if (pInputEvent->GetDeviceState() == fw::InputEvent::DeviceState::Released)
@@ -36,6 +38,8 @@ namespace fw {
                     if (pInputEvent->GetKeyCode() == 'S') { m_Flags = m_Flags & ~(unsigned int)Button::Down; }
                     if (pInputEvent->GetKeyCode() == 'A') { m_Flags = m_Flags & ~(unsigned int)Button::Left; }
                     if (pInputEvent->GetKeyCode() == 'D') { m_Flags = m_Flags & ~(unsigned int)Button::Right; }
+                    if (pInputEvent->GetKeyCode() == 'R') { m_Flags = m_Flags & ~(unsigned int)Button::RESET; }
+                    if (pInputEvent->GetKeyCode() == VK_SHIFT) { m_Flags = m_Flags & ~(unsigned int)Button::SHIFT; }
                 }
             }
         }

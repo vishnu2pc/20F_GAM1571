@@ -22,8 +22,10 @@ Enemy::~Enemy()
 
 void Enemy::Update(float deltaTime)
 {
+
 	vec2 OldPos = m_pPhysicsController->GetPosition();
 	vec2 NewPos = OldPos - DirectionToPlayer * m_pPhysicsController->GetMaxVelocity() * deltaTime;
+	
 	m_pPhysicsController->SetPosition(NewPos);
 	vec2 ArenaPosition = m_pGameCore->GetArenaPosition();
 	float ArenaRadius = m_pGameCore->GetArenaRadius();

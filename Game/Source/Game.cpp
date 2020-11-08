@@ -151,6 +151,8 @@ void Game::UpdateLevel(float deltaTime)
     m_PlayerPosition = m_pPlayer->GetPhysicsController()->GetPosition();
     m_ArenaRadiusControl = m_pGameArena->GetPhysicsController()->GetRadius();
     m_ArenaPosition = m_pGameArena->GetPhysicsController()->GetPosition();
+
+	
 }
 
 void Game::OnEvent(fw::Event* pEvent)
@@ -185,13 +187,14 @@ void Game::OnEvent(fw::Event* pEvent)
 	
     if (pEvent->GetType() == EVENT_TYPE::INPUT_EVENT)
     {
-        if (static_cast<fw::InputEvent*>(pEvent)->GetKeyCode() != 'R')
-            m_pPlayerController->OnEvent(pEvent);
-        else
+        
+        if (static_cast<fw::InputEvent*>(pEvent)->GetKeyCode() =='R')
         {
             m_pLevelManager->ResetLevel();
             m_WinCondtion = false;
         }
+        else
+            m_pPlayerController->OnEvent(pEvent);
     }
 
 }

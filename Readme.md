@@ -18,8 +18,10 @@
 * Beating the third level shows the Win screen and pressing 'R' restarts the game.
 
 
-#### Feature Roadmap/WIP
+#### Controls
 
-* Player Boost
-* Bullet Time
-* Custom Shader Background
+* W - Up
+* S - Down
+* A - Left
+* D - Right
+* Shift - Slow Down

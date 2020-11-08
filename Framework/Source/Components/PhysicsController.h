@@ -35,6 +35,8 @@ namespace fw
         void Update(PHYSICS_TYPE PhysicsType,PlayerController* pPlayerController, float deltaTime);
         void HandleKeyPress(PHYSICS_TYPE physicsType, PlayerController* pPlayerController);
         void HandleKeyRelease(PHYSICS_TYPE physicsType, PlayerController* pPlayerController);
+        void SlowDown();
+        void SpeedUp();
         void Reset();
 		
 		

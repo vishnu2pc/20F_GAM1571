@@ -152,6 +152,7 @@ void Game::UpdateLevel(float deltaTime)
     m_ArenaRadiusControl = m_pGameArena->GetPhysicsController()->GetRadius();
     m_ArenaPosition = m_pGameArena->GetPhysicsController()->GetPosition();
 
+    Enemy::SetBehaviour(m_Enemy_Behaviour);
 	
 }
 
@@ -159,10 +160,10 @@ void Game::OnEvent(fw::Event* pEvent)
 {
 	if(pEvent->GetType()==EVENT_TYPE::LOSE)
 	{
-        int PlayerRadius = m_pGameArenaPhysicsController->GetRadius();
-        float RandAngle = rand() % 360;
-        vec2 pos = vec2(cosf(RandAngle * M_PI / 180), sinf(RandAngle * M_PI / 180)) * (rand() % PlayerRadius) + vec2(5.0f, 5.0f);
-        m_pPlayerPhysicsController->SetPosition(pos);
+        m_pEnemies.clear();
+        m_pPlayerPhysicsController->Reset();
+        vec2 ArenaPosition = m_pGameArenaPhysicsController->GetPosition();
+        m_pPlayerPhysicsController->SetPosition(ArenaPosition);
 
         m_pLevelManager->InitializeLevel();
         m_pPlayerController->OnEvent(pEvent);
@@ -176,6 +177,8 @@ void Game::OnEvent(fw::Event* pEvent)
     {
         m_pLevelManager->NextLevel();
         m_pLevelManager->InitializeLevel();
+        m_pEnemies.clear();
+  
     }
     if (pEvent->GetType() == EVENT_TYPE::SPAWN_ENEMY)
         SpawnEnemy();
@@ -187,7 +190,6 @@ void Game::OnEvent(fw::Event* pEvent)
 	
     if (pEvent->GetType() == EVENT_TYPE::INPUT_EVENT)
     {
-        
         if (static_cast<fw::InputEvent*>(pEvent)->GetKeyCode() =='R')
         {
             m_pLevelManager->ResetLevel();
@@ -251,3 +253,5 @@ void Game::Timer(float deltaTime)
         m_LevelTimer = m_pLevelManager->GetLevelDuration();
     }
 }
+
+

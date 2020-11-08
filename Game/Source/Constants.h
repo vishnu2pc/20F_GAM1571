@@ -22,7 +22,13 @@ enum class STATE_TYPE
 {
 	GAME
 };
-    
+
+
+enum class ENEMY_BEHAVIOUR
+{
+	STATIC,
+	DYNAMIC
+};
 
     extern const float Arena_radius;
 
@@ -37,6 +43,8 @@ enum class STATE_TYPE
     extern float Arena_Radius[];
     extern float Enemy_Size[];
     extern float Enemy_Speed[];
+
+    extern ENEMY_BEHAVIOUR Enemy_Behaviour[];
     
 
     extern fw::vec4 Player_Color[];

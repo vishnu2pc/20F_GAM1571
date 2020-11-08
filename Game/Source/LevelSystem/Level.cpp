@@ -38,6 +38,7 @@ void fw::Level::SetLevelParameters()
     
     m_EnemySize = Enemy_Size[(int)m_level_type];
     m_EnemySpeed = Enemy_Speed[(int)m_level_type];
+    m_EnemyBehaviour = Enemy_Behaviour[(int)m_level_type];
     m_EnemyColor = Enemy_Color[(int)m_level_type];
     
     m_PlayerSize = Player_Radius[(int)m_level_type];
@@ -51,6 +52,7 @@ void fw::Level::InitializeLevel(GameCore* pGameCore)
 {
     pGameCore->SetLevelDuration(m_Duration);
     pGameCore->SetEnemySpawnDuration(m_EnemySpawnTimer);
+    pGameCore->SetEnemyBehaviour(m_EnemyBehaviour);
 	
     pGameCore->SetArenaRadius(m_GameArenaSize);
     pGameCore->SetArenaColor(m_GameArenaColor);

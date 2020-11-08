@@ -2,6 +2,7 @@
 #include "Math/Vector.h"
 
 
+enum class ENEMY_BEHAVIOUR;
 
 namespace fw {
 	class PlayerController;
@@ -49,12 +50,13 @@ public:
     void SetLevelDuration(float LevelDuration) { m_LevelTimer = LevelDuration; }
     void SetEnemySpawnDuration(float LevelDuration) { m_EnemyTimer = LevelDuration; }
 
- 
+    void SetEnemyBehaviour(ENEMY_BEHAVIOUR enemy_behaviour) { m_Enemy_Behaviour = enemy_behaviour; }
+    	
 protected:
     FWCore* m_pFramework = nullptr;
     EventManager* m_pEventManager = nullptr;
     
-    	
+    ENEMY_BEHAVIOUR m_Enemy_Behaviour;
     vec2 m_ArenaPosition;
     vec2 m_PlayerPosition;
     float m_PlayerVelocity = 5;

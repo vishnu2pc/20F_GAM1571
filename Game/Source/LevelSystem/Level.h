@@ -30,6 +30,7 @@ namespace fw {
 
         float m_EnemySize = 0;
         float m_EnemySpeed = 0;
+        ENEMY_BEHAVIOUR m_EnemyBehaviour = ENEMY_BEHAVIOUR::STATIC;
         vec4 m_EnemyColor;
 
         float m_PlayerSize = 0;

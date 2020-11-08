@@ -8,7 +8,7 @@
 * Interpolated Player Movement
 * Multi-layered player and arena mesh
 * Game Arena reacts to player movement (slight position offset in the direction opposite to player movement)
-
+* Enemy has two behaviors
 
 #### Gameplay Loop
 

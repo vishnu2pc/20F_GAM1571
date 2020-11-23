@@ -3,7 +3,7 @@ workspace "Game"
 	platforms		{ "x64" }
 	location		"build"
 	characterset	"MBCS"
-	startproject	"Game"
+ 	startproject	"GameTilemap"
 
 project "Game"
 	kind		"WindowedApp"
@@ -43,6 +43,7 @@ project "GameTileMap"
 		"GameTileMap/Source/**.h",
 		"GameTileMap/Data/**.vert",
 		"GameTileMap/Data/**.frag",
+		"GameTilemap/Data/**.json",
 		"premake5.lua",
 		".gitignore",
 		"GenerateProjectFiles.bat",
@@ -70,6 +71,7 @@ project "Framework"
 		"Framework/Source/**.h",
 		"Framework/Libraries/imgui/*.cpp",
 		"Framework/Libraries/imgui/*.h",
+		"Framework/Libraries/stb/*.h",
 	}
 
 	includedirs {

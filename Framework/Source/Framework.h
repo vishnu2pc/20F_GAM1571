@@ -24,6 +24,6 @@
 #include "Components/Materials.h"
 #include "Components/PhysicsController.h"
 #include "Components/PlayerController.h"
-
+#include "Objects/Texture.h"
 
 #endif //__Framework_H__

@@ -15,6 +15,13 @@ Mesh::Mesh(const float attribs[], int NumVertices, int PrimitiveType)
     CreateShape( attribs, NumVertices, PrimitiveType);
 }
 
+Mesh::Mesh(const VertexFormat* pVertices, int numVertices, int PrimitiveType)
+{
+    CreateShape(pVertices, numVertices, PrimitiveType);
+}
+
+
+
 Mesh::~Mesh()
 {
     glDeleteBuffers(1, &m_VBO);
@@ -65,6 +72,27 @@ void Mesh::CreateShape(const vec2 attribs[], int NumVertices, int PrimitiveType)
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * numAttributeComponents, attribs, GL_STATIC_DRAW);
 }
 
+void Mesh::CreateShape(const VertexFormat* pVertices, int NumVertices, int PrimitiveType)
+{
+
+    if (m_VBO == 0)
+    {
+        // Generate a buffer for our vertex attributes.
+        glGenBuffers(1, &m_VBO); // m_VBO is a GLuint.
+    }
+
+    // Set this VBO to be the currently active one.
+    glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+
+
+    m_NumVertices = NumVertices;
+    m_PrimitiveType = PrimitiveType;
+
+
+    // Copy our attribute data into the VBO.
+    glBufferData(GL_ARRAY_BUFFER, sizeof(VertexFormat) * m_NumVertices, pVertices, GL_STATIC_DRAW);
+}
+	
 void Mesh::SetUniform2f(ShaderProgram* pShader, char* name, vec2 value)
 {
     int loc = glGetUniformLocation(pShader->GetProgram(), name);
@@ -73,7 +101,7 @@ void Mesh::SetUniform2f(ShaderProgram* pShader, char* name, vec2 value)
 
 void Mesh::CreateCircle(float radius, int num_points)
 {
-	
+    m_GameProject = GameProject::Game;
     std::vector<vec2> m_Circle_Vertices;
    
     for (int i = 0; i <= num_points; i++)
@@ -109,8 +137,12 @@ void Mesh::Draw(vec2 pos, ShaderProgram* pShader, vec4 color)
     glEnableVertexAttribArray(loc);
 
     // Describe the attributes in the VBO to OpenGL.
-    glVertexAttribPointer(loc, 2, GL_FLOAT, GL_FALSE, 8, (void*)0);
+	if (m_GameProject == GameProject::GameTileMap)
+    glVertexAttribPointer(loc, 2, GL_FLOAT, GL_FALSE, 16, (void*)0);
+    else
+        glVertexAttribPointer(loc, 2, GL_FLOAT, GL_FALSE, 8, (void*)0);
 
+		
     // Setup our uniforms.
     {
         SetUniform2f(pShader, "u_ObjectPos", pos);
@@ -118,6 +150,7 @@ void Mesh::Draw(vec2 pos, ShaderProgram* pShader, vec4 color)
     }
     // Draw the primitive.
     glDrawArrays(m_PrimitiveType, 0, m_NumVertices);
+	
 }
 
 } // namespace fw

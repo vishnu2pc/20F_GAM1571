@@ -33,6 +33,34 @@ project "Game"
 	pchheader "GamePCH.h"
 	pchsource "Game/Source/WinMain.cpp"
 
+project "GameTileMap"
+	kind		"WindowedApp"
+	location	"build/GameTileMap"
+	debugdir	"GameTileMap"
+
+	files {
+		"GameTileMap/Source/**.cpp",
+		"GameTileMap/Source/**.h",
+		"GameTileMap/Data/**.vert",
+		"GameTileMap/Data/**.frag",
+		"premake5.lua",
+		".gitignore",
+		"GenerateProjectFiles.bat",
+		"Readme.md"
+	}
+
+	includedirs {
+		"GameTileMap/Source",
+	}
+
+	links {
+		"Framework",
+		"opengl32",
+	}
+
+	pchheader "GamePCH.h"
+	pchsource "GameTileMap/Source/WinMain.cpp"
+
 project "Framework"
 	kind		"StaticLib"
 	location	"build/Framework"

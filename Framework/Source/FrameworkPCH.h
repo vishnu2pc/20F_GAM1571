@@ -16,18 +16,22 @@
 #include <malloc.h>
 #include <memory.h>
 #include <math.h>
-#include <corecrt_math_defines.h>
 
 #include <map>
 #include <vector>
 #include <queue>
 #include <string>
-#include <time.h>
+
 #include <GL/GL.h>
 #include "GL/glext.h"
 #include "GL/wglext.h"
 
 #include "GL/GLExtensions.h"
 #include "GL/WGLExtensions.h"
+
+#include "../Libraries/imgui/imgui.h"
+#include "../../Framework/Libraries/rapidjson/document.h"
+
+
 
 #endif //__FrameworkPCH_H__

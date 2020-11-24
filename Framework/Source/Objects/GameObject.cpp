@@ -1,24 +1,36 @@
 #include "FrameworkPCH.h"
+
 #include "GameObject.h"
+#include "Mesh.h"
+#include "../../Libraries/imgui/imgui.h"
 
+namespace fw {
 
-fw::GameObject::GameObject(PhysicsController* pPhysicsController, GameCore* pGameCore)
+GameObject::GameObject(GameCore* pGameCore, std::string name, vec2 pos, Mesh* pMesh, ShaderProgram* pShader, fw::Texture* pTexture, vec4 color)
 {
-	m_pPhysicsController = pPhysicsController;
-	m_pGameCore = pGameCore;
+    m_pGameCore = pGameCore;
+
+    m_Name = name;
+
+    m_Position = pos;
+
+    m_pMesh = pMesh;
+    m_pShader = pShader;
+    m_pTexture = pTexture;
+    m_Color = color;
 }
 
-fw::GameObject::~GameObject()
+GameObject::~GameObject()
 {
-	
 }
 
-void fw::GameObject::Update(float deltaTime)
+void GameObject::Update(float deltaTime)
 {
-	
 }
 
-void fw::GameObject::Draw()
+void GameObject::Draw()
 {
-	
+    m_pMesh->Draw( m_Position, m_pShader, m_pTexture, m_Color, m_UVScale, m_UVOffset );
 }
+
+} // namespace fw

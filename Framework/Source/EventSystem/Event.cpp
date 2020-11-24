@@ -4,12 +4,12 @@
 
 namespace fw {
 
-	Event::Event()
-	{
-	}
+Event::Event()
+{
+}
 
-	Event::~Event()
-	{
-	}
+Event::~Event()
+{
+}
 
 } // namespace fw

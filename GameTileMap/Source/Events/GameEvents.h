@@ -1,70 +1,19 @@
 #pragma once
 
-class Enemy;
-class SpawnEnemyEvent :public fw::Event
+class RemoveFromGameEvent : public fw::Event
 {
 public:
-    SpawnEnemyEvent() {}
-    ~SpawnEnemyEvent() {}
-
-    static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::SPAWN_ENEMY; }
-    virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
-
-protected:
-
-};
-
-class DeleteEnemyEvent : public fw::Event
-{
-    
-public:
-    DeleteEnemyEvent(Enemy* pEnemy)
+    RemoveFromGameEvent(fw::GameObject* pObject)
     {
-        m_pEnemy = pEnemy;
+        m_pObject = pObject;
     }
-    virtual ~DeleteEnemyEvent() {}
+    virtual ~RemoveFromGameEvent() {}
 
-    static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::DELETE_ENEMY; }
-    virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
+    static const char* GetStaticEventType() { return "RemoveFromGameEvent"; }
+    virtual const char* GetType() override { return GetStaticEventType(); }
 
-    Enemy* GetEnemy() { return m_pEnemy; }
-
-protected:
-    Enemy* m_pEnemy;
-};
-class NextLevelEvent : public fw::Event
-{
-public:
-    NextLevelEvent() {}
-    ~NextLevelEvent() {}
-
-    static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::NEXT_LEVEL; }
-    virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
-	
-protected:
-};
-
-class WinEvent : public fw::Event
-{
-public:
-    WinEvent() {}
-    ~WinEvent() {}
-
-    static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::WIN; }
-    virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
+    fw::GameObject* GetGameObject() { return m_pObject; }
 
 protected:
-};
-
-
-class LoseEvent : public fw::Event
-{
-public:
-    LoseEvent() {}
-    ~LoseEvent() {}
-
-    static EVENT_TYPE GetStaticEventType() { return EVENT_TYPE::LOSE; }
-    virtual EVENT_TYPE GetType() override { return GetStaticEventType(); }
-
-protected:
+    fw::GameObject* m_pObject;
 };

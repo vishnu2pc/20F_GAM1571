@@ -3,55 +3,58 @@ workspace "Game"
 	platforms		{ "x64" }
 	location		"build"
 	characterset	"MBCS"
- 	startproject	"GameTilemap"
+	startproject	"GameTilemap"
 
-project "Game"
+	filter "configurations:Debug"
+		symbols		"on"
+
+--project "Game"
+--	kind		"WindowedApp"
+--	location	"build/Game"
+--	debugdir	"Game"
+--
+--	files {
+--		"Game/Source/**.cpp",
+--		"Game/Source/**.h",
+--		"Game/Data/**.vert",
+--		"Game/Data/**.frag",
+--		"premake5.lua",
+--		".gitignore",
+--		"GenerateProjectFiles.bat",
+--		"readme.txt",
+--	}
+--
+--	includedirs {
+--		"Game/Source",
+--	}
+--
+--	links {
+--		"Framework",
+--		"opengl32",
+--	}
+--
+--	pchheader "GamePCH.h"
+--	pchsource "Game/Source/WinMain.cpp"
+
+project "GameTilemap"
 	kind		"WindowedApp"
-	location	"build/Game"
-	debugdir	"Game"
+	location	"build/GameTilemap"
+	debugdir	"GameTilemap"
 
 	files {
-		"Game/Source/**.cpp",
-		"Game/Source/**.h",
-		"Game/Data/**.vert",
-		"Game/Data/**.frag",
-		"premake5.lua",
-		".gitignore",
-		"GenerateProjectFiles.bat",
-		"Readme.md"
-	}
-
-	includedirs {
-		"Game/Source",
-	}
-
-	links {
-		"Framework",
-		"opengl32",
-	}
-
-	pchheader "GamePCH.h"
-	pchsource "Game/Source/WinMain.cpp"
-
-project "GameTileMap"
-	kind		"WindowedApp"
-	location	"build/GameTileMap"
-	debugdir	"GameTileMap"
-
-	files {
-		"GameTileMap/Source/**.cpp",
-		"GameTileMap/Source/**.h",
-		"GameTileMap/Data/**.vert",
-		"GameTileMap/Data/**.frag",
+		"GameTilemap/Source/**.cpp",
+		"GameTilemap/Source/**.h",
+		"GameTilemap/Data/**.vert",
+		"GameTilemap/Data/**.frag",
 		"GameTilemap/Data/**.json",
 		"premake5.lua",
 		".gitignore",
 		"GenerateProjectFiles.bat",
-		"Readme.md"
+		"readme.txt",
 	}
 
 	includedirs {
-		"GameTileMap/Source",
+		"GameTilemap/Source",
 	}
 
 	links {
@@ -60,7 +63,7 @@ project "GameTileMap"
 	}
 
 	pchheader "GamePCH.h"
-	pchsource "GameTileMap/Source/WinMain.cpp"
+	pchsource "GameTilemap/Source/WinMain.cpp"
 
 project "Framework"
 	kind		"StaticLib"
@@ -72,11 +75,11 @@ project "Framework"
 		"Framework/Libraries/imgui/*.cpp",
 		"Framework/Libraries/imgui/*.h",
 		"Framework/Libraries/stb/*.h",
+		"Framework/Libraries/radidjson/**.h"
 	}
 
 	includedirs {
 		"Framework/Source",
-		
 	}
 
 	pchheader "FrameworkPCH.h"

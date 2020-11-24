@@ -21,7 +21,7 @@ protected:
     MyGLContext* m_pMyGLContext;
 
     GameCore* m_pGame;
-	
+
     bool m_KeyStates[256];
     bool m_MouseButtonStates[3];
     bool m_OldKeyStates[256];

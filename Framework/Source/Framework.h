@@ -8,22 +8,17 @@
 
 #include "FrameworkPCH.h"
 
-#include "../Libraries/imgui/imgui.h"
-
-
-#include "Core/FWCore.h"
 #include "Core/GameCore.h"
-#include "Utility/ShaderProgram.h"
-#include "Utility/Helpers.h"
-#include "Objects/Mesh.h"
-#include "Objects/GameObject.h"
-#include "UI/ImGuiManager.h"
-#include "Math/Vector.h"
+#include "Core/FWCore.h"
 #include "EventSystem/Event.h"
 #include "EventSystem/EventManager.h"
-#include "Components/Materials.h"
-#include "Components/PhysicsController.h"
-#include "Components/PlayerController.h"
+#include "Math/Vector.h"
+#include "Objects/GameObject.h"
+#include "Objects/Mesh.h"
 #include "Objects/Texture.h"
+#include "UI/ImGuiManager.h"
+#include "Utility/Helpers.h"
+#include "Utility/ShaderProgram.h"
+#include "Objects/SpriteSheet.h"
 
 #endif //__Framework_H__

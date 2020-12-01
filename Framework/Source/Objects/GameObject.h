@@ -12,7 +12,7 @@ class Texture;
 class GameObject
 {
 public:
-    GameObject(GameCore* pGameCore, std::string name, vec2 pos, Mesh* pMesh, ShaderProgram* pShader, fw::Texture* pTexture);
+    GameObject(GameCore* pGameCore, std::string name, vec2 pos, vec2 ObjectScale,Mesh* pMesh, ShaderProgram* pShader, fw::Texture* pTexture);
     virtual ~GameObject();
 
     virtual void Update(float deltaTime);
@@ -29,7 +29,7 @@ protected:
     std::string m_Name;
 
     vec2 m_Position;
-
+    vec2 m_ObjectScale;
     Mesh* m_pMesh = nullptr;
     ShaderProgram* m_pShader = nullptr;
     Texture* m_pTexture = nullptr;

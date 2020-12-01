@@ -36,7 +36,8 @@ Game::~Game()
     }
 
     delete m_pPlayerController;
-
+    delete m_pSpriteSheet;
+    delete m_pTilemap;
     delete m_pEventManager;
     delete m_pImGuiManager;
 }
@@ -66,11 +67,13 @@ void Game::Init()
 
     m_pSpriteSheet = new fw::SpriteSheet("Data/Textures/Sokoban.json");
 
-    m_pTilemap = new Tilemap(level1Layout, Level1Layout_Height, Level1Layout_Width, m_pSpriteSheet,
+    m_pTilemap = new Tilemap(level1Layout, Level1Layout_Height, Level1Layout_Width, vec2(5.0f,5.0f), m_pSpriteSheet,
         m_pMeshes["Tilemap"], m_pShaders["Basic"], m_pTextures["Game"]);
+	
     // Create some GameObjects.
-    m_pPlayer = new Player( this, m_pPlayerController, m_pSpriteSheet,"Player", vec2(5,5),
+    m_pPlayer = new Player( this, m_pPlayerController, m_pSpriteSheet,"Player", vec2(30,30), vec2(5.0f,5.0f),
         m_pMeshes["Player"], m_pShaders["Basic"], m_pTextures["Game"] );
+	
     m_Objects.push_back( m_pPlayer );
 }
 

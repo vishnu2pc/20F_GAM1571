@@ -44,7 +44,7 @@ class Player : public fw::GameObject
 {
 public:
 	
-    Player(fw::GameCore* pGameCore, PlayerController* pPlayerController, fw::SpriteSheet* pSpriteSheet, std::string name, vec2 pos, fw::Mesh* pMesh, fw::ShaderProgram* pShader, fw::Texture* pTexture);
+    Player(fw::GameCore* pGameCore, PlayerController* pPlayerController, fw::SpriteSheet* pSpriteSheet, std::string name, vec2 pos, vec2 ObjectScale, fw::Mesh* pMesh, fw::ShaderProgram* pShader, fw::Texture* pTexture);
     virtual ~Player();
 
     virtual void Update(float deltaTime) override;
@@ -55,7 +55,9 @@ protected:
     fw::SpriteInfo m_SpriteInfo;
 	PlayerState m_PlayerState = PlayerState::IDLE;
 	float m_Timer = 0;
+	vec2 m_ObjectScale;
 	int framecount = 0;
+	int m_TileIndex;
 	
 	
 };

@@ -36,8 +36,7 @@ public:
     void SetUniform2f(ShaderProgram* pShader, char* name, vec2 value);
     void SetUniform4f(ShaderProgram* pShader, char* name, vec4 value);
     void SetUniform1i(ShaderProgram* pShader, char* name, int value);
-
-    void Draw(vec2 pos, ShaderProgram* pShader, Texture* pTexture, vec2 UVScale, vec2 UVOffset);
+    void Draw(vec2 pos, ShaderProgram* pShader, Texture* pTexture, vec2 UVScale, vec2 UVOffset, vec2 ObjectScale);
 
 protected:
     GLuint m_VBO = 0;

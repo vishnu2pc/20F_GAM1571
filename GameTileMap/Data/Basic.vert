@@ -5,18 +5,21 @@ attribute vec2 a_UVCoord; // Input from VBO in C++.
 uniform vec2 u_ObjectPos;
 uniform vec2 u_UVScale;
 uniform vec2 u_UVOffset;
+uniform vec2 u_ObjectScale;
 
 varying vec2 v_UVCoord; // Output to frag shader.
 
 void main()
 {
     vec2 pos = a_Position;
-    
-    pos *= 1; // Object Scale.
+
+    pos *= u_ObjectScale; // Object Scale.
 
     pos += u_ObjectPos;
 
-    // Transformation from 0->10 Game world space to -1->1 clip space.
+    // Transformation from 0->10 Game world space to view space.
+    pos/=u_ObjectScale;
+    // Transformation from 0->10 Game view space to -1->1 clip space.
     pos /= 5.0;
     pos -= 1.0;
 

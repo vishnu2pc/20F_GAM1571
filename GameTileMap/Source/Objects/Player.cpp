@@ -1,40 +1,44 @@
 #include "GamePCH.h"
 
 #include "Objects/Player.h"
+#include "Tilemap/Tilemap.h"
+#include "Game.h"
 #include "Objects/PlayerController.h"
 
 
-Player::Player(fw::GameCore* pGameCore, PlayerController* pPlayerController, fw::SpriteSheet* pSpriteSheet, std::string name, vec2 pos, fw::Mesh* pMesh, fw::ShaderProgram* pShader, fw::Texture* pTexture)
-    : fw::GameObject( pGameCore, name, pos, pMesh, pShader, pTexture )
+Player::Player(fw::GameCore* pGameCore, PlayerController* pPlayerController, fw::SpriteSheet* pSpriteSheet, std::string name, vec2 pos, vec2 ObjectScale, fw::Mesh* pMesh, fw::ShaderProgram* pShader, fw::Texture* pTexture)
+    : fw::GameObject( pGameCore, name, pos, ObjectScale, pMesh, pShader, pTexture )
     , m_pPlayerController( pPlayerController )
 {
     m_pSpriteSheet = pSpriteSheet;
+    m_ObjectScale = ObjectScale;
 }
 
 Player::~Player()
 {
-	
+
 }
 
 void Player::Update(float deltaTime)
 {
-    float speed = 2.0f;
-
+    float speed = 2.0f * m_ObjectScale.GetLength();
+    vec2 OldPos = m_Position;
+    vec2 NewPos = m_Position;
     vec2 dir;
 	
-    if (m_pPlayerController->IsHeld(PlayerController::Down) || m_pPlayerController->WasNewlyPressed(PlayerController::Down))
+    if (m_pPlayerController->IsHeld(PlayerController::Down))
     {
         m_PlayerState = PlayerState::MOVE_DOWN;
     }
-    else if (m_pPlayerController->IsHeld(PlayerController::Up) || m_pPlayerController->WasNewlyPressed(PlayerController::Up))
+    else if (m_pPlayerController->IsHeld(PlayerController::Up))
     {
         m_PlayerState = PlayerState::MOVE_UP;
     }
-    else if (m_pPlayerController->IsHeld(PlayerController::Left) || m_pPlayerController->WasNewlyPressed(PlayerController::Left))
+    else if (m_pPlayerController->IsHeld(PlayerController::Left))
     {
         m_PlayerState = PlayerState::MOVE_LEFT;
     }
-    else if (m_pPlayerController->IsHeld(PlayerController::Right) || m_pPlayerController->WasNewlyPressed(PlayerController::Right))
+    else if (m_pPlayerController->IsHeld(PlayerController::Right))
     {
         m_PlayerState = PlayerState::MOVE_RIGHT;
     }
@@ -79,6 +83,10 @@ void Player::Update(float deltaTime)
 
         m_SpriteInfo = m_pSpriteSheet->GetSpriteInfo(WalkDown[framecount]);
         dir.y += -1;
+    		NewPos = m_Position + dir * speed * deltaTime;
+        m_TileIndex = ((10 * (int)(NewPos.y / m_ObjectScale.y) + (int)(NewPos.x / m_ObjectScale.x)));
+        if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->isTileWalkable(m_TileIndex))
+            NewPos = OldPos;
         break;
 
 
@@ -113,6 +121,10 @@ void Player::Update(float deltaTime)
 
         m_SpriteInfo = m_pSpriteSheet->GetSpriteInfo(WalkUp[framecount]);
         dir.y += 1;
+        NewPos = m_Position + dir * speed * deltaTime;
+        m_TileIndex = ((10 * (int)((NewPos.y + m_ObjectScale.y) / m_ObjectScale.y) + (int)(NewPos.x / m_ObjectScale.x)));
+        if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->isTileWalkable(m_TileIndex))
+            NewPos = OldPos;
         break;
 		}
 
@@ -144,6 +156,10 @@ void Player::Update(float deltaTime)
 
             m_SpriteInfo = m_pSpriteSheet->GetSpriteInfo(WalkLeft[framecount]);
             dir.x += -1;
+            NewPos = m_Position + dir * speed * deltaTime;
+            m_TileIndex = ((10 * (int)(NewPos.y / m_ObjectScale.y) + (int)(NewPos.x / m_ObjectScale.x)));
+            if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->isTileWalkable(m_TileIndex))
+                NewPos = OldPos;
     		break;
 	    }
 
@@ -175,6 +191,10 @@ void Player::Update(float deltaTime)
 
         m_SpriteInfo = m_pSpriteSheet->GetSpriteInfo(WalkRight[framecount]);
         dir.x += 1;
+        NewPos = m_Position + dir * speed * deltaTime;
+        m_TileIndex = ((10 * (int)(NewPos.y / m_ObjectScale.y) + (int)((NewPos.x + m_ObjectScale.x )/ m_ObjectScale.x)));
+        if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->isTileWalkable(m_TileIndex))
+            NewPos = OldPos;
         break;
     		
 	    }
@@ -189,7 +209,8 @@ void Player::Update(float deltaTime)
 
    /* m_UVScale = vec2(64.0 / 1024.0, 64.0 / 512.0);
     m_UVOffset = vec2(780.0 / 1024.0, 383.0 / 512.0);*/
-	
-    m_Position += dir * speed * deltaTime;
+
+    m_Position = NewPos;
+ 
     m_Timer += deltaTime;
 }

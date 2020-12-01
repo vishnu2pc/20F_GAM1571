@@ -7,6 +7,9 @@ public:
     {
         BrownFloor,
         RedWall,
+    	RedCrate,
+    	BlueCrate,
+        GreyCrate,
         NumTypes,
     };
 
@@ -20,11 +23,13 @@ public:
     };
 //
 public:
-    Tilemap(const TileType* pLayout,  int height, int width, fw::SpriteSheet* pSpriteSheet,
+    Tilemap(const TileType* pLayout, int height, int width, vec2 TileSize, fw::SpriteSheet* pSpriteSheet,
         fw::Mesh* pMesh, fw::ShaderProgram* pShader, fw::Texture* pTexture);
+    ~Tilemap();
 
+    bool isTileWalkable(int TileIndex);
     void Draw();
-
+ 
 protected:
     fw::Mesh* m_pTileMesh;
     fw::ShaderProgram* m_pShader;
@@ -42,3 +47,4 @@ protected:
 		TileProperties m_Properties[(int)TileType::NumTypes];
 
 };
+

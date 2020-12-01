@@ -40,7 +40,6 @@ namespace fw
 		{
 			if (m_Sprites[i].name == pSprite)
 				return m_Sprites[i];
-			
 		}
 	}
 }

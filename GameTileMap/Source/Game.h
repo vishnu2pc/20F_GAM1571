@@ -16,8 +16,9 @@ public:
     virtual void OnEvent(fw::Event* pEvent) override;
     virtual void Update(float deltaTime) override;
     virtual void Draw() override;
-
+   
     Player* GetPlayer() { return m_pPlayer; }
+    Tilemap* GetTileMap() { return m_pTilemap; }
 
 protected:
     fw::ImGuiManager* m_pImGuiManager = nullptr;

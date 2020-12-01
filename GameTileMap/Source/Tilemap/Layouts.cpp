@@ -12,12 +12,12 @@ const Tilemap::TileType level1Layout[] =
 {
     TT::RedWall, TT::RedWall,    TT::RedWall,    TT::RedWall,    TT::RedWall,   TT::RedWall,   TT::RedWall,    TT::RedWall,    TT::RedWall,    TT::RedWall,
     TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
+    TT::RedWall, TT::GreyCrate, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::GreyCrate, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
+    TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BlueCrate, TT::BrownFloor, TT::RedWall,
+    TT::RedWall, TT::BrownFloor, TT::RedCrate, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
     TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
-    TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
-    TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
-    TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
-    TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
-    TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
-    TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
+    TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::GreyCrate,TT::BrownFloor,TT::BlueCrate, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
+    TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BlueCrate, TT::BrownFloor,TT::BrownFloor,TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
+    TT::RedWall, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor, TT::BrownFloor,TT::BrownFloor,TT::RedCrate, TT::BrownFloor, TT::BrownFloor, TT::RedWall,
     TT::RedWall, TT::RedWall,    TT::RedWall,    TT::RedWall,    TT::RedWall,   TT::RedWall,   TT::RedWall,    TT::RedWall,    TT::RedWall,    TT::RedWall
 };                                                                                                                             

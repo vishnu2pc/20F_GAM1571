@@ -14,33 +14,37 @@ enum class PlayerState
 
 
 
-static const int frames = 3;
-static const int duration = 1;
+static const int frames = 4;
+static const float duration = 0.75;
 static const float delay = (float)duration / (float)frames;
 
-static std::string WalkLeft[frames] = { "Player/player_14",
-										"Player/player_15",
-										"Player/player_16" };
+static std::string WalkLeft[frames] = { "Player/player_15",
+										"Player/player_14",
+										"Player/player_16",
+										"Player/player_14" };
 
 
-static std::string WalkRight[frames] = { "Player/player_11",
+static std::string WalkRight[frames] = { "Player/player_13",
+										"Player/player_11",
 										"Player/player_12",
-										"Player/player_13" };
+										"Player/player_11" };
 
-static std::string WalkDown[frames] = { "Player/player_06",
-										"Player/player_07",
-										"Player/player_06" };
+static std::string WalkDown[frames] = { "Player/player_07",
+										"Player/player_05",
+										"Player/player_06",
+										"Player/player_05",};
 
-static std::string WalkUp[frames] = { "Player/player_08",
+static std::string WalkUp[frames] = { "Player/player_10",
+										"Player/player_08",
 										"Player/player_09",
-										"Player/player_10" };
+										"Player/player_08",};
 
-static std::string Idle[frames] = { "Player/player_05" };
+
 class Player : public fw::GameObject
 {
 public:
 	
-    Player(fw::GameCore* pGameCore, PlayerController* pPlayerController, fw::SpriteSheet* pSpriteSheet, std::string name, vec2 pos, fw::Mesh* pMesh, fw::ShaderProgram* pShader, fw::Texture* pTexture, vec4 color);
+    Player(fw::GameCore* pGameCore, PlayerController* pPlayerController, fw::SpriteSheet* pSpriteSheet, std::string name, vec2 pos, fw::Mesh* pMesh, fw::ShaderProgram* pShader, fw::Texture* pTexture);
     virtual ~Player();
 
     virtual void Update(float deltaTime) override;

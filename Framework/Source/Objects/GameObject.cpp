@@ -6,7 +6,7 @@
 
 namespace fw {
 
-GameObject::GameObject(GameCore* pGameCore, std::string name, vec2 pos, Mesh* pMesh, ShaderProgram* pShader, fw::Texture* pTexture, vec4 color)
+GameObject::GameObject(GameCore* pGameCore, std::string name, vec2 pos, Mesh* pMesh, ShaderProgram* pShader, fw::Texture* pTexture)
 {
     m_pGameCore = pGameCore;
 
@@ -17,7 +17,6 @@ GameObject::GameObject(GameCore* pGameCore, std::string name, vec2 pos, Mesh* pM
     m_pMesh = pMesh;
     m_pShader = pShader;
     m_pTexture = pTexture;
-    m_Color = color;
 }
 
 GameObject::~GameObject()
@@ -30,7 +29,7 @@ void GameObject::Update(float deltaTime)
 
 void GameObject::Draw()
 {
-    m_pMesh->Draw( m_Position, m_pShader, m_pTexture, m_Color, m_UVScale, m_UVOffset );
+    m_pMesh->Draw( m_Position, m_pShader, m_pTexture, m_UVScale, m_UVOffset );
 }
 
 } // namespace fw

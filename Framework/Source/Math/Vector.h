@@ -55,6 +55,18 @@ public:
 
 inline vec2 operator*(float scalar, const vec2& vector) { return vec2( scalar*vector.x, scalar*vector.y ); }
 
+class ivec2
+{
+	public:
+		ivec2() { x = 0; y = 0; }
+        ivec2(int nx, int ny) { x = nx;  y = ny; }
+
+        void Set(int nx, int ny) { x = nx; y = ny; }
+public:
+    int x;
+    int y;
+};
+
 class vec4
 {
 public:

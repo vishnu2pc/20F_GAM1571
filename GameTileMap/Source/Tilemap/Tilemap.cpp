@@ -17,6 +17,12 @@ bool Tilemap::isTileWalkable(int TileIndex)
 	return m_Properties[(int)type].m_Walkable;
 }
 
+bool Tilemap::IsWorldPositionWalkable(vec2 worldpos)
+{
+	m_TileIndex = m_MapSize.x * (int)(worldpos.y/m_TileSize.y) + (int)(worldpos.x/m_TileSize.x);
+	return isTileWalkable(m_TileIndex);
+}
+
 
 Tilemap::Tilemap(const TileType* pLayout,  int height, int width, vec2 TileSize,fw::SpriteSheet* pSpriteSheet,
                  fw::Mesh* pMesh, fw::ShaderProgram* pShader, fw::Texture* pTexture)

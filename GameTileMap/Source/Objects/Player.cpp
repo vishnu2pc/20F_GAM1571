@@ -11,7 +11,7 @@ Player::Player(fw::GameCore* pGameCore, PlayerController* pPlayerController, fw:
     , m_pPlayerController( pPlayerController )
 {
     m_pSpriteSheet = pSpriteSheet;
-    m_ObjectScale = ObjectScale;
+    m_ObjectScale = ObjectScale ;
 }
 
 Player::~Player()
@@ -84,8 +84,9 @@ void Player::Update(float deltaTime)
         m_SpriteInfo = m_pSpriteSheet->GetSpriteInfo(WalkDown[framecount]);
         dir.y += -1;
     		NewPos = m_Position + dir * speed * deltaTime;
-        m_TileIndex = ((10 * (int)(NewPos.y / m_ObjectScale.y) + (int)(NewPos.x / m_ObjectScale.x)));
-        if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->isTileWalkable(m_TileIndex))
+        if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->IsWorldPositionWalkable(NewPos + vec2(m_correction_offset, 0.0f)))
+            NewPos = OldPos;
+        else if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->IsWorldPositionWalkable(NewPos + vec2(m_ObjectScale.x,0.0f) - vec2(m_correction_offset,0.0f)))
             NewPos = OldPos;
         break;
 
@@ -122,8 +123,9 @@ void Player::Update(float deltaTime)
         m_SpriteInfo = m_pSpriteSheet->GetSpriteInfo(WalkUp[framecount]);
         dir.y += 1;
         NewPos = m_Position + dir * speed * deltaTime;
-        m_TileIndex = ((10 * (int)((NewPos.y + m_ObjectScale.y) / m_ObjectScale.y) + (int)(NewPos.x / m_ObjectScale.x)));
-        if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->isTileWalkable(m_TileIndex))
+        if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->IsWorldPositionWalkable(NewPos + vec2(0.0f, m_ObjectScale.y) + vec2 (m_correction_offset,0.0f)))
+            NewPos = OldPos;
+        else if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->IsWorldPositionWalkable(NewPos + m_ObjectScale - vec2(m_correction_offset, 0.0f)))
             NewPos = OldPos;
         break;
 		}
@@ -157,8 +159,9 @@ void Player::Update(float deltaTime)
             m_SpriteInfo = m_pSpriteSheet->GetSpriteInfo(WalkLeft[framecount]);
             dir.x += -1;
             NewPos = m_Position + dir * speed * deltaTime;
-            m_TileIndex = ((10 * (int)(NewPos.y / m_ObjectScale.y) + (int)(NewPos.x / m_ObjectScale.x)));
-            if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->isTileWalkable(m_TileIndex))
+            if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->IsWorldPositionWalkable(NewPos + vec2(0.0f, m_correction_offset)))
+                NewPos = OldPos;
+            else if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->IsWorldPositionWalkable(NewPos +vec2(0.0f,m_ObjectScale.y) - vec2(0.0f, m_correction_offset)))
                 NewPos = OldPos;
     		break;
 	    }
@@ -192,8 +195,9 @@ void Player::Update(float deltaTime)
         m_SpriteInfo = m_pSpriteSheet->GetSpriteInfo(WalkRight[framecount]);
         dir.x += 1;
         NewPos = m_Position + dir * speed * deltaTime;
-        m_TileIndex = ((10 * (int)(NewPos.y / m_ObjectScale.y) + (int)((NewPos.x + m_ObjectScale.x )/ m_ObjectScale.x)));
-        if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->isTileWalkable(m_TileIndex))
+        if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->IsWorldPositionWalkable(NewPos + vec2(m_ObjectScale.x, 0.0f) + vec2(0.0f, m_correction_offset)))
+			NewPos = OldPos;
+        else if (!static_cast<Game*>(m_pGameCore)->GetTileMap()->IsWorldPositionWalkable(NewPos + m_ObjectScale - vec2(0.0f, m_correction_offset)))
             NewPos = OldPos;
         break;
     		

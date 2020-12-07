@@ -71,7 +71,7 @@ void Game::Init()
         m_pMeshes["Tilemap"], m_pShaders["Basic"], m_pTextures["Game"]);
 	
     // Create some GameObjects.
-    m_pPlayer = new Player( this, m_pPlayerController, m_pSpriteSheet,"Player", vec2(30,30), vec2(5.0f,5.0f),
+    m_pPlayer = new Player( this, m_pPlayerController, m_pSpriteSheet,"Player", vec2(10.f, 10.f), vec2(5.0f,5.0f),
         m_pMeshes["Player"], m_pShaders["Basic"], m_pTextures["Game"] );
 	
     m_Objects.push_back( m_pPlayer );

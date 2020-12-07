@@ -58,6 +58,7 @@ protected:
 	vec2 m_ObjectScale;
 	int framecount = 0;
 	int m_TileIndex;
+	float m_correction_offset = 0.5f;
 	
 	
 };

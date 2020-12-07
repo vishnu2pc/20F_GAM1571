@@ -28,6 +28,7 @@ public:
     ~Tilemap();
 
     bool isTileWalkable(int TileIndex);
+    bool IsWorldPositionWalkable(vec2 worldpos);
     void Draw();
  
 protected:

@@ -1,5 +1,7 @@
 #pragma once
 
+class Pathfinder;
+class Enemy;
 class PlayerController;
 class Player;
 class SpriteSheet;
@@ -25,12 +27,13 @@ protected:
     fw::SpriteSheet* m_pSpriteSheet = nullptr;
     PlayerController* m_pPlayerController = nullptr;
     Tilemap* m_pTilemap = nullptr;
-	
+    Pathfinder* m_pPathfinder = nullptr;
     std::map<std::string, fw::ShaderProgram*> m_pShaders;
     std::map<std::string, fw::Mesh*> m_pMeshes;
     std::map<std::string, fw::Texture*> m_pTextures;
 
     Player* m_pPlayer = nullptr;
+    Enemy* m_pEnemy = nullptr;
     std::vector<fw::GameObject*> m_Objects;
 
     // Settings.

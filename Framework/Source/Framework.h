@@ -20,5 +20,4 @@
 #include "Utility/Helpers.h"
 #include "Utility/ShaderProgram.h"
 #include "Objects/SpriteSheet.h"
-
 #endif //__Framework_H__

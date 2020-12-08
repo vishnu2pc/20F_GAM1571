@@ -17,10 +17,32 @@ bool Tilemap::isTileWalkable(int TileIndex)
 	return m_Properties[(int)type].m_Walkable;
 }
 
+bool Tilemap::IsTileWalkable(int x, int y)
+{
+	if (x < 0 || x >= m_MapSize.x || y < 0 || y >= m_MapSize.y)
+		return false;
+
+	return m_Properties[y * m_MapSize.x + x].m_Walkable == 0 ? true : false;
+}
+
 bool Tilemap::IsWorldPositionWalkable(vec2 worldpos)
 {
 	m_TileIndex = m_MapSize.x * (int)(worldpos.y/m_TileSize.y) + (int)(worldpos.x/m_TileSize.x);
 	return isTileWalkable(m_TileIndex);
+}
+
+vec2 Tilemap::GetWorldPositon(fw::ivec2 tilepos)
+{
+	return vec2(tilepos.x * m_TileSize.x, tilepos.y * m_TileSize.y);
+}
+
+vec2 Tilemap::GetWorldPosition(int tileindex)
+{
+	fw::ivec2 tilepos;
+	tilepos.y = (int)(tileindex / m_MapSize.x);
+	tilepos.x = (int)(tileindex % m_MapSize.x);
+
+	return GetWorldPositon(tilepos);
 }
 
 

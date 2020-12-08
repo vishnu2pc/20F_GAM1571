@@ -6,7 +6,8 @@
 #include "Objects/Shapes.h"
 #include "Events/GameEvents.h"
 #include "Tilemap/Layouts.h"
-
+#include "Objects/Enemy.h"
+#include "Pathfinder/Pathfinder.h"
 
 Game::Game(fw::FWCore* pFramework) : fw::GameCore( pFramework )
 {
@@ -37,6 +38,7 @@ Game::~Game()
 
     delete m_pPlayerController;
     delete m_pSpriteSheet;
+    delete m_pPathfinder;
     delete m_pTilemap;
     delete m_pEventManager;
     delete m_pImGuiManager;
@@ -70,11 +72,16 @@ void Game::Init()
     m_pTilemap = new Tilemap(level1Layout, Level1Layout_Height, Level1Layout_Width, vec2(5.0f,5.0f), m_pSpriteSheet,
         m_pMeshes["Tilemap"], m_pShaders["Basic"], m_pTextures["Game"]);
 	
+    m_pPathfinder = new Pathfinder(m_pTilemap, Level1Layout_Width, Level1Layout_Height);
     // Create some GameObjects.
     m_pPlayer = new Player( this, m_pPlayerController, m_pSpriteSheet,"Player", vec2(10.f, 10.f), vec2(5.0f,5.0f),
         m_pMeshes["Player"], m_pShaders["Basic"], m_pTextures["Game"] );
-	
+
+    m_pEnemy = new Enemy(this,m_pSpriteSheet, m_pPathfinder, "Enemy", vec2(30.f, 30.f), vec2(5.0f, 5.0f),
+        m_pMeshes["Player"], m_pShaders["Basic"], m_pTextures["Game"]);
+
     m_Objects.push_back( m_pPlayer );
+    m_Objects.push_back(m_pEnemy);
 }
 
 void Game::StartFrame(float deltaTime)

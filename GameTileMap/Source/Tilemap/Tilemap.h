@@ -28,7 +28,11 @@ public:
     ~Tilemap();
 
     bool isTileWalkable(int TileIndex);
+    bool IsTileWalkable(int x, int y);
     bool IsWorldPositionWalkable(vec2 worldpos);
+    vec2 GetTileSize() { return m_TileSize; }
+    vec2 GetWorldPositon(fw::ivec2 tilepos);
+    vec2 GetWorldPosition(int tileindex);
     void Draw();
  
 protected:
